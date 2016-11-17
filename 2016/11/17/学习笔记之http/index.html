@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="zhangyuang">
 <meta property="og:description" content="无状态性http协议是无状态的，同一个客户端第二次访问同一个服务器上的页面时，服务器无法知道这个客户端曾经访问过。服务器无法分辨不同的客户端。http无状态特性简化了服务器的设计，使服务器更容易支持大量并发的http请求。
 过程1、浏览器输入网址。2、浏览器根据域名解析IP。3、浏览器与web服务器建立一个tcp连接。4、浏览器给web服务器发送一个http请求。get请求 ／index.jsp?">
-<meta property="og:updated_time" content="2016-11-17T06:42:20.000Z">
+<meta property="og:updated_time" content="2016-11-17T09:21:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习笔记之http">
 <meta name="twitter:description" content="无状态性http协议是无状态的，同一个客户端第二次访问同一个服务器上的页面时，服务器无法知道这个客户端曾经访问过。服务器无法分辨不同的客户端。http无状态特性简化了服务器的设计，使服务器更容易支持大量并发的http请求。
@@ -328,7 +328,7 @@
 <h3 id="3xx：重定向状态码，表示服务器要求客户端重定向。"><a href="#3xx：重定向状态码，表示服务器要求客户端重定向。" class="headerlink" title="3xx：重定向状态码，表示服务器要求客户端重定向。"></a>3xx：重定向状态码，表示服务器要求客户端重定向。</h3><p>301:永久重定向，响应报文的location首部应有该资源的新URL。<br>303:请求的资源存在着另一个URL</p>
 <h3 id="4xx：客户端错误状态码，表示客户端请求有非法内容。"><a href="#4xx：客户端错误状态码，表示客户端请求有非法内容。" class="headerlink" title="4xx：客户端错误状态码，表示客户端请求有非法内容。"></a>4xx：客户端错误状态码，表示客户端请求有非法内容。</h3><p>400 bad request 表示客户端请求有语法错误，不能被服务器所理解<br>401 表示未经过授权<br>403 表示服务器收到请求，但是拒绝提供服务，通常会在响应正文中给出<br>404 not found 请求的资源不存在</p>
 <h3 id="5xx-服务器错误状态码，表示服务器未能正常处理客户端的请求而出现的意外错误。"><a href="#5xx-服务器错误状态码，表示服务器未能正常处理客户端的请求而出现的意外错误。" class="headerlink" title="5xx 服务器错误状态码，表示服务器未能正常处理客户端的请求而出现的意外错误。"></a>5xx 服务器错误状态码，表示服务器未能正常处理客户端的请求而出现的意外错误。</h3><p>500: 表示服务器发生不可预期的错误，导致无法完成客户端的请求。<br>503 表示服务器当前不能够处理客户端的请求，在一段时间后可能恢复正常。<br>5、服务器发回一个HTML响应<br>6、释放TCP连接<br>7、浏览器解析HTML内容</p>
-<h2 id="https"><a href="#https" class="headerlink" title="https"></a>https</h2><p>https 端口443 http 端口 80<br>http运行在TCP之上，所有传输的内容都是明文，客户端和服务器端都无法验证对方的身份。<br>https是http运行在SSL／TLS之上，所有传输的内容经过对称加密，对称加密的密钥用服务器方的证书进行了非对称加密，客户端可以验证服务哦端的身份，如果配置了客户端验证，服务器也可以验证客户端身份。<br>在http的基础上增加ssl层</p>
+<h2 id="https"><a href="#https" class="headerlink" title="https"></a>https</h2><p>https 端口443 http 端口 80<br>http运行在TCP之上，所有传输的内容都是明文，客户端和服务器端都无法验证对方的身份。<br>https是http运行在SSL／TLS之上，所有传输的内容经过对称加密，对称加密的密钥用服务器方的证书进行了非对称加密，客户端可以验证服务端的身份，如果配置了客户端验证，服务器也可以验证客户端身份。<br>在http的基础上增加ssl层</p>
 
       
     </div>
