@@ -1,0 +1,698 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="小玩意," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="这篇文章写给那些想学习重装系统但是怕损坏自己电脑的同学可以用虚拟机来做实验1材料：vmware虚拟机软件，刻录好镜像的U盘
+如果有不懂如何刻录U盘的同学可以私聊我，推荐用软碟通来刻录，简单粗暴首先将刻录好的U盘事先插进去然后打开vmware软件新建一个虚拟机这里选择自定义然后这些配置使用默认的就可以了这里选择已有的镜像文件然后一直下一步最后大概就是这个样子这里点击编辑虚拟机设置在这里点击添加选择一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟机上实验重装系统">
+<meta property="og:url" content="http://yoursite.com/2016/10/27/虚拟机上实验重装系统/index.html">
+<meta property="og:site_name" content="zhangyuang">
+<meta property="og:description" content="这篇文章写给那些想学习重装系统但是怕损坏自己电脑的同学可以用虚拟机来做实验1材料：vmware虚拟机软件，刻录好镜像的U盘
+如果有不懂如何刻录U盘的同学可以私聊我，推荐用软碟通来刻录，简单粗暴首先将刻录好的U盘事先插进去然后打开vmware软件新建一个虚拟机这里选择自定义然后这些配置使用默认的就可以了这里选择已有的镜像文件然后一直下一步最后大概就是这个样子这里点击编辑虚拟机设置在这里点击添加选择一">
+<meta property="og:image" content="http://yoursite.com/images/vm1.png">
+<meta property="og:image" content="http://yoursite.com/images/vm2.png">
+<meta property="og:image" content="http://yoursite.com/images/vm3.png">
+<meta property="og:image" content="http://yoursite.com/images/vm4.png">
+<meta property="og:image" content="http://yoursite.com/images/vm5.png">
+<meta property="og:image" content="http://yoursite.com/images/vm6.png">
+<meta property="og:image" content="http://yoursite.com/images/vm7.png">
+<meta property="og:image" content="http://yoursite.com/images/vm8.png">
+<meta property="og:image" content="http://yoursite.com/images/vm9.png">
+<meta property="og:image" content="http://yoursite.com/images/vm10.png">
+<meta property="og:image" content="http://yoursite.com/images/vm11.png">
+<meta property="og:image" content="http://yoursite.com/images/vm12.png">
+<meta property="og:image" content="http://yoursite.com/images/vm13.png">
+<meta property="og:image" content="http://yoursite.com/images/vm14.png">
+<meta property="og:updated_time" content="2016-11-17T03:11:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="虚拟机上实验重装系统">
+<meta name="twitter:description" content="这篇文章写给那些想学习重装系统但是怕损坏自己电脑的同学可以用虚拟机来做实验1材料：vmware虚拟机软件，刻录好镜像的U盘
+如果有不懂如何刻录U盘的同学可以私聊我，推荐用软碟通来刻录，简单粗暴首先将刻录好的U盘事先插进去然后打开vmware软件新建一个虚拟机这里选择自定义然后这些配置使用默认的就可以了这里选择已有的镜像文件然后一直下一步最后大概就是这个样子这里点击编辑虚拟机设置在这里点击添加选择一">
+<meta name="twitter:image" content="http://yoursite.com/images/vm1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/27/虚拟机上实验重装系统/"/>
+
+
+
+
+
+  <title> 虚拟机上实验重装系统 | zhangyuang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zhangyuang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/27/虚拟机上实验重装系统/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="张宇昂">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/momo.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="zhangyuang">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="zhangyuang" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                虚拟机上实验重装系统
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-27T00:18:40+08:00">
+                2016-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术类/" itemprop="url" rel="index">
+                    <span itemprop="name">技术类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/10/27/虚拟机上实验重装系统/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/27/虚拟机上实验重装系统/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="这篇文章写给那些想学习重装系统但是怕损坏自己电脑的同学可以用虚拟机来做实验"><a href="#这篇文章写给那些想学习重装系统但是怕损坏自己电脑的同学可以用虚拟机来做实验" class="headerlink" title="这篇文章写给那些想学习重装系统但是怕损坏自己电脑的同学可以用虚拟机来做实验"></a>这篇文章写给那些想学习重装系统但是怕损坏自己电脑的同学可以用虚拟机来做实验</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">材料：vmware虚拟机软件，刻录好镜像的U盘</div></pre></td></tr></table></figure>
+<h3 id="如果有不懂如何刻录U盘的同学可以私聊我，推荐用软碟通来刻录，简单粗暴"><a href="#如果有不懂如何刻录U盘的同学可以私聊我，推荐用软碟通来刻录，简单粗暴" class="headerlink" title="如果有不懂如何刻录U盘的同学可以私聊我，推荐用软碟通来刻录，简单粗暴"></a>如果有不懂如何刻录U盘的同学可以私聊我，推荐用软碟通来刻录，简单粗暴</h3><h4 id="首先将刻录好的U盘事先插进去然后打开vmware软件新建一个虚拟机"><a href="#首先将刻录好的U盘事先插进去然后打开vmware软件新建一个虚拟机" class="headerlink" title="首先将刻录好的U盘事先插进去然后打开vmware软件新建一个虚拟机"></a>首先将刻录好的U盘事先插进去然后打开vmware软件新建一个虚拟机</h4><p><img src="/images/vm1.png"><br>这里选择自定义<br>然后这些配置使用默认的就可以了<br><img src="/images/vm2.png"><br>这里选择已有的镜像文件然后一直下一步<br><img src="/images/vm3.png"><br>最后大概就是这个样子<br><img src="/images/vm4.png"><br>这里点击编辑虚拟机设置<br><img src="/images/vm5.png"><br>在这里点击添加<br><img src="/images/vm6.png"><br>选择一块硬盘添加用推荐的SCSI就可以了<br><img src="/images/vm7.png"><br>这里选择使用物理磁盘，<br>然后设备这里选择<span style="color:red">最下面那个</span>，一般是最下面的对应你的U盘<br><img src="/images/vm8.png"><br>成功后发现这里多了一块名为正在使用设备\.phy…的硬盘，我们可以点击看看大小是不是等于你的U盘<br><img src="/images/vm9.png"></p>
+<hr>
+<h3 id="接着是虚拟机的部分"><a href="#接着是虚拟机的部分" class="headerlink" title="接着是虚拟机的部分"></a>接着是虚拟机的部分</h3><p>启动虚拟机这里切换成全屏因为这样就可以让你的鼠标控制的是虚拟机而不会影响到本身的电脑<br><img src="/images/vm10.png"><br>虚拟机中使用ctrl+alt+insert来重启，这个快捷键很常用所以要记住。<br>接着在出现这个画面的时候不停地按F2。。。因为这个时间实在太短了我截了好多次图<br><img src="/images/vm11.png"><br>按F2进入BIOS界面<br><img src="/images/vm12.png"><br>用方向键移动到boot上，然后选择Hard Drive<br>这里用—号键将末尾是0：0这一项移到最顶层，这个就是对应你的U盘，因为我们要默认从U盘启动,我查了<br>网上的教程说用+号键可以直接上移然而我失败了我就直接使用—号键把其他的项往下面移动达到同样的效果。<br><img src="/images/vm13.png"><br>做完后按F10保存设置，再重启就可以进入到安装界面了<br><img src="/images/vm14.png"><br>dingdingding~遇到问题可以私聊找我</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/小玩意/" rel="tag"># 小玩意</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/26/如何把ins的照片保存下来/" rel="next" title="如何把ins的照片保存下来">
+                <i class="fa fa-chevron-left"></i> 如何把ins的照片保存下来
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/17/学习笔记之http/" rel="prev" title="学习笔记之http">
+                学习笔记之http <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/27/虚拟机上实验重装系统/"
+           data-title="虚拟机上实验重装系统" data-url="http://yoursite.com/2016/10/27/虚拟机上实验重装系统/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/momo.jpg"
+               alt="张宇昂" />
+          <p class="site-author-name" itemprop="name">张宇昂</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这篇文章写给那些想学习重装系统但是怕损坏自己电脑的同学可以用虚拟机来做实验"><span class="nav-number">1.</span> <span class="nav-text">这篇文章写给那些想学习重装系统但是怕损坏自己电脑的同学可以用虚拟机来做实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如果有不懂如何刻录U盘的同学可以私聊我，推荐用软碟通来刻录，简单粗暴"><span class="nav-number">1.1.</span> <span class="nav-text">如果有不懂如何刻录U盘的同学可以私聊我，推荐用软碟通来刻录，简单粗暴</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先将刻录好的U盘事先插进去然后打开vmware软件新建一个虚拟机"><span class="nav-number">1.1.1.</span> <span class="nav-text">首先将刻录好的U盘事先插进去然后打开vmware软件新建一个虚拟机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接着是虚拟机的部分"><span class="nav-number">1.2.</span> <span class="nav-text">接着是虚拟机的部分</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张宇昂</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhangyuang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
