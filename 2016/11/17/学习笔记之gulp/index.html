@@ -1,0 +1,667 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="前端笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1、gulp.src(globs,[options])src方法指定需要处理的源文件路径，gulp借鉴unix操作系统的管道(pipe)思想，前一级的输出变成后一级的输入。“src/a/js”: 指定具体文件““: 匹配所有文件 例：src/.js(包含src下所有的js文件)；““ 匹配0个或多个子文件夹 例：src//js(包含src的0个或多个子文件夹下的js文件)；“{}”:匹配多个属性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习笔记之gulp">
+<meta property="og:url" content="http://yoursite.com/2016/11/17/学习笔记之gulp/index.html">
+<meta property="og:site_name" content="zhangyuang">
+<meta property="og:description" content="1、gulp.src(globs,[options])src方法指定需要处理的源文件路径，gulp借鉴unix操作系统的管道(pipe)思想，前一级的输出变成后一级的输入。“src/a/js”: 指定具体文件““: 匹配所有文件 例：src/.js(包含src下所有的js文件)；““ 匹配0个或多个子文件夹 例：src//js(包含src的0个或多个子文件夹下的js文件)；“{}”:匹配多个属性">
+<meta property="og:updated_time" content="2016-11-18T03:32:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习笔记之gulp">
+<meta name="twitter:description" content="1、gulp.src(globs,[options])src方法指定需要处理的源文件路径，gulp借鉴unix操作系统的管道(pipe)思想，前一级的输出变成后一级的输入。“src/a/js”: 指定具体文件““: 匹配所有文件 例：src/.js(包含src下所有的js文件)；““ 匹配0个或多个子文件夹 例：src//js(包含src的0个或多个子文件夹下的js文件)；“{}”:匹配多个属性">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/17/学习笔记之gulp/"/>
+
+
+
+
+
+  <title> 学习笔记之gulp | zhangyuang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zhangyuang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/17/学习笔记之gulp/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="张宇昂">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/momo.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="zhangyuang">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="zhangyuang" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                学习笔记之gulp
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-17T20:13:54+08:00">
+                2016-11-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/17/学习笔记之gulp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/17/学习笔记之gulp/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1、gulp-src-globs-options"><a href="#1、gulp-src-globs-options" class="headerlink" title="1、gulp.src(globs,[options])"></a>1、gulp.src(globs,[options])</h2><p>src方法指定需要处理的源文件路径，gulp借鉴unix操作系统的管道(pipe)思想，前一级的输出变成后一级的输入。<br>“src/a/js”: 指定具体文件<br>“<em>“: 匹配所有文件 例：src/</em>.js(包含src下所有的js文件)；<br>“<strong>“ 匹配0个或多个子文件夹 例：src/</strong>/<em>js(包含src的0个或多个子文件夹下的js文件)；<br>“{}”:匹配多个属性 例：src/{a,b}.js(包含a.js和b.js文件)<br>src/</em>.{jpg,png,gif}(src下所有的jpg,png,gif文件)；<br>“!” 排除文件 例：!/src/a.js(不包含src下的a.js文件)；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var gulp=require(&apos;gulp&apos;),</div><div class="line">	less=require(&apos;gulp-less&apos;);</div><div class="line">gulp.task(&apos;less&apos;,function()&#123;</div><div class="line">	gulp.src(&apos;less/**/*.less&apos;)</div><div class="line">	.pipe(less())</div><div class="line">	.pipe(gulp.dest(&apos;./css&apos;));</div></pre></td></tr></table></figure></p>
+<h3 id="options-类型-可选-object-有3个属性buffer，read-base"><a href="#options-类型-可选-object-有3个属性buffer，read-base" class="headerlink" title="options:类型(可选):object,有3个属性buffer，read,base;"></a>options:类型(可选):object,有3个属性buffer，read,base;</h3><p>options.buffer:类型:boolean 默认：true 设置为false，将返回file.content的流并且不缓冲文件，处理大文件时非常有用；<br>options.read 类型boolean 默认：true 设置为false,将不执行读取文件操作，返回null<br>options.base: 类型boolean 默认：true 设置输出路径以某个路径的某个组成部分为基础向后拼接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">gulp.src(&apos;client/js/**/*.js&apos;)</div><div class="line">	.pipe(minify())</div><div class="line">	.pipe(gulp.dest(&apos;build&apos;));//writes &apos;build/somedir/somefile.js&apos;);</div><div class="line">gulp.src(&apos;client/js/**/*.js&apos;,&#123;base:&apos;cilent&apos;&#125;)</div><div class="line">	.pipe(minify())</div><div class="line">	.pipe()</div></pre></td></tr></table></figure></p>
+<h2 id="2、gulp-dest-path-options"><a href="#2、gulp-dest-path-options" class="headerlink" title="2、gulp.dest(path[,options])"></a>2、gulp.dest(path[,options])</h2><p>说明：dest方法是指定处理完文件后的输出路径；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">gulp.src(&apos;./client/templates/*.jade&apos;)</div><div class="line">	.pipe(jade())</div><div class="line">	.pipe(gulp.dest(&apos;./build/templates&apos;))</div><div class="line">	.pipe(minify())</div><div class="line">	.pipe(gulp.dest(&apos;./build/minified_templates&apos;));</div></pre></td></tr></table></figure></p>
+<p>path:类型(必填)：string or function 指定文件输出路径，或者定义函数返回文件输出路径；<br>options.cwd： 类型：String  默认：process.cwd()：前脚本的工作目录的路径 当文件输出路径为相对路径将会用到；<br>options.mode：  类型：String  默认：0777 指定被创建文件夹的权限；</p>
+<h2 id="gulp-task-name-deps-fn"><a href="#gulp-task-name-deps-fn" class="headerlink" title="gulp.task(name[,deps],fn)"></a>gulp.task(name[,deps],fn)</h2><p>说明：task定义一个gulp任务<br>name：类型： string 指定任务的名称<br>deps：类型： stringarray，该任务依赖的任务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">gulp.task(&apos;less&apos;,function()&#123;</div><div class="line">	return gulp.src([&apos;less/*.less&apos;])</div><div class="line">				.pipe(less())</div><div class="line">				.pipe(gulp.dest(&apos;./css&apos;))</div><div class="line">&#125;);</div><div class="line">gulp.task(&apos;minicss&apos;,[&apos;less&apos;],function()&#123;</div><div class="line">	//执行完less再执行minicss任务</div><div class="line">	gulp.src([&apos;css/*.css&apos;])</div><div class="line">		.pipe(minifyCss())</div><div class="line">		.pipe(gulp.dest(&apos;./dist/css&apos;));</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>fn:类型：function 该任务调用的插件操作</p>
+<h2 id="gulp-watch-glob-opts-tasks-or-gulp-watch-glob-opts-cb"><a href="#gulp-watch-glob-opts-tasks-or-gulp-watch-glob-opts-cb" class="headerlink" title="gulp.watch(glob[,opts],tasks)or gulp.watch(glob[,opts,cb])"></a>gulp.watch(glob[,opts],tasks)or gulp.watch(glob[,opts,cb])</h2><p>说明：watch用于监听文件的变化，一修改就会执行指定的任务<br>glob：需要处理的源文件匹配符路径。类型：string or srtingarray<br>opts：类型（可选）object<br>tasks：类型（必填）stringarray 需要执行的任务的名称数组<br>cb（event）类型（可选）function 每个文件变化执行的回调函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<h2 id="gulp监听less生成css"><a href="#gulp监听less生成css" class="headerlink" title="gulp监听less生成css"></a>gulp监听less生成css</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var gulp=require(&apos;gulp&apos;),</div><div class="line">	less=require(&apos;gulp-less&apos;),</div><div class="line">	liverdload=require(&apos;gulp-livereload&apos;),</div><div class="line">	watch=require(&apos;gulp-watch&apos;);</div><div class="line">gulp.task(&apos;less&apos;,function()&#123;</div><div class="line">	gulp.src(&apos;less/*.less&apos;)</div><div class="line">	.pipe(watch())</div><div class="line">	.pipe(less())</div><div class="line">	.pipe(gulp.dest(&apos;./css&apos;))</div><div class="line">	.pipe(livereload());</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="BrowserSync"><a href="#BrowserSync" class="headerlink" title="BrowserSync"></a>BrowserSync</h2><p>BrowserSync功能与livereload相似。当改变代码时，browersync会重新加载页面，如果时css文件会直接添加进css中，页面不需要再次刷新。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev browser-sync</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var gulp=require(&apos;gulp&apos;),</div><div class="line"> 	browserSync=require(&apos;browser-sync&apos;);</div><div class="line">gulp.task(&apos;brower-sync&apos;,function()&#123;</div><div class="line">	var files= [</div><div class="line">		&apos;app/**/*.html&apos;,</div><div class="line">		&apos;app/assets/css/**/*.css&apos;,</div><div class="line">		&apos;app/assets/imgs/**/*.png&apos;,</div><div class="line">		&apos;app/assets/js/**/*.js&apos;</div><div class="line">	];</div><div class="line">	browserSync.init(files,&#123;</div><div class="line">		server: &#123;</div><div class="line">			baseDir:&apos;./app&apos;</div><div class="line">	  &#125;</div><div class="line">	&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>执行gulp browser-sync后会监听匹配文件的变化，同时为app目录提供文件服务。 </p>
+<h2 id="实际案例"><a href="#实际案例" class="headerlink" title="实际案例"></a>实际案例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line">var path = require(&apos;path&apos;);</div><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var yargs = require(&apos;yargs&apos;).argv;</div><div class="line">var gulp = require(&apos;gulp&apos;);</div><div class="line">var less = require(&apos;gulp-less&apos;);</div><div class="line">var header = require(&apos;gulp-header&apos;);</div><div class="line">//管道增强器</div><div class="line">var tap = require(&apos;gulp-tap&apos;);</div><div class="line">//css压缩</div><div class="line">var nano = require(&apos;gulp-cssnano&apos;);</div><div class="line">//自动兼容浏览器以及加入前缀</div><div class="line">var postcss = require(&apos;gulp-postcss&apos;);</div><div class="line">//postcss加强版</div><div class="line">var autoprefixer = require(&apos;autoprefixer&apos;);</div><div class="line">var rename = require(&apos;gulp-rename&apos;);</div><div class="line">//js还原工具</div><div class="line">var uglify = require(&apos;gulp-uglify&apos;);</div><div class="line">//添加版本号</div><div class="line">var rev = require(&apos;gulp-rev-append&apos;);</div><div class="line">//图片压缩</div><div class="line">var imagemin = require(&apos;gulp-imagemin&apos;);</div><div class="line">//js、css压缩、混淆后还原</div><div class="line">var sourcemaps = require(&apos;gulp-sourcemaps&apos;);</div><div class="line">var browserSync = require(&apos;browser-sync&apos;);</div><div class="line">var pkg = require(&apos;./package.json&apos;);</div><div class="line"></div><div class="line">var dir = __dirname + &apos;/crowdManager&apos;;</div><div class="line">var option = &#123;base: &apos;src&apos;&#125;;</div><div class="line">var source = &apos;./src&apos;;</div><div class="line"></div><div class="line">gulp.task(&apos;bulid:style&apos;,function()&#123;</div><div class="line">	gulp.src(source + &apos;/style/**.less&apos;)</div><div class="line">	.pipe(sourcemaps.init())</div><div class="line">	.pipe(less())</div><div class="line">    .pipe(postcss([autoprefixer([&apos;ie &gt;= 9&apos;, &apos;chrome &gt;= 40&apos;,&apos;Firefox &gt;= 20&apos;])]))</div><div class="line">	.pipe(sourcemaps.write())</div><div class="line">	.pipe(gulp.dest(dir+&apos;/css&apos;))</div><div class="line">    .pipe(nano(&#123;</div><div class="line">            zindex: false</div><div class="line">     &#125;))</div><div class="line">	.pipe(gulp.dest(dir+&apos;/css&apos;))</div><div class="line">	.pipe(browserSync.reload(&#123;stream: true&#125;));</div><div class="line">&#125;);</div><div class="line">gulp.task(&apos;bulid:html&apos;,function()&#123;</div><div class="line">    gulp.src(source+&apos;/**/*.html&apos;, option)</div><div class="line">        .pipe(gulp.dest(dir))</div><div class="line">        //添加版本 &lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css?rev=@@hash&quot;&gt; @@hash 版本号位置</div><div class="line">        //修改非html watch 无法同步生效，需要重新启动任务或者修改html版本号会改变</div><div class="line">        .pipe(rev())</div><div class="line"></div><div class="line">        .pipe(gulp.dest(dir))</div><div class="line">        .pipe(browserSync.reload(&#123;stream: true&#125;));</div><div class="line">&#125;);</div><div class="line">gulp.task(&apos;bulid:images&apos;,function()&#123;</div><div class="line">	gulp.src(source + &apos;/images/*.?(png|jpg|gif|js)&apos;)</div><div class="line">           .pipe(gulp.dest(dir+&apos;/images&apos;))</div><div class="line">           .pipe(browserSync.reload(&#123;stream: true&#125;));</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(&apos;bulid:javascript&apos;,function()&#123;</div><div class="line">	gulp.src(source + &apos;/js/**.js&apos;)</div><div class="line">	.pipe(gulp.dest(dir + &apos;/js&apos;))</div><div class="line">	.pipe(browserSync.reload(&#123;stream:true&#125;));</div><div class="line">&#125;);</div><div class="line">gulp.task(&apos;bulid:plugins&apos;,function()&#123;</div><div class="line">    gulp.src(source+&apos;/plugins/**/*&apos;,option)</div><div class="line">        .pipe(gulp.dest(dir))</div><div class="line">    	.pipe(browserSync.reload(&#123;stream:true&#125;));</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(&apos;release&apos;,[&apos;bulid:style&apos;,&apos;bulid:html&apos;,&apos;bulid:images&apos;,&apos;bulid:plugins&apos;,&apos;bulid:javascript&apos;]);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// 监听文件</div><div class="line">gulp.task(&apos;watch&apos;,[&apos;release&apos;],function()&#123;</div><div class="line">	gulp.watch(source +&apos;/style/**.less&apos;,[&apos;bulid:style&apos;]);</div><div class="line">	gulp.watch(source + &apos;/images/*.?(png|jpg|gif|js)&apos;,[&apos;bulid:images&apos;]);</div><div class="line">	gulp.watch(source +&apos;/plugins/**&apos;,[&apos;bulid:plugins&apos;]);</div><div class="line">	gulp.watch(source + &apos;/html/*.html&apos;,[&apos;bulid:html&apos;]);</div><div class="line">	gulp.watch(source + &apos;/js/**.js&apos;,[&apos;bulid:javascript&apos;]);</div><div class="line">&#125;);</div><div class="line">gulp.task(&apos;server&apos;,function()&#123;</div><div class="line">	browserSync.init(&#123;</div><div class="line">		server:&#123;</div><div class="line">			baseDir : &apos;./crowdManager&apos;</div><div class="line">		&#125;,</div><div class="line">		startPath : &apos;/html/login.html&apos;</div><div class="line">	&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 参数说明</div><div class="line">//  -w: 实时监听</div><div class="line">//  -s: 启动服务器</div><div class="line">//  -p: 服务器启动端口</div><div class="line">gulp.task(&apos;default&apos;,[&apos;release&apos;],function()&#123;</div><div class="line">	if(yargs.s)&#123;</div><div class="line">		gulp.start(&apos;server&apos;);</div><div class="line">	&#125;</div><div class="line">	if(yargs.w)&#123;</div><div class="line">		gulp.start(&apos;watch&apos;);</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端笔记/" rel="tag"># 前端笔记</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/17/学习笔记之http/" rel="next" title="学习笔记之http">
+                <i class="fa fa-chevron-left"></i> 学习笔记之http
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/17/学习笔记之gulp/"
+           data-title="学习笔记之gulp" data-url="http://yoursite.com/2016/11/17/学习笔记之gulp/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/momo.jpg"
+               alt="张宇昂" />
+          <p class="site-author-name" itemprop="name">张宇昂</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、gulp-src-globs-options"><span class="nav-number">1.</span> <span class="nav-text">1、gulp.src(globs,[options])</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#options-类型-可选-object-有3个属性buffer，read-base"><span class="nav-number">1.1.</span> <span class="nav-text">options:类型(可选):object,有3个属性buffer，read,base;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、gulp-dest-path-options"><span class="nav-number">2.</span> <span class="nav-text">2、gulp.dest(path[,options])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gulp-task-name-deps-fn"><span class="nav-number">3.</span> <span class="nav-text">gulp.task(name[,deps],fn)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gulp-watch-glob-opts-tasks-or-gulp-watch-glob-opts-cb"><span class="nav-number">4.</span> <span class="nav-text">gulp.watch(glob[,opts],tasks)or gulp.watch(glob[,opts,cb])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gulp监听less生成css"><span class="nav-number">5.</span> <span class="nav-text">gulp监听less生成css</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BrowserSync"><span class="nav-number">6.</span> <span class="nav-text">BrowserSync</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际案例"><span class="nav-number">7.</span> <span class="nav-text">实际案例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张宇昂</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhangyuang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
