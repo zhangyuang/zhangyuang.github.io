@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="QAQ还没想好标签," />
+  <meta name="keywords" content="前端笔记," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="经过一天的折腾总算勉强熟悉了hexo的操作流程，从页面看起来很华丽的wordpress但是没啥技术含量转到页面朴实但是有那一丢丢技术含量的hexo，接下来让我继续熟悉下hexo的操作吧。">
+<meta name="description" content="概念如果给javascript代码标志为“严格模式”，则其中运行的所有代码都必然是严格模式下的。其一：如果在语法检测时发现语法问题，则整个代码块实效，并导致一个语法异常。其二：如果在运行期出现了违反严格模式的代码，则抛出执行异常。注：经过测试ie6,7,8,9均不支持严格模式。使用方法，添加“use strict”在如下位置加入可以开启相应代码块中的严格模式：1、必须在全局代码的开始处加入。2、在">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一篇文章">
-<meta property="og:url" content="http://yoursite.com/2016/08/14/第一篇文章/index.html">
+<meta property="og:title" content="学习笔记之'use strict'">
+<meta property="og:url" content="http://yoursite.com/2016/11/20/学习笔记之-use-strict/index.html">
 <meta property="og:site_name" content="zhangyuang">
-<meta property="og:description" content="经过一天的折腾总算勉强熟悉了hexo的操作流程，从页面看起来很华丽的wordpress但是没啥技术含量转到页面朴实但是有那一丢丢技术含量的hexo，接下来让我继续熟悉下hexo的操作吧。">
-<meta property="og:updated_time" content="2016-11-17T03:11:53.000Z">
+<meta property="og:description" content="概念如果给javascript代码标志为“严格模式”，则其中运行的所有代码都必然是严格模式下的。其一：如果在语法检测时发现语法问题，则整个代码块实效，并导致一个语法异常。其二：如果在运行期出现了违反严格模式的代码，则抛出执行异常。注：经过测试ie6,7,8,9均不支持严格模式。使用方法，添加“use strict”在如下位置加入可以开启相应代码块中的严格模式：1、必须在全局代码的开始处加入。2、在">
+<meta property="og:updated_time" content="2016-11-20T14:00:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第一篇文章">
-<meta name="twitter:description" content="经过一天的折腾总算勉强熟悉了hexo的操作流程，从页面看起来很华丽的wordpress但是没啥技术含量转到页面朴实但是有那一丢丢技术含量的hexo，接下来让我继续熟悉下hexo的操作吧。">
+<meta name="twitter:title" content="学习笔记之'use strict'">
+<meta name="twitter:description" content="概念如果给javascript代码标志为“严格模式”，则其中运行的所有代码都必然是严格模式下的。其一：如果在语法检测时发现语法问题，则整个代码块实效，并导致一个语法异常。其二：如果在运行期出现了违反严格模式的代码，则抛出执行异常。注：经过测试ie6,7,8,9均不支持严格模式。使用方法，添加“use strict”在如下位置加入可以开启相应代码块中的严格模式：1、必须在全局代码的开始处加入。2、在">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/14/第一篇文章/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/20/学习笔记之-use-strict/"/>
 
 
 
 
 
-  <title> 第一篇文章 | zhangyuang </title>
+  <title> 学习笔记之'use strict' | zhangyuang </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/08/14/第一篇文章/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/20/学习笔记之-use-strict/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="张宇昂">
@@ -262,7 +262,7 @@
             
             
               
-                第一篇文章
+                学习笔记之'use strict'
               
             
           </h1>
@@ -275,8 +275,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-14T21:36:28+08:00">
-                2016-08-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T21:33:39+08:00">
+                2016-11-20
               </time>
             
 
@@ -286,31 +286,13 @@
           </span>
 
           
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/08/14/第一篇文章/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/14/第一篇文章/" itemprop="commentCount"></span>
+                <a href="/2016/11/20/学习笔记之-use-strict/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/20/学习笔记之-use-strict/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -336,7 +318,10 @@
       
 
       
-        <p>经过一天的折腾总算勉强熟悉了hexo的操作流程，从页面看起来很华丽的wordpress但是没啥技术含量转到页面朴实但是有那一丢丢技术含量的hexo，<br>接下来让我继续熟悉下hexo的操作吧。</p>
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>如果给javascript代码标志为“严格模式”，则其中运行的所有代码都必然是严格模式下的。<br>其一：如果在语法检测时发现语法问题，则整个代码块实效，并导致一个语法异常。<br>其二：如果在运行期出现了违反严格模式的代码，则抛出执行异常。<br>注：经过测试ie6,7,8,9均不支持严格模式。<br>使用方法，添加“use strict”<br>在如下位置加入可以开启相应代码块中的严格模式：<br>1、必须在全局代码的开始处加入。<br>2、在eval代码开始处加入。<br>3、在函数声明代码开始处加入。<br>4、在 new function（）所传的body参数块开始加入。<br>例1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var num=012;</div><div class="line">alert(num)</div></pre></td></tr></table></figure></p>
+<p>在非严格模式下可以使用0开头的前缀声明8进制。显示10。<br>但在严格模式下，会产生错误。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;</div><div class="line">var num=012;</div><div class="line">alert(num)</div><div class="line">测试结果：</div><div class="line">ie6,7,8,9均显示10。</div></pre></td></tr></table></figure></p>
+<p>如果是用严格模式，除了0开头前缀8进制以外的还有：<br>1、在代码中不能使用一些扩展的保留子：<br>implements,interface,let,package,private,public,static,yield<br>2、with语句也不能使用。<br>3、不能声明或重写eval和arguments两个标识符。<br>4、不能用delete删除显式声明的标识符，名称或具名函数。</p>
+<h2 id="使用注意"><a href="#使用注意" class="headerlink" title="使用注意"></a>使用注意</h2><p>“use strict” 被放在一个javascript文件或函数的起始位置时才可以开启严格模式。<br>通常实践推荐在所有函数（或者最外层函数）的开始处加入“use strict” 指令启动严格模式，而绝不推荐在文件的开头处写全局“use strict” ，这时一些es校验器会给出警告。</p>
 
       
     </div>
@@ -360,7 +345,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/QAQ还没想好标签/" rel="tag"># QAQ还没想好标签</a>
+            <a href="/tags/前端笔记/" rel="tag"># 前端笔记</a>
           
         </div>
       
@@ -369,14 +354,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/11/19/学习笔记之css-reset/" rel="next" title="学习笔记之css reset">
+                <i class="fa fa-chevron-left"></i> 学习笔记之css reset
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/20/使用纯JS导出excel/" rel="prev" title="使用纯JS导出excel">
-                使用纯JS导出excel <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/20/学习笔记之js进阶/" rel="prev" title="学习笔记之js进阶">
+                学习笔记之js进阶 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -403,8 +392,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/14/第一篇文章/"
-           data-title="第一篇文章" data-url="http://yoursite.com/2016/08/14/第一篇文章/">
+      <div class="ds-thread" data-thread-key="2016/11/20/学习笔记之-use-strict/"
+           data-title="学习笔记之'use strict'" data-url="http://yoursite.com/2016/11/20/学习笔记之-use-strict/">
       </div>
     
   </div>
@@ -428,8 +417,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/momo.jpg"
@@ -482,6 +480,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用注意"><span class="nav-number">2.</span> <span class="nav-text">使用注意</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
