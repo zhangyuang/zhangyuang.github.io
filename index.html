@@ -236,7 +236,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/20/学习笔记之js进阶/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/21/学习笔记之js进阶/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="张宇昂">
@@ -261,8 +261,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/20/学习笔记之js进阶/" itemprop="url">
-                  学习笔记之js进阶
+                <a class="post-title-link" href="/2016/11/21/学习笔记之js进阶/" itemprop="url">
+                  学习笔记之js闭包
                 </a>
               
             
@@ -276,8 +276,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T21:51:37+08:00">
-                2016-11-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-21T21:51:37+08:00">
+                2016-11-21
               </time>
             
 
@@ -292,8 +292,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/11/20/学习笔记之js进阶/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/20/学习笔记之js进阶/" itemprop="commentCount"></span>
+                <a href="/2016/11/21/学习笔记之js进阶/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/21/学习笔记之js进阶/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -321,7 +321,23 @@
       
         
           
-            
+            <h2 id="函数作为返回值"><a href="#函数作为返回值" class="headerlink" title="函数作为返回值"></a>函数作为返回值</h2><p>高阶函数除了可以接受函数作为参数外，还可以把函数作为结果值返回。<br>我们来实现一个对array的求和：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function sum(arr) &#123;</div><div class="line">	return arr.reduce(function(x,y)&#123;</div><div class="line">		return x+y;</div><div class="line">	&#125;);</div><div class="line">&#125;</div><div class="line">sum([1,2,3,4,5]);//15</div></pre></td></tr></table></figure></p>
+<p>但是，如果不需要立刻求和，而是在后面的代码中，根据需要再计算怎么办？可以不返回求和的结果，而是返回求和的函数！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function lazy_sum(arr)&#123;</div><div class="line">	var sum=function()&#123;</div><div class="line">		return arr.reduce(function(x,y)&#123;</div><div class="line">			return x+y;</div><div class="line">		&#125;);</div><div class="line">	&#125;</div><div class="line">	return sum;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当我们调用lazy_sum()时，返回的并不是求和结果，而是求和函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var f=lazy_sum([1,2,3,4,5])//function sum()</div></pre></td></tr></table></figure></p>
+<p>调用函数f时，才是真正计算求和的结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">f();//15</div></pre></td></tr></table></figure></p>
+<p>在这个例子中，我们在lazy_sum中又定义了函数sum，并且，内部函数sum可以引用外国函数lazy_sum中的参数和局部变量，当lazy_sum返回函数sum时，相关参数和变量都保存在返回的函数中，这种称为“闭包”的程序结构拥有极大的威力。<br>再注意一点，当我们调用lazy_sum()时，每次调用都会返回一个新的函数，即使传入相同的参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var f1 = lazy_sum([1,2,3,4,5]);</div><div class="line">var f2 = lazy_sum([1,2,3,4,5]);</div><div class="line">f1===f2;//false</div></pre></td></tr></table></figure></p>
+<p>f1和f2调用的结果互不影响。</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>注意到返回的函数在其定义内部引用了局部变量arr，所以当一个函数返回了一个函数后，其内部的局部变量还被新函数引用，所以，闭包用起来简单，实现起来可不容易。<br>另一个需要注意的问题是，返回的函数并没有立刻执行，而是直到调用了f()才执行。我们来看一个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function count() &#123;</div><div class="line">	var arr=[];</div><div class="line">	for(var i=1;i&lt;=3;i++)&#123;</div><div class="line">		arr.push(function() &#123;</div><div class="line">			return i*i;</div><div class="line">		&#125;);</div><div class="line">	&#125;</div><div class="line">	return arr;</div><div class="line">&#125;</div><div class="line">var results=count();</div><div class="line">var f1 = result[0];</div><div class="line">var f2 = result[1];</div><div class="line">var f3 = result[2];</div></pre></td></tr></table></figure></p>
+<p>在上面的例子中，每次循环都创建了一个新的函数，然后，把创建的三个函数都添加到一个array中返回。<br>你可能认为调用f1(),f2(),f3()结果应该是1，4，9，但实际结果是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f1(); //16</div><div class="line">f2(); //16</div><div class="line">f3(); //16</div></pre></td></tr></table></figure></p>
+<p>全部都是16，原因就在于返回的函数引用了变量i，但它并非立刻执行。等到三个函数都返回时，它们所引用的变量i已经变成了4，所以最终结果为16.<br><span style="color:red">返回闭包时牢记的一点就是：返回函数不要引用任何循环变量，或者后续会发生变化的变量。</span><br>如果一定要引用循环变量怎么办？方法是再创建一个函数，用该函数的参数绑定循环变量当前的值，无论该循环变量后续如何更改，已绑定到函数参数的值不变。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function count() &#123;</div><div class="line">	var arr=[];</div><div class="line">	for(var i=1;i&lt;=3;i++)&#123;</div><div class="line">		arr.push((function (n) &#123;</div><div class="line">			return function () &#123;</div><div class="line">			return n*n;</div><div class="line">		&#125;</div><div class="line">		&#125;)(i));//创造匿名函数并立即执行；</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">var results = count();</div><div class="line">var f1 = results[0];</div><div class="line">var f2 = results[1];</div><div class="line">var f3 = results[2];</div><div class="line">f1(); //1</div><div class="line">f2(); //4</div><div class="line">f3(); //9</div></pre></td></tr></table></figure></p>
+<p>注意这里用了一个创造匿名函数并立刻执行的语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(function(x) &#123;</div><div class="line">	return x*x;</div><div class="line">&#125;)(3); //9</div></pre></td></tr></table></figure></p>
+<p>理论上讲，创建一个匿名函数并立刻执行可以这么写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function() &#123; return x*x &#125; (3);</div></pre></td></tr></table></figure></p>
+<p>但是由于javascript语法解析的问题，会报 syntaxerror错误，因此需要用括号把整个函数定义括起来：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(function(x) &#123; return x*x &#125;)(3);</div></pre></td></tr></table></figure></p>
+<p>通常，一个立即执行的匿名函数可以把函数体拆开，一般这么写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(function (x) &#123;</div><div class="line">	return x*x;</div><div class="line">&#125;)(3);</div></pre></td></tr></table></figure></p>
+<p>说了这么多，难道闭包就是为了返回一个函数然后延迟执行吗？<br>当然不是！闭包有非常强大的功能。举个🌰：<br>在面向对象的程序设计语言里，比如java和c++,要在对象内部封装一个私有变量，可以用<span style="color:red">private</span>修饰一个成员变量。<br>在没有<span style="color:red">class</span>机制，只有函数的语言里，借助闭包，同样可以封装一个私有变量。我们用javascript创建一个计数器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&apos;use strict&apos;</div><div class="line">function create_counter(initial) &#123;</div><div class="line">	var x = initial || 0;</div><div class="line">	return &#123;</div><div class="line">		inc: function () &#123;</div><div class="line">			x+=1;</div><div class="line">			return x;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>它用起来像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var c1 = create_counter();</div><div class="line">c1.inc(); //1;</div><div class="line">c1.inc(); //2;</div><div class="line">c1.inc(); //3;</div><div class="line">var c2 = create_counter(10);</div><div class="line">c2.inc(); //11</div><div class="line">c2.inc(); //12</div><div class="line">c2.inc(); //13</div></pre></td></tr></table></figure></p>
+<p>在返回的对象中，实现了一个闭包，该闭包携带了局部变量x，并且从外部代码中根本无法访问到变量x。换句话说：<span style="color:red">闭包就是携带状态的函数，并且它的状态可以完全对外隐藏起来</span><br>闭包还可以把多参数的函数变成单参数的函数。例如，要计算<br>x^y 可以用 Math.pow(x,y)函数，不过考虑到经常计算x^2或x^3，我们可以利用闭包创建新的函数pow2和pow3：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function make_pow(n) &#123;</div><div class="line">	return function (x) &#123;</div><div class="line">		return Math.pow(x,n);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">//创建两个新函数：</div><div class="line">var pow2 = make_pow(2);</div><div class="line">var pow3 = make_pow(3);</div><div class="line">pow2(5);//35</div><div class="line">pow3(7);//343</div></pre></td></tr></table></figure></p>
+
           
         
       
