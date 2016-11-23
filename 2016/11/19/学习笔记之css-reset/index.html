@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/19/学习笔记之css-reset/index.html">
 <meta property="og:site_name" content="zhangyuang">
 <meta property="og:description" content="含义流行的浏览器有一些以自己的方式去理解css规范，这样会导致有的浏览器对css的解释与设计师的css定义初衷冲突，使得网页的样子在某些浏览器下能正确显示，但有些浏览器缺并没有按照设计师想要的样子显示出来，这就导致浏览器的兼容性问题，更糟的是，有些浏览器完全无视css的一些声明和属性。正因为上述冲突和问题依然存在于这个“不完美的世界”，所以一些设计师想到了一种避免浏览器兼容性问题的方法，那就是 C">
-<meta property="og:updated_time" content="2016-11-19T11:14:24.000Z">
+<meta property="og:updated_time" content="2016-11-23T14:59:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习笔记之css reset">
 <meta name="twitter:description" content="含义流行的浏览器有一些以自己的方式去理解css规范，这样会导致有的浏览器对css的解释与设计师的css定义初衷冲突，使得网页的样子在某些浏览器下能正确显示，但有些浏览器缺并没有按照设计师想要的样子显示出来，这就导致浏览器的兼容性问题，更糟的是，有些浏览器完全无视css的一些声明和属性。正因为上述冲突和问题依然存在于这个“不完美的世界”，所以一些设计师想到了一种避免浏览器兼容性问题的方法，那就是 C">
@@ -318,7 +318,7 @@
       
 
       
-        <h2 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h2><p>流行的浏览器有一些以自己的方式去理解css规范，这样会导致有的浏览器对css的解释与设计师的css定义初衷冲突，使得网页的样子在某些浏览器下能正确显示，但有些浏览器缺并没有按照设计师想要的样子显示出来，这就导致浏览器的兼容性问题，更糟的是，有些浏览器完全无视css的一些声明和属性。<br>正因为上述冲突和问题依然存在于这个“不完美的世界”，所以一些设计师想到了一种避免浏览器兼容性问题的方法，那就是 Css Reset。可以叫做css重设也可以叫做css抚慰，默认css，css重置等。所以我们要先定义好一些css样式，让所有浏览器按照同样的规则解释css就可以避免发生这种问题。</p>
+        <h2 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h2><p>流行的浏览器有一些以自己的方式去理解css规范，这样会导致有的浏览器对css的解释与设计师的css定义初衷冲突，使得网页的样子在某些浏览器下能正确显示，但有些浏览器缺并没有按照设计师想要的样子显示出来，这就导致浏览器的兼容性问题，更糟的是，有些浏览器完全无视css的一些声明和属性。<br>正因为上述冲突和问题依然存在于这个“不完美的世界”，所以一些设计师想到了一种避免浏览器兼容性问题的方法，那就是 Css Reset。可以叫做css重设也可以叫做css抚慰，默认css，css重置等。所以我们要先定义好一些css样式，让所有浏览器按照同样的规则解释css就可以避免发生这种问题。<br><a id="more"></a></p>
 <h2 id="一、最简化的-Css-Reset"><a href="#一、最简化的-Css-Reset" class="headerlink" title="一、最简化的 Css Reset"></a>一、最简化的 Css Reset</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">*&#123;</div><div class="line">	margin:0;</div><div class="line">	padding:0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这是最简单的css重设，将所有元素的padding和margin都设为0，可以避免一些浏览器在理解这两个属性默认值上的“分歧”。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">*&#123;</div><div class="line">	margin:0;</div><div class="line">	padding:0;</div><div class="line">	border:0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>在上一个重设的基础上添加了对border属性的重设，初始值为0的确能避免一些问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">*&#123;</div><div class="line">	outline:0;</div><div class="line">	margin:0;</div><div class="line">	padding:0;</div><div class="line">	border:0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>

@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/20/学习笔记之-use-strict/index.html">
 <meta property="og:site_name" content="zhangyuang">
 <meta property="og:description" content="概念如果给javascript代码标志为“严格模式”，则其中运行的所有代码都必然是严格模式下的。其一：如果在语法检测时发现语法问题，则整个代码块实效，并导致一个语法异常。其二：如果在运行期出现了违反严格模式的代码，则抛出执行异常。注：经过测试ie6,7,8,9均不支持严格模式。使用方法，添加“use strict”在如下位置加入可以开启相应代码块中的严格模式：1、必须在全局代码的开始处加入。2、在">
-<meta property="og:updated_time" content="2016-11-20T14:00:54.000Z">
+<meta property="og:updated_time" content="2016-11-23T14:59:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习笔记之'use strict'">
 <meta name="twitter:description" content="概念如果给javascript代码标志为“严格模式”，则其中运行的所有代码都必然是严格模式下的。其一：如果在语法检测时发现语法问题，则整个代码块实效，并导致一个语法异常。其二：如果在运行期出现了违反严格模式的代码，则抛出执行异常。注：经过测试ie6,7,8,9均不支持严格模式。使用方法，添加“use strict”在如下位置加入可以开启相应代码块中的严格模式：1、必须在全局代码的开始处加入。2、在">
@@ -318,7 +318,7 @@
       
 
       
-        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>如果给javascript代码标志为“严格模式”，则其中运行的所有代码都必然是严格模式下的。<br>其一：如果在语法检测时发现语法问题，则整个代码块实效，并导致一个语法异常。<br>其二：如果在运行期出现了违反严格模式的代码，则抛出执行异常。<br>注：经过测试ie6,7,8,9均不支持严格模式。<br>使用方法，添加“use strict”<br>在如下位置加入可以开启相应代码块中的严格模式：<br>1、必须在全局代码的开始处加入。<br>2、在eval代码开始处加入。<br>3、在函数声明代码开始处加入。<br>4、在 new function（）所传的body参数块开始加入。<br>例1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var num=012;</div><div class="line">alert(num)</div></pre></td></tr></table></figure></p>
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>如果给javascript代码标志为“严格模式”，则其中运行的所有代码都必然是严格模式下的。<br>其一：如果在语法检测时发现语法问题，则整个代码块实效，并导致一个语法异常。<br>其二：如果在运行期出现了违反严格模式的代码，则抛出执行异常。<br>注：经过测试ie6,7,8,9均不支持严格模式。<br>使用方法，添加“use strict”<br>在如下位置加入可以开启相应代码块中的严格模式：<br>1、必须在全局代码的开始处加入。<br>2、在eval代码开始处加入。<br>3、在函数声明代码开始处加入。<br>4、在 new function（）所传的body参数块开始加入。<br><a id="more"></a><br>例1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var num=012;</div><div class="line">alert(num)</div></pre></td></tr></table></figure></p>
 <p>在非严格模式下可以使用0开头的前缀声明8进制。显示10。<br>但在严格模式下，会产生错误。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;</div><div class="line">var num=012;</div><div class="line">alert(num)</div><div class="line">测试结果：</div><div class="line">ie6,7,8,9均显示10。</div></pre></td></tr></table></figure></p>
 <p>如果是用严格模式，除了0开头前缀8进制以外的还有：<br>1、在代码中不能使用一些扩展的保留子：<br>implements,interface,let,package,private,public,static,yield<br>2、with语句也不能使用。<br>3、不能声明或重写eval和arguments两个标识符。<br>4、不能用delete删除显式声明的标识符，名称或具名函数。</p>
 <h2 id="使用注意"><a href="#使用注意" class="headerlink" title="使用注意"></a>使用注意</h2><p>“use strict” 被放在一个javascript文件或函数的起始位置时才可以开启严格模式。<br>通常实践推荐在所有函数（或者最外层函数）的开始处加入“use strict” 指令启动严格模式，而绝不推荐在文件的开头处写全局“use strict” ，这时一些es校验器会给出警告。</p>

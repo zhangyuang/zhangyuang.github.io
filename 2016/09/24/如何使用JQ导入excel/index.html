@@ -84,22 +84,19 @@
 
 
 
-<meta name="description" content="因为最近做的项目有功能是和excel有关的，所以最近一直在研究excel的相关处理方法。导出excel可以完全前端实现但是导入找了一些插件得到的值总是不如人意还是要后台来做。在网上找了很多导入excel的方法写的都很复杂要引入很多插件例如jquery.form bootstrap.fileinput而且最后还不一定成功，这里介绍一个我一直在用的方法不需要引入任何插件并且一定可以成功。
-html首先">
+<meta name="description" content="因为最近做的项目有功能是和excel有关的，所以最近一直在研究excel的相关处理方法。导出excel可以完全前端实现但是导入找了一些插件得到的值总是不如人意还是要后台来做。在网上找了很多导入excel的方法写的都很复杂要引入很多插件例如jquery.form bootstrap.fileinput而且最后还不一定成功，这里介绍一个我一直在用的方法不需要引入任何插件并且一定可以成功。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何使用JQ导入excel">
 <meta property="og:url" content="http://yoursite.com/2016/09/24/如何使用JQ导入excel/index.html">
 <meta property="og:site_name" content="zhangyuang">
-<meta property="og:description" content="因为最近做的项目有功能是和excel有关的，所以最近一直在研究excel的相关处理方法。导出excel可以完全前端实现但是导入找了一些插件得到的值总是不如人意还是要后台来做。在网上找了很多导入excel的方法写的都很复杂要引入很多插件例如jquery.form bootstrap.fileinput而且最后还不一定成功，这里介绍一个我一直在用的方法不需要引入任何插件并且一定可以成功。
-html首先">
+<meta property="og:description" content="因为最近做的项目有功能是和excel有关的，所以最近一直在研究excel的相关处理方法。导出excel可以完全前端实现但是导入找了一些插件得到的值总是不如人意还是要后台来做。在网上找了很多导入excel的方法写的都很复杂要引入很多插件例如jquery.form bootstrap.fileinput而且最后还不一定成功，这里介绍一个我一直在用的方法不需要引入任何插件并且一定可以成功。">
 <meta property="og:image" content="http://yoursite.com/images/导入excel1.png">
 <meta property="og:image" content="http://yoursite.com/images/导入excel2.png">
 <meta property="og:image" content="http://yoursite.com/images/导入excel3.png">
-<meta property="og:updated_time" content="2016-11-17T03:11:53.000Z">
+<meta property="og:updated_time" content="2016-11-23T15:00:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用JQ导入excel">
-<meta name="twitter:description" content="因为最近做的项目有功能是和excel有关的，所以最近一直在研究excel的相关处理方法。导出excel可以完全前端实现但是导入找了一些插件得到的值总是不如人意还是要后台来做。在网上找了很多导入excel的方法写的都很复杂要引入很多插件例如jquery.form bootstrap.fileinput而且最后还不一定成功，这里介绍一个我一直在用的方法不需要引入任何插件并且一定可以成功。
-html首先">
+<meta name="twitter:description" content="因为最近做的项目有功能是和excel有关的，所以最近一直在研究excel的相关处理方法。导出excel可以完全前端实现但是导入找了一些插件得到的值总是不如人意还是要后台来做。在网上找了很多导入excel的方法写的都很复杂要引入很多插件例如jquery.form bootstrap.fileinput而且最后还不一定成功，这里介绍一个我一直在用的方法不需要引入任何插件并且一定可以成功。">
 <meta name="twitter:image" content="http://yoursite.com/images/导入excel1.png">
 
 
@@ -343,7 +340,7 @@ html首先">
       
 
       
-        <p>因为最近做的项目有功能是和excel有关的，所以最近一直在研究excel的相关处理方法。导出excel可以完全前端实现但是导入找了一些插件<br>得到的值总是不如人意还是要后台来做。在网上找了很多导入excel的方法写的都很复杂要引入很多插件例如jquery.form bootstrap.fileinput<br>而且最后还不一定成功，这里介绍一个我一直在用的方法不需要引入任何插件并且一定可以成功。</p>
+        <p>因为最近做的项目有功能是和excel有关的，所以最近一直在研究excel的相关处理方法。导出excel可以完全前端实现但是导入找了一些插件<br>得到的值总是不如人意还是要后台来做。在网上找了很多导入excel的方法写的都很复杂要引入很多插件例如jquery.form bootstrap.fileinput<br>而且最后还不一定成功，这里介绍一个我一直在用的方法不需要引入任何插件并且一定可以成功。<br><a id="more"></a></p>
 <h2 id="html"><a href="#html" class="headerlink" title="html"></a>html</h2><p>首先html的页面结构是这样的，将input file设置为display:none的话就不需要考虑它和按钮完全重叠来点击的问题。<br><img src="/images/导入excel1.png"></p>
 <h2 id="js"><a href="#js" class="headerlink" title="js"></a>js</h2><p>js的内容的话给按钮绑定事件让他点击就相当于file点击，然后用change方法来监听input file的状态变化。这里需要用到formdata对象，<br>用法是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var formdata=new FormData($(&quot;#myform&quot;)[0])</div></pre></td></tr></table></figure></p>
 <p>这里填的是form表单的id<br><img src="/images/导入excel2.png"><br>我这里介绍的方法目的是将excel的内容读取然后返回为一个json字符串给前端使用，例如这种<br><img src="/images/导入excel3.png"><br>返回的就是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&#123;date:xxx,B:xxx,p:xxx&#125;，&#123;date:xxx,B:xxx,p:xxx&#125;，&#123;date:xxx,B:xxx,p:xxx&#125;]的形式</div></pre></td></tr></table></figure></p>
