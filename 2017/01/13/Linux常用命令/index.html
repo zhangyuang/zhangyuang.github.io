@@ -1,0 +1,797 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="命令基本格式命令提示符1234567[root@localhost ~]#其中：	root  当前登陆用户	localhost  主机名	～ 当前所在目录	# 超级用户提示符	  普通用户的提示符是$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令">
+<meta property="og:url" content="http://yoursite.com/2017/01/13/Linux常用命令/index.html">
+<meta property="og:site_name" content="zhangyuang">
+<meta property="og:description" content="命令基本格式命令提示符1234567[root@localhost ~]#其中：	root  当前登陆用户	localhost  主机名	～ 当前所在目录	# 超级用户提示符	  普通用户的提示符是$">
+<meta property="og:updated_time" content="2017-01-15T10:42:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux常用命令">
+<meta name="twitter:description" content="命令基本格式命令提示符1234567[root@localhost ~]#其中：	root  当前登陆用户	localhost  主机名	～ 当前所在目录	# 超级用户提示符	  普通用户的提示符是$">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/13/Linux常用命令/"/>
+
+
+
+
+
+  <title> Linux常用命令 | zhangyuang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zhangyuang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/13/Linux常用命令/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="张宇昂">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/momo.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="zhangyuang">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="zhangyuang" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux常用命令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-13T22:58:25+08:00">
+                2017-01-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/01/13/Linux常用命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/13/Linux常用命令/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="命令基本格式"><a href="#命令基本格式" class="headerlink" title="命令基本格式"></a>命令基本格式</h2><h3 id="命令提示符"><a href="#命令提示符" class="headerlink" title="命令提示符"></a>命令提示符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]#</div><div class="line">其中：</div><div class="line">	root  当前登陆用户</div><div class="line">	localhost  主机名</div><div class="line">	～ 当前所在目录</div><div class="line">	# 超级用户提示符</div><div class="line">	  普通用户的提示符是$</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h3><p>命令 [选项] [参数]<br>注意：个别命令使用不遵循次格式<br>     当有多个选项时可以写在一起<br>     简化选项与完整选项<br>         -a等于 –all</p>
+<h4 id="查询目录中的内容：-ls"><a href="#查询目录中的内容：-ls" class="headerlink" title="查询目录中的内容： ls"></a>查询目录中的内容： ls</h4><p>ls[选项][文件或目录]<br>选项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">-a 显示所有文件，包括隐藏文件</div><div class="line">-l 显示详细信息</div><div class="line">-d 查看目录属性</div><div class="line">-h 人性化显示文件大小</div><div class="line">-i 显示inode</div><div class="line">-rw-r--r--</div><div class="line"> -文件类型（ -文件 d目录 l软链接文件）</div><div class="line"> rw- u所有者</div><div class="line"> r-- g用户组</div><div class="line"> r-- o其他人</div><div class="line"> 三个字符为一组</div></pre></td></tr></table></figure>
+<h2 id="文件处理命令"><a href="#文件处理命令" class="headerlink" title="文件处理命令"></a>文件处理命令</h2><h3 id="目录处理命令"><a href="#目录处理命令" class="headerlink" title="目录处理命令"></a>目录处理命令</h3><h4 id="建立目录"><a href="#建立目录" class="headerlink" title="建立目录"></a>建立目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir -p [目录吗]</div><div class="line">-p 递归创建</div><div class="line">make directoriesw</div></pre></td></tr></table></figure>
+<h4 id="切换所在目录-cd-change-directories"><a href="#切换所在目录-cd-change-directories" class="headerlink" title="切换所在目录:cd change directories"></a>切换所在目录:cd change directories</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd ~ 进入当前用户的家目录</div><div class="line">cd - 进入上次目录</div><div class="line">cd .. 进入上级目录</div><div class="line">cd . 进入当前目录</div></pre></td></tr></table></figure>
+<p><span style="color:red">按 tab可以补全命令</span></p>
+<h4 id="查询所在目录-pwd"><a href="#查询所在目录-pwd" class="headerlink" title="查询所在目录 pwd"></a>查询所在目录 pwd</h4><pre><code>pwd print working director
+</code></pre><h4 id="删除空目录-rmdir"><a href="#删除空目录-rmdir" class="headerlink" title="删除空目录 rmdir"></a>删除空目录 rmdir</h4><pre><code>remove empty directories
+</code></pre><h4 id="删除文件或者目录-rf"><a href="#删除文件或者目录-rf" class="headerlink" title="删除文件或者目录 rf"></a>删除文件或者目录 rf</h4><pre><code>-r 删除目录
+-f 不询问
+</code></pre><h4 id="复制命令-cp"><a href="#复制命令-cp" class="headerlink" title="复制命令 cp"></a>复制命令 cp</h4><pre><code>copy
+选项 
+-r 复制目录
+-p 连带文件属性复制
+-d 若源文件是链接文件，则复制链接属性
+-a 相当于 -pdr
+</code></pre><h4 id="剪切或改名命令-mv"><a href="#剪切或改名命令-mv" class="headerlink" title="剪切或改名命令 mv"></a>剪切或改名命令 mv</h4><pre><code>move
+</code></pre><h4 id="链接命令-ln"><a href="#链接命令-ln" class="headerlink" title="链接命令 ln"></a>链接命令 ln</h4><pre><code>ln -s [源文件][目标文件]
+link
+功能描述：生成链接文件
+    选项： -s 创建软链接
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">硬链接特征</div><div class="line">	拥有相同的i结点和存储block块，可以看作是同一个文件</div><div class="line">	可以通过i结点识别</div><div class="line">	不能跨分区</div><div class="line">	不能针对目录使用</div><div class="line">软链接特征</div><div class="line">	类似windos快捷方式</div><div class="line">	软链接拥有自己的i结点和Block块，但是数据块中只保留原文件的文件名和i结点号，并没有实际的文件数据</div><div class="line">	lrwxrwxrwx l软链接</div><div class="line">		软链接的文件权限都是rwxrwxrwx</div><div class="line">	修改任意文件，另一个都改变</div><div class="line">	删除原文件，软链接不能使用</div></pre></td></tr></table></figure>
+<h2 id="文件搜索命令"><a href="#文件搜索命令" class="headerlink" title="文件搜索命令"></a>文件搜索命令</h2><h4 id="文件搜索命令-locate-find"><a href="#文件搜索命令-locate-find" class="headerlink" title="文件搜索命令 locate find"></a>文件搜索命令 locate find</h4><pre><code>locate 文件名 在/var/lib/mlocate 后台数据库中搜索（默认一天一更新）
+updatedb 更新数据库
+
+find[搜索范围][搜索条件]
+避免大范围搜索
+需要使用通配符匹配
+    * 匹配任意内容
+    ？ 匹配任意一个字符
+    [] 匹配任意一个中括号内的字符
+    find /root -name &quot;install*&quot;    
+find / -name install.log
+find /root -iname install.log
+    #不区分大小写
+find /root -user root
+    #按照所有者搜索
+find /root -nouser
+    #查找没有所有者的文件
+find /var/log/ -mtime +10
+    #查找10天前修改的文件
+    -10 10天内修改的文件
+    10 10天当天修改的文件
+    +10 10天前修改的文件
+    atime 文件访问时间
+    ctime 改变文件属性
+    mtime 修改文件内容
+find . -size 25k
+    -25k 小于25k的文件
+    25k 等于25k的文件
+    +25k 大于25k的文件
+find . -inum 262422
+    #查找i结点是262422的文件    
+find /etc -size +20k -a -size -50k
+    #查找/etc/目录下，大于20kb并且小于50kb的文件
+    -a and 逻辑与，两个条件都满足
+    -o or 逻辑或，两个条件满足一个即可    
+find /etc -size +20k -a -size -50k -exec ls -lh {} \
+    #-exec/-ok 命令{} \对搜索结果进行处理     
+</code></pre><h4 id="命令搜索命令-whereis-which"><a href="#命令搜索命令-whereis-which" class="headerlink" title="命令搜索命令 whereis which"></a>命令搜索命令 whereis which</h4><pre><code>whereis 命令名
+    搜索命令所在目录
+    -b 只查找可执行文件
+    -m 只查找帮助文件
+    which还会显示别名
+</code></pre><h4 id="字符串搜索命令-grep"><a href="#字符串搜索命令-grep" class="headerlink" title="字符串搜索命令 grep"></a>字符串搜索命令 grep</h4><pre><code>grep[选项]字符串 文件名
+grep &quot;size&quot; install.log
+-i 忽略大小写
+-v 取反
+</code></pre><h4 id="find和grep的区别"><a href="#find和grep的区别" class="headerlink" title="find和grep的区别"></a>find和grep的区别</h4><pre><code>find：在系统当中搜索符合条件的文件名，如果需要匹配，使用通配符匹配，通配符是完全匹配.
+grep: 在文件当中搜索符合条件的字符串，如果需要匹配使用正则表达式进行批判，正则表达式是包含匹配。    
+</code></pre><h2 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h2><h3 id="帮助命令man"><a href="#帮助命令man" class="headerlink" title="帮助命令man"></a>帮助命令man</h3><pre><code>man ls
+-f 查看有哪些级别的帮助
+</code></pre><h3 id="其他帮助命令"><a href="#其他帮助命令" class="headerlink" title="其他帮助命令"></a>其他帮助命令</h3><pre><code>ls --help
+</code></pre><h3 id="shell内部命令"><a href="#shell内部命令" class="headerlink" title="shell内部命令"></a>shell内部命令</h3><pre><code>help shell内部命令
+whereis cd
+help cd 
+</code></pre><h3 id="详细帮助命令-info"><a href="#详细帮助命令-info" class="headerlink" title="详细帮助命令 info"></a>详细帮助命令 info</h3><pre><code>-回车：进入子帮助页面
+-u：进入上层页面
+-n：进入下一个帮助小节
+-p：进入上一个帮助小节
+-q：退出
+</code></pre><h2 id="压缩与解压缩命令"><a href="#压缩与解压缩命令" class="headerlink" title="压缩与解压缩命令"></a>压缩与解压缩命令</h2><h3 id="压缩命令"><a href="#压缩命令" class="headerlink" title="压缩命令"></a>压缩命令</h3><p>常用的压缩格式 <span style="color:red">.zip .gz .bz2 .tar.gz .tar.bz2    </span>        </p>
+<h4 id="zip格式压缩"><a href="#zip格式压缩" class="headerlink" title=".zip格式压缩"></a>.zip格式压缩</h4><pre><code>zip 压缩文件名 源文件 //压缩文件
+zip -r    压缩文件名 源目录 //压缩目录
+</code></pre><h4 id="zip格式解压缩"><a href="#zip格式解压缩" class="headerlink" title=".zip格式解压缩"></a>.zip格式解压缩</h4><pre><code>unzip 压缩文件
+</code></pre><h4 id="gz格式压缩"><a href="#gz格式压缩" class="headerlink" title=".gz格式压缩"></a>.gz格式压缩</h4><pre><code>gzip源文件
+#压缩为.gz格式的压缩文件，源文件会消失
+    gzip -c 源文件 &gt; 压缩文件
+#压缩为.gz格式，源文件保留
+    gzip -c zhangyuang &gt; zhangyuang.gz
+gzip -r 目录    
+#压缩目录下的所有子文件，但是不能压缩目录    
+gzip -d 压缩文件
+#解压缩文件
+</code></pre><h4 id="bz2格式压缩"><a href="#bz2格式压缩" class="headerlink" title=".bz2格式压缩"></a>.bz2格式压缩</h4><pre><code>bzip2 源文件
+#压缩为.bz2格式，不保留源文件
+bzip2 -k 源文件
+#压缩之后保留源文件
+⚠️注意：bzip2命令不能压缩目录
+bzip2 -d 压缩文件
+#解压缩文件    
+</code></pre><h4 id="打包命令tar"><a href="#打包命令tar" class="headerlink" title="打包命令tar"></a>打包命令tar</h4><pre><code>tar -cvf 打包文件名 源文件
+    -c： 打包
+    -v： 显示过程
+    -f： 指定打包后的文件名
+例如 tar -cvf zhangyuang.tar zhangyuang
+</code></pre><h4 id="解打包命令"><a href="#解打包命令" class="headerlink" title="解打包命令"></a>解打包命令</h4><pre><code>tar -xvf 打包文件名
+    -x：解打包
+例如 tar -xvf zhangyuang.tar
+</code></pre><h4 id="tar-gz压缩格式"><a href="#tar-gz压缩格式" class="headerlink" title=".tar.gz压缩格式"></a>.tar.gz压缩格式</h4><pre><code>tar -zcvf 压缩包名为.tar.gz源文件
+    tar -zcvf zhangyuang.tar.gz zhangyuang
+tar -zxvf 解压缩
+    tar -zxvf zhangyuang.tar.gz -C /tmp
+tar -jcvf 压缩为.tar.bz2
+tar -jxvf 解压缩                
+</code></pre><h2 id="常用目录的作业"><a href="#常用目录的作业" class="headerlink" title="常用目录的作业"></a>常用目录的作业</h2><pre><code>/ 根目录
+/bin命令保存目录（普通用户就可以读取的命令）
+/boot 启动目录，启动相关文件
+/dev 设备文件保存目录
+/etc 配置文件保存目录
+/home 普通用户的家目录
+/lib 系统库保存目录
+/mnt 系统挂载目录
+/media 挂载目录
+/sys /proc 不能直接操作内存的挂载点
+/tmp 临时目录
+/sbin 命令保存目录(超级用户才能使用的目录)
+/usr 系统软件资源目录
+    /usr/bin/系统命令（普通用户）
+    /usr/sbin/系统命令（超级用户）
+/var 系统相关文档内容
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/13/远程连接centos下的常见问题/" rel="next" title="远程连接centos下的常见问题">
+                <i class="fa fa-chevron-left"></i> 远程连接centos下的常见问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/13/Linux常用命令/"
+           data-title="Linux常用命令" data-url="http://yoursite.com/2017/01/13/Linux常用命令/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/momo.jpg"
+               alt="张宇昂" />
+          <p class="site-author-name" itemprop="name">张宇昂</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令基本格式"><span class="nav-number">1.</span> <span class="nav-text">命令基本格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令提示符"><span class="nav-number">1.1.</span> <span class="nav-text">命令提示符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令格式"><span class="nav-number">1.2.</span> <span class="nav-text">命令格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询目录中的内容：-ls"><span class="nav-number">1.2.1.</span> <span class="nav-text">查询目录中的内容： ls</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件处理命令"><span class="nav-number">2.</span> <span class="nav-text">文件处理命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录处理命令"><span class="nav-number">2.1.</span> <span class="nav-text">目录处理命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#建立目录"><span class="nav-number">2.1.1.</span> <span class="nav-text">建立目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切换所在目录-cd-change-directories"><span class="nav-number">2.1.2.</span> <span class="nav-text">切换所在目录:cd change directories</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询所在目录-pwd"><span class="nav-number">2.1.3.</span> <span class="nav-text">查询所在目录 pwd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除空目录-rmdir"><span class="nav-number">2.1.4.</span> <span class="nav-text">删除空目录 rmdir</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除文件或者目录-rf"><span class="nav-number">2.1.5.</span> <span class="nav-text">删除文件或者目录 rf</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制命令-cp"><span class="nav-number">2.1.6.</span> <span class="nav-text">复制命令 cp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#剪切或改名命令-mv"><span class="nav-number">2.1.7.</span> <span class="nav-text">剪切或改名命令 mv</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链接命令-ln"><span class="nav-number">2.1.8.</span> <span class="nav-text">链接命令 ln</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件搜索命令"><span class="nav-number">3.</span> <span class="nav-text">文件搜索命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件搜索命令-locate-find"><span class="nav-number">3.0.1.</span> <span class="nav-text">文件搜索命令 locate find</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令搜索命令-whereis-which"><span class="nav-number">3.0.2.</span> <span class="nav-text">命令搜索命令 whereis which</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串搜索命令-grep"><span class="nav-number">3.0.3.</span> <span class="nav-text">字符串搜索命令 grep</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find和grep的区别"><span class="nav-number">3.0.4.</span> <span class="nav-text">find和grep的区别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#帮助命令"><span class="nav-number">4.</span> <span class="nav-text">帮助命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#帮助命令man"><span class="nav-number">4.1.</span> <span class="nav-text">帮助命令man</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他帮助命令"><span class="nav-number">4.2.</span> <span class="nav-text">其他帮助命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell内部命令"><span class="nav-number">4.3.</span> <span class="nav-text">shell内部命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详细帮助命令-info"><span class="nav-number">4.4.</span> <span class="nav-text">详细帮助命令 info</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩与解压缩命令"><span class="nav-number">5.</span> <span class="nav-text">压缩与解压缩命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩命令"><span class="nav-number">5.1.</span> <span class="nav-text">压缩命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#zip格式压缩"><span class="nav-number">5.1.1.</span> <span class="nav-text">.zip格式压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zip格式解压缩"><span class="nav-number">5.1.2.</span> <span class="nav-text">.zip格式解压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gz格式压缩"><span class="nav-number">5.1.3.</span> <span class="nav-text">.gz格式压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bz2格式压缩"><span class="nav-number">5.1.4.</span> <span class="nav-text">.bz2格式压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包命令tar"><span class="nav-number">5.1.5.</span> <span class="nav-text">打包命令tar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解打包命令"><span class="nav-number">5.1.6.</span> <span class="nav-text">解打包命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tar-gz压缩格式"><span class="nav-number">5.1.7.</span> <span class="nav-text">.tar.gz压缩格式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用目录的作业"><span class="nav-number">6.</span> <span class="nav-text">常用目录的作业</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张宇昂</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhangyuang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
