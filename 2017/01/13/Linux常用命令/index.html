@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/01/13/Linux常用命令/index.html">
 <meta property="og:site_name" content="zhangyuang">
 <meta property="og:description" content="命令基本格式命令提示符1234567[root@localhost ~]#其中：	root  当前登陆用户	localhost  主机名	～ 当前所在目录	# 超级用户提示符	  普通用户的提示符是$">
-<meta property="og:updated_time" content="2017-01-15T10:42:34.000Z">
+<meta property="og:updated_time" content="2017-01-17T05:15:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux常用命令">
 <meta name="twitter:description" content="命令基本格式命令提示符1234567[root@localhost ~]#其中：	root  当前登陆用户	localhost  主机名	～ 当前所在目录	# 超级用户提示符	  普通用户的提示符是$">
@@ -340,7 +340,7 @@
 </code></pre><h4 id="删除空目录-rmdir"><a href="#删除空目录-rmdir" class="headerlink" title="删除空目录 rmdir"></a>删除空目录 rmdir</h4><pre><code>remove empty directories
 </code></pre><h4 id="删除文件或者目录-rf"><a href="#删除文件或者目录-rf" class="headerlink" title="删除文件或者目录 rf"></a>删除文件或者目录 rf</h4><pre><code>-r 删除目录
 -f 不询问
-</code></pre><h4 id="复制命令-cp"><a href="#复制命令-cp" class="headerlink" title="复制命令 cp"></a>复制命令 cp</h4><pre><code>copy
+</code></pre><h4 id="复制命令-cp"><a href="#复制命令-cp" class="headerlink" title="复制命令 cp"></a>复制命令 cp</h4><pre><code>copy[源文件][目标文件]
 选项 
 -r 复制目录
 -p 连带文件属性复制
@@ -444,7 +444,50 @@ bzip2 -d 压缩文件
 tar -zxvf 解压缩
     tar -zxvf zhangyuang.tar.gz -C /tmp
 tar -jcvf 压缩为.tar.bz2
-tar -jxvf 解压缩                
+tar -jxvf 解压缩
+</code></pre><h2 id="关机和重启命令"><a href="#关机和重启命令" class="headerlink" title="关机和重启命令"></a>关机和重启命令</h2><pre><code>### shutdown命令
+    shutdown[选项]时间
+        -c：取消前一个关机命令
+        -h：关机
+        -r：重启
+    shutdown -r now &amp;(后台执行)
+### 退出登陆命令    logout
+</code></pre><h2 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h2><h3 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h3><h4 id="查询与自动挂载"><a href="#查询与自动挂载" class="headerlink" title="查询与自动挂载"></a>查询与自动挂载</h4><pre><code>mount
+    #查询系统中已经挂载的设备
+mount -a
+    #依据配置文件/etc/fstab内容，自动挂载
+</code></pre><h4 id="挂载命令格式"><a href="#挂载命令格式" class="headerlink" title="挂载命令格式"></a>挂载命令格式</h4><pre><code>mount [-t文件系统][-o特殊选项]设备文件名 挂载点
+    -t文件系统：假如文件系统类型来指定挂载的类型，可以ext3,ext4,iso9660等文件系统
+    -o特殊选项：可以指定挂载的额外选项
+</code></pre><h4 id="挂载光盘"><a href="#挂载光盘" class="headerlink" title="挂载光盘"></a>挂载光盘</h4><pre><code>mkdir /mnt/cdrom/
+    #建立挂载点
+mount -t iso9660 /dev/cdrom /mnt/cdrom/
+    #挂载光盘
+mount /dev/sr0 /mnt/cdrom
+</code></pre><h4 id="卸载光盘"><a href="#卸载光盘" class="headerlink" title="卸载光盘"></a>卸载光盘</h4><pre><code>unmount 设备文件名或挂载点
+unmount /mnt/cdrom
+</code></pre><h4 id="挂载U盘"><a href="#挂载U盘" class="headerlink" title="挂载U盘"></a>挂载U盘</h4><pre><code>fdisk -l
+    #查看U盘设备文件名
+mount -t vfat /dev/sdb1 /mnt/usb/
+    #⚠️注意：Linux默认不支持NTFS文件系统        
+</code></pre><h3 id="用户登陆查看命令"><a href="#用户登陆查看命令" class="headerlink" title="用户登陆查看命令"></a>用户登陆查看命令</h3><h4 id="查看用户登陆信息"><a href="#查看用户登陆信息" class="headerlink" title="查看用户登陆信息"></a>查看用户登陆信息</h4><pre><code>w 用户名
+命令输出：
+     USER：登陆的用户名；
+     TTY：登陆终端；
+     FROM：从哪个IP登陆；
+     LOGIN@：登陆时间；
+     IDLE：用户闲置时间；
+     JCPU：指的是和该终端连接的所有进程占用的时间。这个时间里并不包括过去的后台作业时间，但却包括当前正在运行的后台作业所占的时间；
+     PCPU：是指当前进程所占用的时间；
+     WHAT：当前正在运行的命令；                                
+</code></pre><h4 id="查询当前登录和过去登录的用户信息"><a href="#查询当前登录和过去登录的用户信息" class="headerlink" title="查询当前登录和过去登录的用户信息"></a>查询当前登录和过去登录的用户信息</h4><pre><code>last
+last命令默认读取/var/log/wtmp文件数据
+命令输出：
+    -用户名
+    -登录终端
+    -登录IP
+    -登录时间
+    -退出时间（在线时间）             
 </code></pre><h2 id="常用目录的作业"><a href="#常用目录的作业" class="headerlink" title="常用目录的作业"></a>常用目录的作业</h2><pre><code>/ 根目录
 /bin命令保存目录（普通用户就可以读取的命令）
 /boot 启动目录，启动相关文件
@@ -502,6 +545,10 @@ tar -jxvf 解压缩
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/16/学习shell/" rel="prev" title="学习shell">
+                学习shell <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -573,7 +620,7 @@ tar -jxvf 解压缩
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -625,7 +672,7 @@ tar -jxvf 解压缩
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令基本格式"><span class="nav-number">1.</span> <span class="nav-text">命令基本格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令提示符"><span class="nav-number">1.1.</span> <span class="nav-text">命令提示符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令格式"><span class="nav-number">1.2.</span> <span class="nav-text">命令格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询目录中的内容：-ls"><span class="nav-number">1.2.1.</span> <span class="nav-text">查询目录中的内容： ls</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件处理命令"><span class="nav-number">2.</span> <span class="nav-text">文件处理命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录处理命令"><span class="nav-number">2.1.</span> <span class="nav-text">目录处理命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#建立目录"><span class="nav-number">2.1.1.</span> <span class="nav-text">建立目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切换所在目录-cd-change-directories"><span class="nav-number">2.1.2.</span> <span class="nav-text">切换所在目录:cd change directories</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询所在目录-pwd"><span class="nav-number">2.1.3.</span> <span class="nav-text">查询所在目录 pwd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除空目录-rmdir"><span class="nav-number">2.1.4.</span> <span class="nav-text">删除空目录 rmdir</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除文件或者目录-rf"><span class="nav-number">2.1.5.</span> <span class="nav-text">删除文件或者目录 rf</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制命令-cp"><span class="nav-number">2.1.6.</span> <span class="nav-text">复制命令 cp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#剪切或改名命令-mv"><span class="nav-number">2.1.7.</span> <span class="nav-text">剪切或改名命令 mv</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链接命令-ln"><span class="nav-number">2.1.8.</span> <span class="nav-text">链接命令 ln</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件搜索命令"><span class="nav-number">3.</span> <span class="nav-text">文件搜索命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件搜索命令-locate-find"><span class="nav-number">3.0.1.</span> <span class="nav-text">文件搜索命令 locate find</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令搜索命令-whereis-which"><span class="nav-number">3.0.2.</span> <span class="nav-text">命令搜索命令 whereis which</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串搜索命令-grep"><span class="nav-number">3.0.3.</span> <span class="nav-text">字符串搜索命令 grep</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find和grep的区别"><span class="nav-number">3.0.4.</span> <span class="nav-text">find和grep的区别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#帮助命令"><span class="nav-number">4.</span> <span class="nav-text">帮助命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#帮助命令man"><span class="nav-number">4.1.</span> <span class="nav-text">帮助命令man</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他帮助命令"><span class="nav-number">4.2.</span> <span class="nav-text">其他帮助命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell内部命令"><span class="nav-number">4.3.</span> <span class="nav-text">shell内部命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详细帮助命令-info"><span class="nav-number">4.4.</span> <span class="nav-text">详细帮助命令 info</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩与解压缩命令"><span class="nav-number">5.</span> <span class="nav-text">压缩与解压缩命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩命令"><span class="nav-number">5.1.</span> <span class="nav-text">压缩命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#zip格式压缩"><span class="nav-number">5.1.1.</span> <span class="nav-text">.zip格式压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zip格式解压缩"><span class="nav-number">5.1.2.</span> <span class="nav-text">.zip格式解压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gz格式压缩"><span class="nav-number">5.1.3.</span> <span class="nav-text">.gz格式压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bz2格式压缩"><span class="nav-number">5.1.4.</span> <span class="nav-text">.bz2格式压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包命令tar"><span class="nav-number">5.1.5.</span> <span class="nav-text">打包命令tar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解打包命令"><span class="nav-number">5.1.6.</span> <span class="nav-text">解打包命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tar-gz压缩格式"><span class="nav-number">5.1.7.</span> <span class="nav-text">.tar.gz压缩格式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用目录的作业"><span class="nav-number">6.</span> <span class="nav-text">常用目录的作业</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令基本格式"><span class="nav-number">1.</span> <span class="nav-text">命令基本格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令提示符"><span class="nav-number">1.1.</span> <span class="nav-text">命令提示符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令格式"><span class="nav-number">1.2.</span> <span class="nav-text">命令格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询目录中的内容：-ls"><span class="nav-number">1.2.1.</span> <span class="nav-text">查询目录中的内容： ls</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件处理命令"><span class="nav-number">2.</span> <span class="nav-text">文件处理命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录处理命令"><span class="nav-number">2.1.</span> <span class="nav-text">目录处理命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#建立目录"><span class="nav-number">2.1.1.</span> <span class="nav-text">建立目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切换所在目录-cd-change-directories"><span class="nav-number">2.1.2.</span> <span class="nav-text">切换所在目录:cd change directories</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询所在目录-pwd"><span class="nav-number">2.1.3.</span> <span class="nav-text">查询所在目录 pwd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除空目录-rmdir"><span class="nav-number">2.1.4.</span> <span class="nav-text">删除空目录 rmdir</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除文件或者目录-rf"><span class="nav-number">2.1.5.</span> <span class="nav-text">删除文件或者目录 rf</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制命令-cp"><span class="nav-number">2.1.6.</span> <span class="nav-text">复制命令 cp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#剪切或改名命令-mv"><span class="nav-number">2.1.7.</span> <span class="nav-text">剪切或改名命令 mv</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链接命令-ln"><span class="nav-number">2.1.8.</span> <span class="nav-text">链接命令 ln</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件搜索命令"><span class="nav-number">3.</span> <span class="nav-text">文件搜索命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件搜索命令-locate-find"><span class="nav-number">3.0.1.</span> <span class="nav-text">文件搜索命令 locate find</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令搜索命令-whereis-which"><span class="nav-number">3.0.2.</span> <span class="nav-text">命令搜索命令 whereis which</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串搜索命令-grep"><span class="nav-number">3.0.3.</span> <span class="nav-text">字符串搜索命令 grep</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find和grep的区别"><span class="nav-number">3.0.4.</span> <span class="nav-text">find和grep的区别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#帮助命令"><span class="nav-number">4.</span> <span class="nav-text">帮助命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#帮助命令man"><span class="nav-number">4.1.</span> <span class="nav-text">帮助命令man</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他帮助命令"><span class="nav-number">4.2.</span> <span class="nav-text">其他帮助命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell内部命令"><span class="nav-number">4.3.</span> <span class="nav-text">shell内部命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详细帮助命令-info"><span class="nav-number">4.4.</span> <span class="nav-text">详细帮助命令 info</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩与解压缩命令"><span class="nav-number">5.</span> <span class="nav-text">压缩与解压缩命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩命令"><span class="nav-number">5.1.</span> <span class="nav-text">压缩命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#zip格式压缩"><span class="nav-number">5.1.1.</span> <span class="nav-text">.zip格式压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zip格式解压缩"><span class="nav-number">5.1.2.</span> <span class="nav-text">.zip格式解压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gz格式压缩"><span class="nav-number">5.1.3.</span> <span class="nav-text">.gz格式压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bz2格式压缩"><span class="nav-number">5.1.4.</span> <span class="nav-text">.bz2格式压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包命令tar"><span class="nav-number">5.1.5.</span> <span class="nav-text">打包命令tar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解打包命令"><span class="nav-number">5.1.6.</span> <span class="nav-text">解打包命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tar-gz压缩格式"><span class="nav-number">5.1.7.</span> <span class="nav-text">.tar.gz压缩格式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关机和重启命令"><span class="nav-number">6.</span> <span class="nav-text">关机和重启命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他常用命令"><span class="nav-number">7.</span> <span class="nav-text">其他常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载命令"><span class="nav-number">7.1.</span> <span class="nav-text">挂载命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询与自动挂载"><span class="nav-number">7.1.1.</span> <span class="nav-text">查询与自动挂载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载命令格式"><span class="nav-number">7.1.2.</span> <span class="nav-text">挂载命令格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载光盘"><span class="nav-number">7.1.3.</span> <span class="nav-text">挂载光盘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卸载光盘"><span class="nav-number">7.1.4.</span> <span class="nav-text">卸载光盘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载U盘"><span class="nav-number">7.1.5.</span> <span class="nav-text">挂载U盘</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户登陆查看命令"><span class="nav-number">7.2.</span> <span class="nav-text">用户登陆查看命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看用户登陆信息"><span class="nav-number">7.2.1.</span> <span class="nav-text">查看用户登陆信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询当前登录和过去登录的用户信息"><span class="nav-number">7.2.2.</span> <span class="nav-text">查询当前登录和过去登录的用户信息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用目录的作业"><span class="nav-number">8.</span> <span class="nav-text">常用目录的作业</span></a></li></ol></div>
             
 
           </div>
