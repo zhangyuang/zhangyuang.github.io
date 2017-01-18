@@ -90,10 +90,12 @@
 <meta property="og:url" content="http://yoursite.com/2017/01/17/Linux进阶学习/index.html">
 <meta property="og:site_name" content="zhangyuang">
 <meta property="og:description" content="VI编辑器Visual Interface可视化接口VI-&amp;gt;VIM -VIM支持多级撤销 -VIM可以跨平台运行 -VIM支持语法高亮 -VIM支持图形界面">
-<meta property="og:updated_time" content="2017-01-17T11:39:09.000Z">
+<meta property="og:image" content="http://yoursite.com/images/centos12.png">
+<meta property="og:updated_time" content="2017-01-18T07:04:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux进阶学习">
 <meta name="twitter:description" content="VI编辑器Visual Interface可视化接口VI-&amp;gt;VIM -VIM支持多级撤销 -VIM可以跨平台运行 -VIM支持语法高亮 -VIM支持图形界面">
+<meta name="twitter:image" content="http://yoursite.com/images/centos12.png">
 
 
 
@@ -329,7 +331,47 @@
 
       
         <h2 id="VI编辑器"><a href="#VI编辑器" class="headerlink" title="VI编辑器"></a>VI编辑器</h2><p>Visual Interface可视化接口<br>VI-&gt;VIM<br> -VIM支持多级撤销<br> -VIM可以跨平台运行<br> -VIM支持语法高亮<br> -VIM支持图形界面<br> <a id="more"></a></p>
-<h3 id="VI编辑器的操作模式"><a href="#VI编辑器的操作模式" class="headerlink" title="VI编辑器的操作模式"></a>VI编辑器的操作模式</h3><p>Commad Mode-命令模式<br>Insert Mode-输入模式<br>Last Line Mode-底行模式<br>vim + abc打开文件后光标在最后一行 </p>
+<h3 id="VI编辑器的操作模式"><a href="#VI编辑器的操作模式" class="headerlink" title="VI编辑器的操作模式"></a>VI编辑器的操作模式</h3><p>Commad Mode-命令模式<br>Insert Mode-输入模式<br>Last Line Mode-底行模式<br>vim + abc打开文件后光标在最后一行<br>vim +3 abc打开文件光标在第三行<br>vim +/xxx abc打开文件光标在xxx单词第一次出现的那一行，按n可以切换到下一个符合条件的行<br>vim aa bb cc同时打开三个文件 n切换到下一个文件N切换到上一个文件</p>
+<h3 id="命令模式常用指令"><a href="#命令模式常用指令" class="headerlink" title="命令模式常用指令"></a>命令模式常用指令</h3><p>h 光标左移<br>j 光标下移<br>k 光标上移<br>l 光标右移<br>ctrl+f向上翻页（front）<br>ctrl+b向下翻页（back）<br>ctrl+d向下翻半页（down）<br>ctrl+u向上翻半页（up）<br>dd 删除光标所在行<br>o 在光标所在行的下方插入一行并切换到输入模式<br>yy 复制光标所在行<br>p 在光标所在行下方粘贴<br>P 在光标所在行上方粘贴</p>
+<h2 id="磁盘管理基本命令"><a href="#磁盘管理基本命令" class="headerlink" title="磁盘管理基本命令"></a>磁盘管理基本命令</h2><p>df 查看磁盘分区的使用状况<br>-l 仅显示本地磁盘（默认）<br>-a 显示所有文件系统的磁盘使用情况，包含比如/proc/<br>-h 以1024进制计算最适合的单位显示磁盘容量<br>-H 以1000进制计算最适合的单位显示磁盘容量<br>-T 显示磁盘分区类型<br>-t 显示指定类型文件系统的磁盘分区 如ext4<br>-x 不显示指定类型文件系统的磁盘分区</p>
+<p>du 统计磁盘上文件的大小<br>-b 以byte为单位统计文件<br>-k 以KB为单位统计文件<br>-m 以MB为单位统计文件<br>—h 以1024进制统计文件<br>-H 以1000进制统计文件<br>-s 指定统计目标</p>
+<h2 id="MBR分区"><a href="#MBR分区" class="headerlink" title="MBR分区"></a>MBR分区</h2><p>必须对硬盘分区、格式化、挂载后才能使用。扩展分区需要添加逻辑分区,<br>最多只能有1个扩展分区和主分区，1-4是预留给扩展分区和主分区的。<br>fdisk -l查看硬盘分区情况<br>fdisk /dev/sdb 进入分区模式<br>n 添加分区<br>p 列出分区情况<br>d 删除分区<br><img src="/images/centos12.png"><br>p 主分区<br>e 扩展分区<br>Partition number分区号<br>First cylinder开始位置<br>Last cylinder 结束位置<br>分区完成后 w 写入磁盘</p>
+<h2 id="GPT分区"><a href="#GPT分区" class="headerlink" title="GPT分区"></a>GPT分区</h2><h3 id="硬盘分区与格式化"><a href="#硬盘分区与格式化" class="headerlink" title="硬盘分区与格式化"></a>硬盘分区与格式化</h3><p>分区模式之MBR</p>
+<pre><code>- 主分区不超过4个
+- 单个分区容量容量最大2TB
+</code></pre><p>分区模式之GPT</p>
+<pre><code>- 主分区的个数“几乎”没有限制
+- 耽搁分区的容量“几乎”没有限制    
+</code></pre><p>使用parted命令进行GPT分区或MBR分区<br>select切换目标磁盘<br>select /dev/sdc<br>首先要指定分区表<br>    mklabel msdos（MBR分区）<br>    mklabel gpt （GPT分区）<br>print查看当前硬盘的分区详情<br>mkpart 添加分区<br>start? 1<br>end? 2000<br>mkpart test 2000 3000<br>rm 删除分区<br>quit 完成后退出</p>
+<h2 id="分区格式化"><a href="#分区格式化" class="headerlink" title="分区格式化"></a>分区格式化</h2><p>mkfs.ext3 /dev/sdb1</p>
+<h2 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h2><p>默认的挂载目录/mnt<br>mount /dev/sdc1 /mnt/test<br>unmount /mnt/imooc 卸载挂载<br>以上重启后会失效要自动挂载需编辑/etc/fstab<br>/dev/sdc1 /mnt/test ext3 defaults 0 0</p>
+<h2 id="为硬盘添加swap交换分区"><a href="#为硬盘添加swap交换分区" class="headerlink" title="为硬盘添加swap交换分区"></a>为硬盘添加swap交换分区</h2><p> 第一，建立一个普通的Linux分区<br> 第二，修改分区类型的16进制编码<br> 第三，格式化交换分区<br> 第四，启用交换分区<br>fdisk ／dev/sdb<br>t 改变分区属性<br>L 查看16进制编码</p>
+<h3 id="格式化交换分区"><a href="#格式化交换分区" class="headerlink" title="格式化交换分区"></a>格式化交换分区</h3><p>mkswap /dev/sdb6</p>
+<h3 id="启用交换分区"><a href="#启用交换分区" class="headerlink" title="启用交换分区"></a>启用交换分区</h3><p>swapon /dev/sdb6</p>
+<h2 id="用户和用户组"><a href="#用户和用户组" class="headerlink" title="用户和用户组"></a>用户和用户组</h2><p>用户：使用操作系统的人<br>用户组：具有相同系统权限的一组用户<br>/etc/group 存储当前系统中所有用户组信息<br>Group：         x    ：123:abc,def,xyz<br>组名称：组密码占位符：组编号：组中用户名列表<br>／etc/gshadow 存储当前系统中用户组的密码信息<br>Group:  <em>  :     :abc,def,xyz<br>组名称：组密码：组管理者：组中用户名列表<br>密码为空或者</em>或者！代表无密码<br>/etc/passwd 存储当前系统中所有用户的信息<br>user:    x    :  123  :   456    :xxxxxxx:home/user:/bin/bash<br>用户名：密码占位符：用户编号：用户组编号：用户注释：用户主目录：shell类型<br>/etc/shadow 存储用户的密码信息</p>
+<h3 id="操作用户组"><a href="#操作用户组" class="headerlink" title="操作用户组"></a>操作用户组</h3><h4 id="添加用户组"><a href="#添加用户组" class="headerlink" title="添加用户组"></a>添加用户组</h4><p>groupadd [用户组名称]<br>groupadd zhangyuang<br>groupadd -g 888 boss</p>
+<h4 id="修改名称"><a href="#修改名称" class="headerlink" title="修改名称"></a>修改名称</h4><p>groupmod -n market zhangyuang</p>
+<h4 id="修改组编号"><a href="#修改组编号" class="headerlink" title="修改组编号"></a>修改组编号</h4><p>groupmod -g 668 market</p>
+<h4 id="删除用户组"><a href="#删除用户组" class="headerlink" title="删除用户组"></a>删除用户组</h4><p>groupdel market</p>
+<h3 id="操作用户"><a href="#操作用户" class="headerlink" title="操作用户"></a>操作用户</h3><h4 id="添加用户到用户组"><a href="#添加用户到用户组" class="headerlink" title="添加用户到用户组"></a>添加用户到用户组</h4><p>useradd -g market zhangyuang<br>useradd -d /home/xxx zhangyuang 将用户放入指定文件夹不写的话自动创建同用户名文件夹</p>
+<h4 id="给用户添加备注"><a href="#给用户添加备注" class="headerlink" title="给用户添加备注"></a>给用户添加备注</h4><p>usermod -c xxx zhangyuang</p>
+<h4 id="更改用户名"><a href="#更改用户名" class="headerlink" title="更改用户名"></a>更改用户名</h4><p>usermod -l newname zhangyuang</p>
+<h4 id="修改用户所属用户组"><a href="#修改用户所属用户组" class="headerlink" title="修改用户所属用户组"></a>修改用户所属用户组</h4><p>usermod -g newgroup zhangyuang</p>
+<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><p>userdel zhangyuang<br>userdel -r zhangyuang //同时删除个人文件夹</p>
+<h4 id="禁止除root外普通用户登录"><a href="#禁止除root外普通用户登录" class="headerlink" title="禁止除root外普通用户登录"></a>禁止除root外普通用户登录</h4><p>touch /etc/nologin</p>
+<h4 id="锁定用户"><a href="#锁定用户" class="headerlink" title="锁定用户"></a>锁定用户</h4><p>passwd -l zhangyuang</p>
+<h4 id="解锁账户"><a href="#解锁账户" class="headerlink" title="解锁账户"></a>解锁账户</h4><p>passwd -u zhangyuang</p>
+<h4 id="清除用户密码"><a href="#清除用户密码" class="headerlink" title="清除用户密码"></a>清除用户密码</h4><p>passwd -d zhangyuang</p>
+<h4 id="添加附属组"><a href="#添加附属组" class="headerlink" title="添加附属组"></a>添加附属组</h4><p>gpasswd -a zhangyuang othergroup</p>
+<h4 id="切换身份到附属组"><a href="#切换身份到附属组" class="headerlink" title="切换身份到附属组"></a>切换身份到附属组</h4><p>newgrp othergroup</p>
+<h4 id="删除附属组"><a href="#删除附属组" class="headerlink" title="删除附属组"></a>删除附属组</h4><p>gpasswd -d zhangyuang othergroup</p>
+<h4 id="创建用户带有附属组"><a href="#创建用户带有附属组" class="headerlink" title="创建用户带有附属组"></a>创建用户带有附属组</h4><p>useradd -g maingroup -G othergroup</p>
+<h4 id="修改组密码"><a href="#修改组密码" class="headerlink" title="修改组密码"></a>修改组密码</h4><p>gpasswd othergroup</p>
+<h4 id="切换用户身份"><a href="#切换用户身份" class="headerlink" title="切换用户身份"></a>切换用户身份</h4><p>su username</p>
+<h4 id="显示指定用户信息，包括编号，用户名"><a href="#显示指定用户信息，包括编号，用户名" class="headerlink" title="显示指定用户信息，包括编号，用户名"></a>显示指定用户信息，包括编号，用户名</h4><p>id zhangyuang</p>
+<h4 id="显示用户所在组"><a href="#显示用户所在组" class="headerlink" title="显示用户所在组"></a>显示用户所在组</h4><p>groups zhangyuang</p>
+<h4 id="设置用户资料"><a href="#设置用户资料" class="headerlink" title="设置用户资料"></a>设置用户资料</h4><p>chfn zhangyuang</p>
+<h4 id="显示用户详细资料"><a href="#显示用户详细资料" class="headerlink" title="显示用户详细资料"></a>显示用户详细资料</h4><p>finger zhangyuang</p>
 
       
     </div>
@@ -494,7 +536,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#VI编辑器"><span class="nav-number">1.</span> <span class="nav-text">VI编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VI编辑器的操作模式"><span class="nav-number">1.1.</span> <span class="nav-text">VI编辑器的操作模式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#VI编辑器"><span class="nav-number">1.</span> <span class="nav-text">VI编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VI编辑器的操作模式"><span class="nav-number">1.1.</span> <span class="nav-text">VI编辑器的操作模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令模式常用指令"><span class="nav-number">1.2.</span> <span class="nav-text">命令模式常用指令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘管理基本命令"><span class="nav-number">2.</span> <span class="nav-text">磁盘管理基本命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MBR分区"><span class="nav-number">3.</span> <span class="nav-text">MBR分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GPT分区"><span class="nav-number">4.</span> <span class="nav-text">GPT分区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#硬盘分区与格式化"><span class="nav-number">4.1.</span> <span class="nav-text">硬盘分区与格式化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分区格式化"><span class="nav-number">5.</span> <span class="nav-text">分区格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挂载"><span class="nav-number">6.</span> <span class="nav-text">挂载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为硬盘添加swap交换分区"><span class="nav-number">7.</span> <span class="nav-text">为硬盘添加swap交换分区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#格式化交换分区"><span class="nav-number">7.1.</span> <span class="nav-text">格式化交换分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启用交换分区"><span class="nav-number">7.2.</span> <span class="nav-text">启用交换分区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户和用户组"><span class="nav-number">8.</span> <span class="nav-text">用户和用户组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作用户组"><span class="nav-number">8.1.</span> <span class="nav-text">操作用户组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加用户组"><span class="nav-number">8.1.1.</span> <span class="nav-text">添加用户组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改名称"><span class="nav-number">8.1.2.</span> <span class="nav-text">修改名称</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改组编号"><span class="nav-number">8.1.3.</span> <span class="nav-text">修改组编号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除用户组"><span class="nav-number">8.1.4.</span> <span class="nav-text">删除用户组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作用户"><span class="nav-number">8.2.</span> <span class="nav-text">操作用户</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加用户到用户组"><span class="nav-number">8.2.1.</span> <span class="nav-text">添加用户到用户组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给用户添加备注"><span class="nav-number">8.2.2.</span> <span class="nav-text">给用户添加备注</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改用户名"><span class="nav-number">8.2.3.</span> <span class="nav-text">更改用户名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改用户所属用户组"><span class="nav-number">8.2.4.</span> <span class="nav-text">修改用户所属用户组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除用户"><span class="nav-number">8.2.5.</span> <span class="nav-text">删除用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#禁止除root外普通用户登录"><span class="nav-number">8.2.6.</span> <span class="nav-text">禁止除root外普通用户登录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁定用户"><span class="nav-number">8.2.7.</span> <span class="nav-text">锁定用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解锁账户"><span class="nav-number">8.2.8.</span> <span class="nav-text">解锁账户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清除用户密码"><span class="nav-number">8.2.9.</span> <span class="nav-text">清除用户密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加附属组"><span class="nav-number">8.2.10.</span> <span class="nav-text">添加附属组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切换身份到附属组"><span class="nav-number">8.2.11.</span> <span class="nav-text">切换身份到附属组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除附属组"><span class="nav-number">8.2.12.</span> <span class="nav-text">删除附属组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建用户带有附属组"><span class="nav-number">8.2.13.</span> <span class="nav-text">创建用户带有附属组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改组密码"><span class="nav-number">8.2.14.</span> <span class="nav-text">修改组密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切换用户身份"><span class="nav-number">8.2.15.</span> <span class="nav-text">切换用户身份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示指定用户信息，包括编号，用户名"><span class="nav-number">8.2.16.</span> <span class="nav-text">显示指定用户信息，包括编号，用户名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示用户所在组"><span class="nav-number">8.2.17.</span> <span class="nav-text">显示用户所在组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置用户资料"><span class="nav-number">8.2.18.</span> <span class="nav-text">设置用户资料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示用户详细资料"><span class="nav-number">8.2.19.</span> <span class="nav-text">显示用户详细资料</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
