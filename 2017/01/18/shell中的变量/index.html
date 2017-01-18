@@ -1,0 +1,693 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="shell," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="什么是变量与变量分类变量是计算机内存的单元，其中存放的值可以改变。。。简单理解，值可以改变的量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell中的变量">
+<meta property="og:url" content="http://yoursite.com/2017/01/18/shell中的变量/index.html">
+<meta property="og:site_name" content="zhangyuang">
+<meta property="og:description" content="什么是变量与变量分类变量是计算机内存的单元，其中存放的值可以改变。。。简单理解，值可以改变的量">
+<meta property="og:updated_time" content="2017-01-18T16:03:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shell中的变量">
+<meta name="twitter:description" content="什么是变量与变量分类变量是计算机内存的单元，其中存放的值可以改变。。。简单理解，值可以改变的量">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/18/shell中的变量/"/>
+
+
+
+
+
+  <title> shell中的变量 | zhangyuang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zhangyuang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/18/shell中的变量/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="张宇昂">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/momo.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="zhangyuang">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="zhangyuang" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                shell中的变量
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-18T16:25:57+08:00">
+                2017-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/01/18/shell中的变量/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/18/shell中的变量/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是变量与变量分类"><a href="#什么是变量与变量分类" class="headerlink" title="什么是变量与变量分类"></a>什么是变量与变量分类</h2><p>变量是计算机内存的单元，其中存放的值可以改变<br>。。。简单理解，值可以改变的量<br><a id="more"></a></p>
+<h2 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a>命名规则</h2><p>不能以数字开头<br>长度不能超过255个字符<br>在有效范围内必须是唯一的<br><span style="color:red">在Bash中，变量的默认类型都是字符串型</span></p>
+<h2 id="变量的分类"><a href="#变量的分类" class="headerlink" title="变量的分类"></a>变量的分类</h2><p>用户自定义变量<br>环境变了：这中变量主要保存的是和系统操作环境相关的数据。变量可以自定义，但是对系统生效的环境变了名称和变量作用是固定的。<br>位置参数变量：这种变量主要是用来向脚本当中传递参数或数据的，比哪里名不能自己定义，变量作用是固定的。<br>预定义变量：是Bash中已经定义好的变量，变量名不能自定义，变量作用也是固定的。</p>
+<h2 id="用户自定义变量"><a href="#用户自定义变量" class="headerlink" title="用户自定义变量"></a>用户自定义变量</h2><p>x=5 name=”zhangyuang”</p>
+<h3 id="变量调用"><a href="#变量调用" class="headerlink" title="变量调用"></a>变量调用</h3><p>echo $变量名<br>echo $x echo $name</p>
+<h3 id="变量叠加"><a href="#变量叠加" class="headerlink" title="变量叠加"></a>变量叠加</h3><p>x=123<br>x=”$x”456<br>x=${x}546</p>
+<h3 id="变量查看"><a href="#变量查看" class="headerlink" title="变量查看"></a>变量查看</h3><p>set<br> -u 如果设定此选项，调用未声明变量时会报错（默认无任何提示）</p>
+<h3 id="变量删除"><a href="#变量删除" class="headerlink" title="变量删除"></a>变量删除</h3><p>unset<br>unset name</p>
+<h2 id="Bash环境变量"><a href="#Bash环境变量" class="headerlink" title="Bash环境变量"></a>Bash环境变量</h2><p>环境变量与用户自定义变量的区别？<br>用户自定义变量只在当前的Shell中生效，环境变量在当前Shell和这个Shell的所有子Shell中生效。</p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>对系统生效的环境变量名各变量作用是固定的</p>
+<h4 id="查看环境变量"><a href="#查看环境变量" class="headerlink" title="查看环境变量"></a>查看环境变量</h4><p>env</p>
+<h4 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h4><p>export 变量名=变量值</p>
+<h4 id="常用环境变量"><a href="#常用环境变量" class="headerlink" title="常用环境变量"></a>常用环境变量</h4><p>HOSTNAME：主机名<br>SHELL：当前的shell<br>TERM：终端环境<br>HISTSIZE：历史命令条数<br>SSH_CLIENT：当前操作环境时用ssh连接的，这里记录客户端ip<br>SSH_TTY:ssh连接的终端是pts／1<br>USER：当前登录用户</p>
+<h3 id="PATH环境变量"><a href="#PATH环境变量" class="headerlink" title="PATH环境变量"></a>PATH环境变量</h3><p>PATH变量：系统查找命令的路径<br>echo $PATH</p>
+<p>#查看PATH环境变量<br>PATH=”$PATH”:root/sh</p>
+<p>#增加PATH变量的值</p>
+<h3 id="PS1环境变量"><a href="#PS1环境变量" class="headerlink" title="PS1环境变量"></a>PS1环境变量</h3><p>PS1环境变量：命令提示符设置<br>\d:显示日期，格式为“星期 月 日”<br>\H:显示完整主机名<br>\t:显示24小时制时间，格式为“HH：MM：SS”<br>\A:显示24小时制时间，格式为“HH：MM”<br>\u:显示当前用户名<br>\w:显示当前所在目录完整名称<br>\W:显示当前所在目录的最后一个目录<br>\$:提示符。如果是root用户显示提示符为#，普通用户提示符$</p>
+<h2 id="Bash语系变量"><a href="#Bash语系变量" class="headerlink" title="Bash语系变量"></a>Bash语系变量</h2><h3 id="当前语系查询"><a href="#当前语系查询" class="headerlink" title="当前语系查询"></a>当前语系查询</h3><p>locale</p>
+<p>#查询当前系统语系<br>-LANG：定义系统主语系的变量<br>-LC_ALL:定义整体语系的变量</p>
+<h3 id="语系变量LANG"><a href="#语系变量LANG" class="headerlink" title="语系变量LANG"></a>语系变量LANG</h3><p>echo $LANG<br>locale -a |more</p>
+<p>#查看Linux支持的所有语系</p>
+<h2 id="位置参数变量"><a href="#位置参数变量" class="headerlink" title="位置参数变量"></a>位置参数变量</h2><p>$n n为数字，$0代表命令本身，$1-$9代表第一到第九个参数，10以上的参数需要用大括号包含，如${10}<br>$<em>这个变量代表命令行中所有的参数，$</em>把所有的参数看成一个整体<br>$@这个变量也代表命令行中所有的参数，不过$@把每个参数区分对待。<br>$#这个变量代表命令行中所有参数的个数<br>例子1:</p>
+<p>#!/bin/bash<br>num1=$1 第一个参数<br>num2=$2 第二个参数<br>sum=$(($num1+$num2))</p>
+<p>#变量sum的和是num1加num2<br>echo $sum</p>
+<h3 id="和-的区别"><a href="#和-的区别" class="headerlink" title="$*和$@的区别"></a>$*和$@的区别</h3><p>#！/bin/bash<br>for i in “$*”</p>
+<p>#$*中的所有参数看成是一个整体，所以这个for循环只会循环一次<br>do<br>     echp “The parameter is:$i”<br>done<br>for y in “$@”</p>
+<p>#$@中的每个参数都看成是独立的，所以”$@”中有几个参数，就会循环几次<br>do<br>    echo “Parameter:$y”<br>done</p>
+<h2 id="预定义变量"><a href="#预定义变量" class="headerlink" title="预定义变量"></a>预定义变量</h2><p>$? 最后一次执行的命令的返回状态。如果这个变量的值为0，表明上一个命令正确执行；如果这个变量的值为非0（具体是哪个数，由命令自己来决定），则证明上一个命令执行不正确<br>$$ 当前进程的进程号<br>$! 后台运行的最后一个进程的进程号</p>
+<h2 id="接收键盘输入"><a href="#接收键盘输入" class="headerlink" title="接收键盘输入"></a>接收键盘输入</h2><p>read [选项][变量名]<br>-选项<br>-p “提示信息”：在等待read输入时，输出提示信息<br>-t 秒数：read命令会一直等待用户输入，使用此选项可以指定等待时间<br>-n 字符数：read命令只接受指定的字符数就会执行<br>-s 隐藏输入的数据         </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shell/" rel="tag"># shell</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/17/Linux进阶学习/" rel="next" title="Linux进阶学习">
+                <i class="fa fa-chevron-left"></i> Linux进阶学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/18/shell中的变量/"
+           data-title="shell中的变量" data-url="http://yoursite.com/2017/01/18/shell中的变量/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/momo.jpg"
+               alt="张宇昂" />
+          <p class="site-author-name" itemprop="name">张宇昂</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是变量与变量分类"><span class="nav-number">1.</span> <span class="nav-text">什么是变量与变量分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名规则"><span class="nav-number">2.</span> <span class="nav-text">命名规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的分类"><span class="nav-number">3.</span> <span class="nav-text">变量的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户自定义变量"><span class="nav-number">4.</span> <span class="nav-text">用户自定义变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量调用"><span class="nav-number">4.1.</span> <span class="nav-text">变量调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量叠加"><span class="nav-number">4.2.</span> <span class="nav-text">变量叠加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量查看"><span class="nav-number">4.3.</span> <span class="nav-text">变量查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量删除"><span class="nav-number">4.4.</span> <span class="nav-text">变量删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash环境变量"><span class="nav-number">5.</span> <span class="nav-text">Bash环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量"><span class="nav-number">5.1.</span> <span class="nav-text">环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看环境变量"><span class="nav-number">5.1.1.</span> <span class="nav-text">查看环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置环境变量"><span class="nav-number">5.1.2.</span> <span class="nav-text">设置环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用环境变量"><span class="nav-number">5.1.3.</span> <span class="nav-text">常用环境变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PATH环境变量"><span class="nav-number">5.2.</span> <span class="nav-text">PATH环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PS1环境变量"><span class="nav-number">5.3.</span> <span class="nav-text">PS1环境变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash语系变量"><span class="nav-number">6.</span> <span class="nav-text">Bash语系变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当前语系查询"><span class="nav-number">6.1.</span> <span class="nav-text">当前语系查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语系变量LANG"><span class="nav-number">6.2.</span> <span class="nav-text">语系变量LANG</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位置参数变量"><span class="nav-number">7.</span> <span class="nav-text">位置参数变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#和-的区别"><span class="nav-number">7.1.</span> <span class="nav-text">$*和$@的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预定义变量"><span class="nav-number">8.</span> <span class="nav-text">预定义变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接收键盘输入"><span class="nav-number">9.</span> <span class="nav-text">接收键盘输入</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张宇昂</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhangyuang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
