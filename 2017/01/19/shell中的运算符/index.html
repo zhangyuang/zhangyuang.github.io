@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="前端笔记," />
+  <meta name="keywords" content="shell," />
 
 
 
@@ -84,18 +84,16 @@
 
 
 
-<meta name="description" content="普通对象与函数对象javascript中的对象分为普通对象和函数对象，object,function是js自带的函数对象。下面是例子">
+<meta name="description" content="declare命令declare声明变量类型declare [+/-][选项]变量名">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习笔记之js原型链">
-<meta property="og:url" content="http://yoursite.com/2016/12/28/学习笔记之js原型链/index.html">
+<meta property="og:title" content="shell中的运算符">
+<meta property="og:url" content="http://yoursite.com/2017/01/19/shell中的运算符/index.html">
 <meta property="og:site_name" content="zhangyuang">
-<meta property="og:description" content="普通对象与函数对象javascript中的对象分为普通对象和函数对象，object,function是js自带的函数对象。下面是例子">
-<meta property="og:image" content="http://yoursite.com/images/prototype1.jpg">
-<meta property="og:updated_time" content="2017-01-17T11:58:57.000Z">
+<meta property="og:description" content="declare命令declare声明变量类型declare [+/-][选项]变量名">
+<meta property="og:updated_time" content="2017-01-19T06:16:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习笔记之js原型链">
-<meta name="twitter:description" content="普通对象与函数对象javascript中的对象分为普通对象和函数对象，object,function是js自带的函数对象。下面是例子">
-<meta name="twitter:image" content="http://yoursite.com/images/prototype1.jpg">
+<meta name="twitter:title" content="shell中的运算符">
+<meta name="twitter:description" content="declare命令declare声明变量类型declare [+/-][选项]变量名">
 
 
 
@@ -123,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/28/学习笔记之js原型链/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/01/19/shell中的运算符/"/>
 
 
 
 
 
-  <title> 学习笔记之js原型链 | zhangyuang </title>
+  <title> shell中的运算符 | zhangyuang </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -250,7 +248,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/28/学习笔记之js原型链/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/19/shell中的运算符/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="张宇昂">
@@ -274,7 +272,7 @@
             
             
               
-                学习笔记之js原型链
+                shell中的运算符
               
             
           </h1>
@@ -287,8 +285,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-28T23:07:44+08:00">
-                2016-12-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-19T00:15:40+08:00">
+                2017-01-19
               </time>
             
 
@@ -303,8 +301,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/12/28/学习笔记之js原型链/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/28/学习笔记之js原型链/" itemprop="commentCount"></span>
+                <a href="/2017/01/19/shell中的运算符/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/19/shell中的运算符/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -330,14 +328,13 @@
       
 
       
-        <h2 id="普通对象与函数对象"><a href="#普通对象与函数对象" class="headerlink" title="普通对象与函数对象"></a>普通对象与函数对象</h2><p>javascript中的对象分为普通对象和函数对象，object,function是js自带的函数对象。下面是例子<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function f1()&#123;&#125;;</div><div class="line">var f2 = function()&#123;&#125;;</div><div class="line">var f3 = new Function(&apos;str&apos;,console.log(str));</div><div class="line"></div><div class="line">var o3 = new f1();</div><div class="line">var o1 = &#123;&#125;;</div><div class="line">var o2 = new Object();</div><div class="line"></div><div class="line">console.log(typeof Object); //function</div><div class="line">console.log(typeof Function); //function</div><div class="line">console.log(typeof o1); //object</div><div class="line">console.log(typeof o2); //object</div><div class="line">console.log(typeof o3); //object</div><div class="line">console.log(typeof f1); //function</div><div class="line">console.log(typeof f2); //function</div><div class="line">console.log(typeof f3); //function</div></pre></td></tr></table></figure></p>
-<p>在上面的例子中o1,o2,o3为普通对象，f1,f2,f3为函数对象。怎么区分，<span style="color:red">凡是通过new Function()创建的都是函数对象，其他的都是普通对象</span>f1,f2归根结底都是通过new Function()的方式创建的。Function Object也是通过New Function()创建的。</p>
-<h2 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h2><p>在 javascript中，每定义一个对象（函数）时候，对象中都会包含一些预定义的属性。其中函数对象的一个属性就是原型对象prototype.注：普通对象没有prototype,但有_proto_属性。<br>原型对象其实就是普通对象（Function.prototype除外，它是函数对象，但<br>它很特殊，它没有prototype属性（前面说到函数对象都有prototype属性)。看下面的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function f1()&#123;&#125;;</div><div class="line">console.log(f1.prototype); //f1&#123;&#125;</div><div class="line">console.log(typeof f1.prototype); //Object</div><div class="line">console.log(typeof Function.prototype); //Function 这个特殊</div><div class="line">console.log(typeof Object.prototype); //Object</div><div class="line">console.log(typeof Function.prototype.prototype); //undefined</div></pre></td></tr></table></figure></p>
-<p>从这句console.log(f1.prototype)//f1{}的输出结果就可以看出，<span style="color:red">f1.prototype就是f1的一个实例对象。就是在f1创建的时候，创建了一个它的实例对象并赋值给它的prototype，</span>基本过程如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var temp = new f1();</div><div class="line">f1.prototype = temp;</div></pre></td></tr></table></figure></p>
-<p>所以，Function.prototype为什么是函数对象就迎刃而解了，上文凡是new Function()产生的对象都是函数对象所以temp1是函数对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var temp1 = new Function();</div><div class="line">Function.prototype = temp1;</div></pre></td></tr></table></figure></p>
-<p>那原型对象是用来做什么的呢？主要作用是用于继承。举个🌰：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var person = function(name) &#123;</div><div class="line">	this.name = name;</div><div class="line">&#125;;</div><div class="line">person.prototype.getName = function() &#123;</div><div class="line">	return this.name;</div><div class="line">&#125;;</div><div class="line">var ang = new person(&apos;zhangyuang&apos;);</div><div class="line">ang.getName(); //zhangyuang</div></pre></td></tr></table></figure></p>
-<p>从这个例子可以看出，通过给person.prototype设置了一个函数对象的属性，那有person实例（ang）出来的普通对象就继承了这个属性。具体是怎么实现的继承，看下面的原型链。</p>
-<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>js在创建对象（不论是普通对象还是函数对象）的时候，都有一个叫做_proto_的内置属性，用于指向创建它的函数的原型对象prototype。以上面的🌰为例：<br><span style="color:red">console.log(ang._proto_ === person.prototype); //true</span><br>同意，person.prototype对象也有_proto_属性，它指向创建它的函数对象(Object)的prototype<br><span style="color:red">console.log(person.prototype._proto_ === Object.prototype); //true</span><br>继续，Object.prototype对象也有_proto_属性，但它比较特殊，为null<br><span style="color:red">console.log(Object.prototype._proto_); //null</span><br>我们把这个有 _proto_ 串起来的直到Object.prototype._proto_为null的链叫做原型链。如下图：<br><img src="/images/prototype1.jpg">  </p>
+        <h2 id="declare命令"><a href="#declare命令" class="headerlink" title="declare命令"></a>declare命令</h2><h3 id="declare声明变量类型"><a href="#declare声明变量类型" class="headerlink" title="declare声明变量类型"></a>declare声明变量类型</h3><p>declare [+/-][选项]变量名<br><a id="more"></a><br>-：给变量设定类型属性<br>+：取消变量的类型属性<br>-a：将变量声明为数组型<br>-i：将变量声明为整数型<br>-x：将变量声明为环境变量<br>-r：将变量声明为只读变量<br>-p：显示指定变量的被声明的类型</p>
+<h2 id="声明数组变量"><a href="#声明数组变量" class="headerlink" title="声明数组变量"></a>声明数组变量</h2><h3 id="定义数组"><a href="#定义数组" class="headerlink" title="定义数组"></a>定义数组</h3><p>movie[0]=zp<br>movie[1]=tp<br>declare -a movie[2]=live</p>
+<h3 id="查看数组"><a href="#查看数组" class="headerlink" title="查看数组"></a>查看数组</h3><p>echo ${movie} //代表调用${movie[0]}<br>echo ${movie[2]}<br>echo ${movie[*]}</p>
+<h2 id="声明环境变量"><a href="#声明环境变量" class="headerlink" title="声明环境变量"></a>声明环境变量</h2><p>declare -x test=123</p>
+<p>#和export作用类似，但其实是declare命令的作用</p>
+<h2 id="数值运算的方法"><a href="#数值运算的方法" class="headerlink" title="数值运算的方法"></a>数值运算的方法</h2><h4 id="expr或let数值运算工具"><a href="#expr或let数值运算工具" class="headerlink" title="expr或let数值运算工具"></a>expr或let数值运算工具</h4><p>aa=11 bb=22<br>dd=$(expr $aa + $bb)<br>dd的值是aa和bb的和。注意+左右两侧必须有空格</p>
+<h4 id="运算式-或-运算式"><a href="#运算式-或-运算式" class="headerlink" title="$((运算式))或$[运算式]"></a>$((运算式))或$[运算式]</h4><p>aa=11 bb=22<br>ff=$(($aa+$bb))<br>gg=$[aa+bb]</p>
 
       
     </div>
@@ -361,7 +358,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/前端笔记/" rel="tag"># 前端笔记</a>
+            <a href="/tags/shell/" rel="tag"># shell</a>
           
         </div>
       
@@ -370,8 +367,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/02/flex实战/" rel="next" title="flex实战">
-                <i class="fa fa-chevron-left"></i> flex实战
+              <a href="/2017/01/18/shell中的变量/" rel="next" title="shell中的变量">
+                <i class="fa fa-chevron-left"></i> shell中的变量
               </a>
             
           </div>
@@ -379,10 +376,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/12/mac上使用虚拟机安装linux/" rel="prev" title="mac上使用虚拟机安装linux">
-                mac上使用虚拟机安装linux <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -408,8 +401,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/28/学习笔记之js原型链/"
-           data-title="学习笔记之js原型链" data-url="http://yoursite.com/2016/12/28/学习笔记之js原型链/">
+      <div class="ds-thread" data-thread-key="2017/01/19/shell中的运算符/"
+           data-title="shell中的运算符" data-url="http://yoursite.com/2017/01/19/shell中的运算符/">
       </div>
     
   </div>
@@ -506,7 +499,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#普通对象与函数对象"><span class="nav-number">1.</span> <span class="nav-text">普通对象与函数对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型对象"><span class="nav-number">2.</span> <span class="nav-text">原型对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型链"><span class="nav-number">3.</span> <span class="nav-text">原型链</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#declare命令"><span class="nav-number">1.</span> <span class="nav-text">declare命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#declare声明变量类型"><span class="nav-number">1.1.</span> <span class="nav-text">declare声明变量类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明数组变量"><span class="nav-number">2.</span> <span class="nav-text">声明数组变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义数组"><span class="nav-number">2.1.</span> <span class="nav-text">定义数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看数组"><span class="nav-number">2.2.</span> <span class="nav-text">查看数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明环境变量"><span class="nav-number">3.</span> <span class="nav-text">声明环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数值运算的方法"><span class="nav-number">4.</span> <span class="nav-text">数值运算的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#expr或let数值运算工具"><span class="nav-number">4.0.1.</span> <span class="nav-text">expr或let数值运算工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运算式-或-运算式"><span class="nav-number">4.0.2.</span> <span class="nav-text">$((运算式))或$[运算式]</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
