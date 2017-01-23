@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/01/20/shell中的条件判断语句/index.html">
 <meta property="og:site_name" content="zhangyuang">
 <meta property="og:description" content="按照文件类型进行判断-b 文件：判断该文件是否存在，并且是否为块设备文件（是块设备文件为真）-c 文件：判断该文件是否存在，并且是否为字符设备文件（是为真）-d 文件：判断该文件是否存在，并且是否为目录文件（是目录为真）">
-<meta property="og:updated_time" content="2017-01-21T13:16:20.000Z">
+<meta property="og:updated_time" content="2017-01-21T16:37:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="shell中的条件判断语句">
 <meta name="twitter:description" content="按照文件类型进行判断-b 文件：判断该文件是否存在，并且是否为块设备文件（是块设备文件为真）-c 文件：判断该文件是否存在，并且是否为字符设备文件（是为真）-d 文件：判断该文件是否存在，并且是否为目录文件（是目录为真）">
@@ -383,7 +383,28 @@ case $cho in
     *)
         echo &quot;is error&quot;
         ;;
-    esac            
+    esac
+</code></pre><h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><p>语法1<br>for 变量 in 值1 值2<br>    do<br>        程序<br>    done</p>
+<pre><code>#!/bin/bash
+for i in 1 2 3 4 5    
+    do
+        echo $i
+    done    
+</code></pre><p>批量解压缩</p>
+<pre><code>#!/bin/bash
+cd /root/test
+ls *.tar.gz &gt; ls.log
+ls *.tgz &gt;&gt; ls.log
+for i in $( cat ls.log )
+    do
+        tar -zxvf $i &amp;&gt; /dev/null
+    done
+rm -rf ls.log        
+</code></pre><p>语法2<br>for((初始值；循环控制条件；变量变化))<br>     do<br>          程序<br>     done    </p>
+<h3 id="while循环和until循环"><a href="#while循环和until循环" class="headerlink" title="while循环和until循环"></a>while循环和until循环</h3><p>while []<br>    do</p>
+<pre><code>done
+</code></pre><p>until []//条件不成立时执行<br>    do</p>
+<pre><code>done
 </code></pre>
       
     </div>
@@ -425,6 +446,10 @@ case $cho in
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/22/Linux中的软件安装/" rel="prev" title="Linux中的软件安装">
+                Linux中的软件安装 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -496,7 +521,7 @@ case $cho in
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -548,7 +573,7 @@ case $cho in
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#按照文件类型进行判断"><span class="nav-number">1.</span> <span class="nav-text">按照文件类型进行判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两种判断格式"><span class="nav-number">2.</span> <span class="nav-text">两种判断格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按照文件权限进行判断"><span class="nav-number">3.</span> <span class="nav-text">按照文件权限进行判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个文件之间进行比较"><span class="nav-number">4.</span> <span class="nav-text">两个文件之间进行比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个整数的比较"><span class="nav-number">5.</span> <span class="nav-text">两个整数的比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串的判断"><span class="nav-number">6.</span> <span class="nav-text">字符串的判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重条件判断"><span class="nav-number">7.</span> <span class="nav-text">多重条件判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if语句"><span class="nav-number">8.</span> <span class="nav-text">if语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例子1-判读登录的用户是否root"><span class="nav-number">8.1.</span> <span class="nav-text">例子1 判读登录的用户是否root</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子2-判断分区使用率"><span class="nav-number">8.2.</span> <span class="nav-text">例子2 判断分区使用率</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双分支if语句"><span class="nav-number">9.</span> <span class="nav-text">双分支if语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#判断是不是一个目录"><span class="nav-number">9.1.</span> <span class="nav-text">判断是不是一个目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断apache服务是否开启"><span class="nav-number">9.2.</span> <span class="nav-text">判断apache服务是否开启</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多分支if"><span class="nav-number">10.</span> <span class="nav-text">多分支if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#case语句"><span class="nav-number">11.</span> <span class="nav-text">case语句</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#按照文件类型进行判断"><span class="nav-number">1.</span> <span class="nav-text">按照文件类型进行判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两种判断格式"><span class="nav-number">2.</span> <span class="nav-text">两种判断格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按照文件权限进行判断"><span class="nav-number">3.</span> <span class="nav-text">按照文件权限进行判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个文件之间进行比较"><span class="nav-number">4.</span> <span class="nav-text">两个文件之间进行比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个整数的比较"><span class="nav-number">5.</span> <span class="nav-text">两个整数的比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串的判断"><span class="nav-number">6.</span> <span class="nav-text">字符串的判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重条件判断"><span class="nav-number">7.</span> <span class="nav-text">多重条件判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if语句"><span class="nav-number">8.</span> <span class="nav-text">if语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例子1-判读登录的用户是否root"><span class="nav-number">8.1.</span> <span class="nav-text">例子1 判读登录的用户是否root</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子2-判断分区使用率"><span class="nav-number">8.2.</span> <span class="nav-text">例子2 判断分区使用率</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双分支if语句"><span class="nav-number">9.</span> <span class="nav-text">双分支if语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#判断是不是一个目录"><span class="nav-number">9.1.</span> <span class="nav-text">判断是不是一个目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断apache服务是否开启"><span class="nav-number">9.2.</span> <span class="nav-text">判断apache服务是否开启</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多分支if"><span class="nav-number">10.</span> <span class="nav-text">多分支if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#case语句"><span class="nav-number">11.</span> <span class="nav-text">case语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for循环"><span class="nav-number">12.</span> <span class="nav-text">for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#while循环和until循环"><span class="nav-number">13.</span> <span class="nav-text">while循环和until循环</span></a></li></ol></div>
             
 
           </div>
