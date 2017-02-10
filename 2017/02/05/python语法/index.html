@@ -1,0 +1,1210 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="安装python1、安装Homebrew2、brew intsall python3(建议翻墙)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python语法">
+<meta property="og:url" content="http://yoursite.com/2017/02/05/python语法/index.html">
+<meta property="og:site_name" content="zhangyuang">
+<meta property="og:description" content="安装python1、安装Homebrew2、brew intsall python3(建议翻墙)">
+<meta property="og:updated_time" content="2017-02-10T14:03:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python语法">
+<meta name="twitter:description" content="安装python1、安装Homebrew2、brew intsall python3(建议翻墙)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/05/python语法/"/>
+
+
+
+
+
+  <title> python语法 | zhangyuang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zhangyuang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/05/python语法/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="张宇昂">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/momo.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="zhangyuang">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="zhangyuang" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                python语法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-05T18:04:38+08:00">
+                2017-02-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/02/05/python语法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/05/python语法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="安装python"><a href="#安装python" class="headerlink" title="安装python"></a>安装python</h3><p>1、安装Homebrew<br>2、brew intsall python3(建议翻墙)<br><a id="more"></a></p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><h4 id="输出打印print"><a href="#输出打印print" class="headerlink" title="输出打印print()"></a>输出打印print()</h4><pre><code>&gt;&gt;&gt;print(&apos;hello world&apos;)
+hello world
+</code></pre><p>print()函数也可以接受多个字符串，用逗号“,”隔开，就可以连成一串输出：</p>
+<pre><code>&gt;&gt;&gt; print(&apos;The quick brown fox&apos;, &apos;jumps over&apos;, &apos;the lazy dog&apos;)
+The quick brown fox jumps over the lazy dog
+</code></pre><p>print()会依次打印每个字符串，遇到逗号“,”会输出一个空格    </p>
+<h4 id="输入input"><a href="#输入input" class="headerlink" title="输入input()"></a>输入input()</h4><p>Python提供了一个input()，可以让用户输入字符串，并存放到一个变量里。比如输入用户的名字：</p>
+<pre><code>&gt;&gt;&gt;name = input()
+zhangyuang
+</code></pre><p>当你输入name = input()并按下回车后，Python交互式命令行就在等待你的输入了。这时，你可以输入任意字符，然后按回车后完成输入。</p>
+<p>输入完成后，不会有任何提示，Python交互式命令行又回到&gt;&gt;&gt;状态了。那我们刚才输入的内容到哪去了？答案是存放到name变量里了。可以直接输入name查看变量内容：</p>
+<pre><code>&gt;&gt;&gt; name
+&apos;zhangyuang&apos;
+</code></pre><h4 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h4><p>以#开头的语句是注释，注释是给人看的，可以是任意内容，解释器会忽略掉注释。其他每一行都是一个语句，当语句以冒号:结尾时，缩进的语句视为代码块。</p>
+<p>缩进有利有弊。好处是强迫你写出格式化的代码，但没有规定缩进是几个空格还是Tab。按照约定俗成的管理，应该始终坚持使用4个空格的缩进。<br>    a = 100<br>    if a&gt;=0:<br>        pirnt(a)<br>    else:<br>        print(-a)    </p>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>布尔值<br>True or False</p>
+<h4 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h4><p>\<br>\n 换行<br>\t tab<br>\’<br>\”</p>
+<h4 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h4><pre><code>&gt;&gt;&gt;10/3
+3.3333333
+&gt;&gt;&gt;9/3
+3.0
+&gt;&gt;&gt;10//3(取商)
+3
+&gt;&gt;&gt;10%3(取余)
+1     
+</code></pre><h4 id="占位符"><a href="#占位符" class="headerlink" title="占位符"></a>占位符</h4><p>%d 整数<br>%f 浮点数<br>%s 字符串<br>%x 十六进制整数</p>
+<pre><code>&gt;&gt;&gt; &apos;Hi, %s, you have $%d.&apos; % (&apos;Michael&apos;, 1000000)
+&apos;Hi, Michael, you have $1000000.&apos;    
+</code></pre><p>其中，格式化整数和浮点数还可以指定是否补0和整数与小数的位数：</p>
+<pre><code>&gt;&gt;&gt; &apos;%2d-%02d&apos; % (3, 1)
+&apos; 3-01&apos;
+&gt;&gt;&gt; &apos;%.2f&apos; % 3.1415926
+&apos;3.14&apos;
+如果你不太确定应该用什么，%s永远起作用，它会把任何数据类型转换为字符串：
+&gt;&gt;&gt; &apos;Age: %s. Gender: %s&apos; % (25, True)
+&apos;Age: 25. Gender: True&apos;    
+</code></pre><h4 id="列表list"><a href="#列表list" class="headerlink" title="列表list"></a>列表list</h4><pre><code>&gt;&gt;&gt;classmates = [&apos;zhangyuang&apos;,&quot;janviercheng&quot;,&apos;fly&apos;]
+&gt;&gt;&gt;classmates    
+[&apos;zhangyuang&apos;,&quot;janviercheng&quot;,&apos;fly&apos;]
+
+&gt;&gt;&gt;len(classmates)
+3
+&gt;&gt;&gt;classmates[0]
+&apos;zhangyuang&apos;
+&gt;&gt;&gt;classmates[-1]//倒数第一个元素
+&apos;fly&apos;
+&gt;&gt;&gt;classmates.append(&apos;newpeople&apos;)
+[&apos;zhangyuang&apos;,&quot;janviercheng&quot;,&apos;fly&apos;,&apos;newpeople&apos;]
+&gt;&gt;&gt;classmates.insert(1,&apos;second&apos;)
+[&apos;zhangyuang&apos;,&apos;second&apos;,&quot;janviercheng&quot;,&apos;fly&apos;,&apos;newpeople&apos;]
+&gt;&gt;&gt;classmates.pop()
+&apos;newpeople&apos;
+&gt;&gt;&gt;classmates.pop(i)
+&gt;&gt;&gt;classmates[1]=&apos;replace&apos;
+&gt;&gt;&gt;classmates=[&apos;zhangyuang&apos;,[&apos;fly&apos;,&apos;janvier&apos;],&apos;newpeople&apos;]//二维数组
+</code></pre><h3 id="元组-tuple"><a href="#元组-tuple" class="headerlink" title="元组 tuple"></a>元组 tuple</h3><pre><code>&gt;&gt;&gt;classmates = (&apos;zhangyuang&apos;,&apos;janvier&apos;)
+</code></pre><p>现在，这个classmates这个tuple不能变了，他也没有append(),insert(),这样的方法。<br>不可变的tuple有什么意义？因为tuple不可变，所以代码更加的安全<br>在定义tuple时元素必须备确定下来，比如：</p>
+<pre><code>&gt;&gt;&gt;t=(1,2)
+&gt;&gt;&gt;t
+(1,2)        
+</code></pre><p>定义一个元素</p>
+<pre><code>&gt;&gt;&gt;t=(1,)
+</code></pre><h4 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h4><pre><code>age = 20
+if age &gt;= 18:
+    print(&apos;adult&apos;)
+elif age &gt;=6:
+    print(&apos;tennager&apos;)    
+else:
+    print(&apos;kid&apos;)    
+
+s = input(&apos;birth: &apos;)
+birth = int(s)
+if birth &lt; 2000:
+    print(&apos;00前&apos;)
+else:
+    print(&apos;00后&apos;)
+</code></pre><h4 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h4><pre><code>names = [&apos;zhangyuang&apos;,&apos;janvier&apos;]
+for name in names:
+    print(name)
+</code></pre><p>range(5)生成的序列是从0开始小于5的整数</p>
+<pre><code>&gt;&gt;&gt;list(range(5))
+[0,1,2,3,4]
+sum = 0
+for x in ranger(101):
+    sum = sum+x
+print(sum)    
+</code></pre><p>while<br>    sum = 0<br>    n = 99<br>    while n&gt;0<br>        sum = sum + n<br>        n = n-2<br>    print(sum)    </p>
+<p>break</p>
+<pre><code>sum = 0    
+n = 99
+while n&gt;0
+    if n&lt;10:
+        break
+    sum = sum + n
+    n = n-2
+print(sum)    
+</code></pre><h4 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h4><pre><code>&gt;&gt;&gt; d = {&apos;zhangyuang&apos;:95,&apos;janvier&apos;:90}
+&gt;&gt;&gt; d[&apos;zhangyuang&apos;]
+95
+&gt;&gt;&gt;&apos;zhangyuang&apos; in d
+True
+&gt;&gt;&gt; d.get(&apos;zhangyuang&apos;,-1)
+-1
+&gt;&gt;&gt; d.pop(&apos;zhangyuang&apos;)
+95
+</code></pre><h4 id="set"><a href="#set" class="headerlink" title="set"></a>set</h4><pre><code>&gt;&gt;&gt; s = set([1,2,3])
+&gt;&gt;&gt; s
+{1,2,3}
+&gt;&gt;&gt; s = set([1,1,2,2,3,3])
+&gt;&gt;&gt; s
+{1,2,3}
+&gt;&gt;&gt; s.add(4)
+&gt;&gt;&gt; s
+{1,2,3,4}
+&gt;&gt;&gt; s.remove(4)
+&gt;&gt;&gt; s
+{1,2,3}
+&gt;&gt;&gt; s1 = set([1,2,3])
+&gt;&gt;&gt; s2 = set([2,3,4])
+&gt;&gt;&gt; s1&amp;s2
+{2,3}
+&gt;&gt;&gt; s1|s2
+{1,2,3,4}
+</code></pre><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><pre><code>def my_abs(x):
+if x&gt;=0:
+    return x
+else:
+    return -x    
+</code></pre><p>import math<br>    def move(x,y,step,angle=0):<br>    nx = x+step<em>math.cos(angle)<br>    ny = y+step</em>math.sin(angle)<br>    return nx,ny</p>
+<pre><code>&gt;&gt;&gt; x,y = move(100,100,60,math.pi/6)
+&gt;&gt;&gt; print(x,y)
+151,961524 70.0
+
+def power(x,n=2)
+s = 1
+while n&gt;0:
+    n = n-1
+    s = s*x
+return s    
+</code></pre><h4 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h4><p><em>nums表示把nums这个list或tuple的所有元素作为可变参数传进去。<br>    def calc(</em>numbers):<br>    sum = 0<br>    for n in numbers:<br>        sum = sum + n*n<br>    return sum</p>
+<pre><code>&gt;&gt;&gt; calc(1,2)
+5
+&gt;&gt;&gt; calc()
+0
+</code></pre><h4 id="关键字参数"><a href="#关键字参数" class="headerlink" title="关键字参数"></a>关键字参数</h4><p>可变参数允许你传入0个或任意个参数，这些可变参数在函数调用时自动组装为一个tuple。而关键字参数允许你传入0个或任意个含参数名的参数，这些关键字参数在函数内部自动组装为一个dict。请看示例：<br>    def person(name,age,**kw):<br>    print(‘name:’,name,’age:’age,’other:’,kw)</p>
+<pre><code>&gt;&gt;&gt; person(&apos;zhangyuang&apos;,19)
+name:zhangyuang age:19 other:{}
+&gt;&gt;&gt; person(&apos;zhangyuang&apos;,19,city=&apos;guangzhou&apos;,job=&apos;fe&apos;)
+name:zhangyuang age:19 other:{&apos;city&apos;:&apos;guangzhou&apos;,&apos;job&apos;:&apos;fe&apos;}
+</code></pre><p>关键字参数有什么用？它可以扩展函数的功能。比如，在person函数里，我们保证能接收到name和age这两个参数，但是，如果调用者愿意提供更多的参数，我们也能收到。试想你正在做一个用户注册的功能，除了用户名和年龄是必填项外，其他都是可选项，利用关键字参数来定义这个函数就能满足注册的需求。</p>
+<pre><code>&gt;&gt;&gt; extra = {&apos;city&apos;:&apos;guangzhou&apos;,&apos;job&apos;:&apos;fe&apos;}
+&gt;&gt;&gt; person(&apos;zhangyuang&apos;,19,**extra)
+name:zhangyuang age:19 other:{&apos;city&apos;:&apos;guangzhou&apos;,&apos;job&apos;:&apos;fe&apos;}        
+</code></pre><h4 id="命名关键字参数"><a href="#命名关键字参数" class="headerlink" title="命名关键字参数"></a>命名关键字参数</h4><p>如果要限制关键字参数的名字，就可以用命名关键字参数，例如，只接收city和job作为关键字参数。这种方式定义的函数如下：<br>    def person(name,age,<em>,city,jon)<br>和关键字参数**kw不同，命名关键字参数需要一个特殊分隔符</em>，*后面的参数被视为命名关键字参数。</p>
+<p>调用方式如下：</p>
+<pre><code>&gt;&gt;&gt; person(&apos;zhangyuang&apos;,19,city=&apos;guangzhou&apos;,jon=&apos;fe&apos;)
+</code></pre><p>如果函数定义中已经有了一个可变参数，后面跟着的命名关键字参数就不再需要一个特殊分隔符<em>了：<br>    def person(name,age,</em>args,city,job):<br>    print(name,age,args,city,job)        </p>
+<h3 id="递归函数"><a href="#递归函数" class="headerlink" title="递归函数"></a>递归函数</h3><pre><code>def fact(n):
+if n==1:
+    return 1
+return n*fact(n-1)        
+</code></pre><h3 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h3><p>取前三个元素</p>
+<pre><code>&gt;&gt;&gt; L[0:3]
+[&apos;zhangyuang&apos;,&apos;janvier&apos;,&apos;fly&apos;]
+</code></pre><p>L[0:3]表示从索引0开始取，知道索引3为止但不包括索引3.即索引0，1，2.<br>如果第一个索引是0还可以省略</p>
+<pre><code>&gt;&gt;&gt; L[:3]
+</code></pre><p>也可以从索引1开始，取2个元素出来：</p>
+<pre><code>&gt;&gt;&gt; L[1:3]
+</code></pre><p>前10个数，每两个取一个:</p>
+<pre><code>&gt;&gt;&gt; L[:10:2]
+[0,2,4,6,8]
+</code></pre><p>所有数，每5个取一个</p>
+<pre><code>&gt;&gt;&gt; L[::5]
+[0,5,10,15]
+</code></pre><p>什么都不写，只写[:]就可以原样复制一个list：</p>
+<pre><code>&gt;&gt;&gt; L[:]
+[0,1,2,3,.....99]
+</code></pre><p>字符串’xxx’也可以看成是一种list，每个元素就是一个字符</p>
+<pre><code>&gt;&gt;&gt; &apos;abc    def&apos;[:3]
+&apos;abc&apos;
+</code></pre><h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>for … in</p>
+<pre><code>&gt;&gt;&gt; d = {&apos;a&apos;:1,&apos;b&apos;:2,&apos;c&apos;:3}
+&gt;&gt;&gt; for key in d
+        print(key)
+    a
+    c
+    b
+</code></pre><p>因为dict的存储不是按照list的方式顺序排列，所以，迭代出的结果顺序很可能不一样。</p>
+<p>默认情况下，dict迭代的是key。如果要迭代value，可以用for value in d.values()，如果要同时迭代key和value，可以用for k, v in d.items()。<br>那么，如何判断一个对象是可迭代对象呢？方法是通过collections模块的Iterable类型判断：</p>
+<pre><code>&gt;&gt;&gt; from collections import Iterable
+&gt;&gt;&gt; isinstance(&apos;abc&apos;,Iterable) //str是否可迭代
+True
+&gt;&gt;&gt; isinstance([1,2,3],Iterable) // list是否可迭代
+True
+&gt;&gt;&gt; isinstance(123,Iterable) // 整数是否可迭代
+False
+</code></pre><p>最后一个小问题，如果要对list实现类似Java那样的下标循环怎么办？Python内置的enumerate函数可以把一个list变成索引-元素对，这样就可以在for循环中同时迭代索引和元素本身：</p>
+<pre><code>&gt;&gt;&gt; for i,value in enumerate([&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]):
+    print(i,value)
+</code></pre><p>上面的for循环里，同时引用了两个变量，在Python里是很常见的，比如下面的代码：</p>
+<pre><code>&gt;&gt;&gt; for x,y in [(1,2),(3,4)]:
+    print(x,y)
+    1 2
+    3 4
+</code></pre><h3 id="列表生成式"><a href="#列表生成式" class="headerlink" title="列表生成式"></a>列表生成式</h3><p>列表生成式即List Comprehensions，是Python内置的非常简单却强大的可以用来创建list的生成式。</p>
+<p>举个例子，要生成list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]可以用list(range(1, 11))：</p>
+<pre><code>&gt;&gt;&gt; list(range(1,11))
+[1,2,3,4,5....]
+</code></pre><p>生成[1<em>1,2</em>2]</p>
+<pre><code>&gt;&gt;&gt; [ x*x for x in range(1,11) ]
+[1,4,9,.....]
+</code></pre><p>还可以使用两层循环生成全排列:</p>
+<pre><code>&gt;&gt;&gt; [m+n for m in &apos;abc&apos; for n in &apos;xyz&apos;]
+[&apos;ax&apos;,&apos;ay&apos;,&apos;az&apos;,&apos;bx&apos;,&apos;by&apos;....]
+</code></pre><p>运用列表生成式，可以写出非常简洁的代码。例如，列出当前目录下的所有文件和目录名，可以通过一行代码实现：</p>
+<pre><code>&gt;&gt;&gt; import os # 导入os模块，模块的概念后面讲到
+&gt;&gt;&gt; [d for d in os.listdir(&apos;.&apos;)] # os.listdir可以列出文件和目录
+[&apos;.emacs.d&apos;, &apos;.ssh&apos;, &apos;.Trash&apos;, &apos;Adlm&apos;, &apos;Applications&apos;, &apos;Desktop&apos;, &apos;Documents&apos;, &apos;Downloads&apos;, &apos;Library&apos;, &apos;Movies&apos;, &apos;Music&apos;, &apos;Pictures&apos;, &apos;Public&apos;, &apos;VirtualBox VMs&apos;, &apos;Workspace&apos;, &apos;XCode&apos;]    
+</code></pre><p>列表生成式可以使用两个变量来生成list:</p>
+<pre><code>&gt;&gt;&gt; d={&apos;x&apos;:1,&apos;y&apos;:2}
+&gt;&gt;&gt; [k + &apos;=&apos; + v for k,v in d.items()]
+[&apos;x=1&apos;,&apos;y=2&apos;]    
+</code></pre><p>把list中的所有字符串变成小写</p>
+<pre><code>&gt;&gt;&gt; L = {&apos;Hello&apos;,&apos;World&apos;}
+&gt;&gt;&gt; [s.lower() for s in L]
+[&apos;Hello&apos;,&apos;World&apos;]    
+</code></pre><h3 id="生成器-generator"><a href="#生成器-generator" class="headerlink" title="生成器 generator"></a>生成器 generator</h3><p>要创建一个generator，有很多种方法。第一种方法很简单，只要把一个列表生成式的[]改成()，就创建了一个generator</p>
+<pre><code>&gt;&gt;&gt; L = [ x*x for x in range(10)]
+&gt;&gt;&gt; L
+[0,1,4,9,16....]
+&gt;&gt;&gt; g = ( x*x for x in range(10))
+&gt;&gt;&gt; g
+&lt;generaror object &lt;genexpr&gt; at 0x1022ef630&gt;
+</code></pre><p>创建L和g的区别仅在于最外层的[]和(),L是一个list。<br>我们可以直接打印出list的每一个元素，但我们怎么打印出generator的每一个元素呢？如果要一个一个打印出来，可以通过next()函数获得generator的下一个返回值：</p>
+<pre><code>&gt;&gt;&gt; next(g)
+0
+&gt;&gt;&gt; next(g)
+1
+&gt;&gt;&gt; next(g)
+4
+&gt;&gt;&gt; next(g)
+16
+</code></pre><p>我们讲过，generator保存的是算法，每次调用next(g)，就计算出g的下一个元素的值，直到计算到最后一个元素，没有更多的元素时，抛出StopIteration的错误。</p>
+<p>当然，上面这种不断调用next(g)实在是太变态了，正确的方法是使用for循环，因为generator也是可迭代对象：</p>
+<pre><code>&gt;&gt;&gt; g = (x*x for x in range(10))
+&gt;&gt;&gt; for n in g:
+        print(n)
+    0
+    1
+    4
+    9
+    16
+</code></pre><p>generator非常强大。如果推算的算法比较复杂，用类似列表生成式的for循环无法实现的时候，还可以用函数来实现。<br>比如，著名的斐波拉契数列（Fibonacci），除第一个和第二个数外，任意一个数都可由前两个数相加得到：</p>
+<p>1, 1, 2, 3, 5, 8, 13, 21, 34, …<br>    def fib(max):<br>        n,a,b = 0,0,1<br>        while n&lt;max:<br>            print(b)<br>            a,b = b,a+b<br>            n = n+1<br>        return ‘done’</p>
+<pre><code>&gt;&gt;&gt; fib(6)
+1
+1
+2
+3
+5
+8
+&apos;done&apos;
+</code></pre><p>仔细观察，可以看出，fib函数实际上是定义了斐波拉契数列的推算规则，可以从第一个元素开始，推算出后续任意的元素，这种逻辑其实非常类似generator。</p>
+<p>也就是说，上面的函数和generator仅一步之遥。要把fib函数变成generator，只需要把print(b)改为yield b就可以了：<br>    def fib(max):<br>        n,a,b = 0,0,1<br>        while n&lt;max:<br>            yield b<br>            a,b = b,a+b<br>            n = n+1<br>        return ‘done’<br>这就是定义generator的另一种方法。如果一个函数定义中包含yield的关键字，那么这个函数就不再是一个普通函数，而是一个generator.<br>这里，最难理解的就是generator和函数的执行流程不一样。函数是顺序执行，遇到return语句或者最后一行函数语句就返回。而变成generator的函数，在每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行。<br>举个简单的例子，定义一个generator，一次返回数字1，3，5<br>    def odd():<br>        print(‘step1’)<br>        yield 1<br>        print(‘step2’)<br>        yield 3<br>        print(‘step3’)<br>        yield 5<br>调用该generator时，首先要生成一个generator对象，然后用next()函数不断的获取下一个返回值：</p>
+<pre><code>&gt;&gt;&gt; o = odd()
+&gt;&gt;&gt; next(o)
+step 1
+1
+&gt;&gt;&gt; next(o)
+step2
+3
+&gt;&gt;&gt; next(o)
+step3
+5
+&gt;&gt;&gt; next(o)
+Traceback (most recent call last):
+File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+StopIteration    
+</code></pre><p>可以看到，odd    不是普通函数，而是generator,在执行过程中遇到yield就中断，下次又继续执行。<br>回到fib的例子，我们在循环过程中不断调用yield,就会不断中断。当然要给循环设置一个条件来推出循环，不然就会产生一个无限数列出来。<br>同样的，把函数改成generator后，我们基本上从来不会用next()来获取下一个返回值，而是直接使用for循环来迭代：</p>
+<pre><code>&gt;&gt;&gt; for n in fib(6):
+        print(n)
+    1
+    1
+    2
+    3
+    5
+    8
+</code></pre><p>但是用for循环调用generator时，发现拿不到generator的return语句的返回值。如果想要拿到返回值，必须捕获StopIteration错误，返回值包含在StopIteration的value中:</p>
+<pre><code>&gt;&gt;&gt; g = fib(6)
+&gt;&gt;&gt; while True:
+...     try:
+...         x = next(g)
+...         print(&apos;g:&apos;, x)
+...     except StopIteration as e:
+...         print(&apos;Generator return value:&apos;, e.value)
+...         break
+...
+g: 1
+g: 1
+g: 2
+g: 3
+g: 5
+g: 8
+</code></pre><p>Generator return value: done<br>小结</p>
+<p>generator是非常强大的工具，在Python中，可以简单地把列表生成式改成generator，也可以通过函数实现复杂逻辑的generator。</p>
+<p>要理解generator的工作原理，它是在for循环的过程中不断计算出下一个元素，并在适当的条件结束for循环。对于函数改成的generator来说，遇到return语句或者执行到函数体最后一行语句，就是结束generator的指令，for循环随之结束。<br>以下为js中的generator<br>Generator 函数的用法<br>下面看看如何使用 Generator 函数，执行一个真实的异步任务。</p>
+<p>var fetch = require(‘node-fetch’);</p>
+<p>function* gen(){<br>  var url = ‘<a href="https://api.github.com/users/github" target="_blank" rel="external">https://api.github.com/users/github</a>‘;<br>  var result = yield fetch(url);<br>  console.log(result.bio);<br>}<br>上面代码中，Generator 函数封装了一个异步操作，该操作先读取一个远程接口，然后从 JSON 格式的数据解析信息。就像前面说过的，这段代码非常像同步操作，除了加上了 yield 命令。<br>执行这段代码的方法如下。</p>
+<p>var g = gen();<br>var result = g.next();</p>
+<p>result.value.then(function(data){<br>  return data.json();<br>}).then(function(data){<br>  g.next(data);<br>});<br>上面代码中，首先执行 Generator 函数，获取遍历器对象，然后使用 next 方法（第二行），执行异步任务的第一阶段。由于 Fetch 模块返回的是一个 Promise 对象，因此要用 then 方法调用下一个next 方法。</p>
+<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>我们已经知道，可以直接作用于for循环的数据类型有以下几种：</p>
+<p>一类是集合数据类型，如list、tuple、dict、set、str等；</p>
+<p>一类是generator，包括生成器和带yield的generator function。</p>
+<p>这些可以直接作用于for循环的对象统称为可迭代对象：Iterable。</p>
+<p>可以使用isinstance()判断一个对象是否是Iterable对象：</p>
+<pre><code>&gt;&gt;&gt; from collections import Iterable
+&gt;&gt;&gt; isinstance([],Iterable)
+True
+&gt;&gt;&gt; isinstance({},Iterable)
+True
+</code></pre><p>而生成器不但可以作用于for循环，还可以被next()不断调用并返回下一个值，直到最后抛出stopIteration错误表示无法继续返回下一个值了。<br>可以被next()函数调用并不断返回下一个值的对象称为迭代器：Iterator。</p>
+<p>可以使用isinstance()判断一个对象是否是Iterator对象：</p>
+<pre><code>&gt;&gt;&gt; from collections import Iterator
+&gt;&gt;&gt; isinstance((x for x in range(10)), Iterator)
+True
+&gt;&gt;&gt; isinstance([], Iterator)
+False
+&gt;&gt;&gt; isinstance({}, Iterator)
+False
+&gt;&gt;&gt; isinstance(&apos;abc&apos;, Iterator)
+False    
+</code></pre><p>生成器都是Iterator对象，但list、dict、str虽然是Iterable，却不是Iterator。</p>
+<p>把list、dict、str等Iterable变成Iterator可以使用iter()函数：</p>
+<pre><code>&gt;&gt;&gt; isinstance(iter([]),Iterator)
+True
+&gt;&gt;&gt; isinstance(iter(&apos;abc&apos;),Iterator)
+True
+</code></pre><p>这是因为Python的Iterator对象表示的是一个数据流，Iterator对象可以被next()函数调用并不断返回下一个数据，直到没有数据时抛出StopIteration错误。可以把这个数据流看做是一个有序序列，但我们却不能提前知道序列的长度，只能不断通过next()函数实现按需计算下一个数据，所以Iterator的计算是惰性的，只有在需要返回下一个数据时它才会计算。</p>
+<p>Iterator甚至可以表示一个无限大的数据流，例如全体自然数。而使用list是永远不可能存储全体自然数的。</p>
+<h3 id="map／reduce"><a href="#map／reduce" class="headerlink" title="map／reduce"></a>map／reduce</h3><p>比如我们有一个函数f(x)=x2，要把这个函数作用在一个list [1, 2, 3, 4, 5, 6, 7, 8, 9]上，就可以用map()实现如下：    </p>
+<pre><code>&gt;&gt;&gt; def f(x):
+        return x*x
+&gt;&gt;&gt; r = map(f,[1,2,3,4....])
+&gt;&gt;&gt; list(r)
+[1,4,9,16....]
+</code></pre><p>map()传入的第一个参数是f，即函数对象本身。由于结果r是一个Iterator，Iterator是惰性序列，因此通过list()函数让它把整个序列都计算出来并返回一个list。<br>所以，map()作为高阶函数，事实上它把运算规则抽象了，因此，我们不但可以计算简单的f(x)=x2，还可以计算任意复杂的函数，比如，把这个list所有数字转为字符串：</p>
+<pre><code>&gt;&gt;&gt; list(map(str, [1, 2, 3, 4, 5, 6, 7, 8, 9]))
+[&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;, &apos;9&apos;]    
+</code></pre><p>再看reduce的用法。reduce把一个函数作用在一个序列[x1, x2, x3, …]上，这个函数必须接收两个参数，reduce把结果继续和序列的下一个元素做累积计算，其效果就是：<br>    reduce(f,[x1,x2,x3]) = f(f(f(x1,x2),x3),x4)<br>比方说对一个序列求和    </p>
+<pre><code>&gt;&gt;&gt; from functools import reduce
+&gt;&gt;&gt; def add(x,y):
+        return x+y
+&gt;&gt;&gt; reduce(add,[1,3,5,7,9])
+25        
+</code></pre><p>str转换为int的函数：</p>
+<pre><code>&gt;&gt;&gt; from functools import reduce
+&gt;&gt;&gt; def fn(x,y):
+        return  x*10+y
+&gt;&gt;&gt; def char2num(s):
+        return {&apos;0:0&apos;,&apos;1&apos;: 1, &apos;2&apos;: 2, &apos;3&apos;: 3, &apos;4&apos;: 4, &apos;5&apos;: 5, &apos;6&apos;: 6, &apos;7&apos;: 7, &apos;8&apos;: 8, &apos;9&apos;: 9}[s]
+&gt;&gt;&gt; reduce(fn,map(charnum))        
+</code></pre><p>整理成一个str2int函数就是：<br>    from functools import reduce<br>    def str2int(s):<br>        def fn(x,y):<br>            return x<em>10+y<br>        def char2num(s):<br>            return {‘0’: 0, ‘1’: 1, ‘2’: 2, ‘3’: 3, ‘4’: 4, ‘5’: 5, ‘6’: 6, ‘7’: 7, ‘8’: 8, ‘9’: 9}[s]<br>        return reduce(fn,map(char2num,s))<br>还可以用lambda函数进一步简化成：<br>    from functools import reduce<br>    def char2num(s):<br>        return {‘0’: 0, ‘1’: 1, ‘2’: 2, ‘3’: 3, ‘4’: 4, ‘5’: 5, ‘6’: 6, ‘7’: 7, ‘8’: 8, ‘9’: 9}[s]<br>    def str2int(s):<br>        return reduce(lambda x,y: x</em>10+y,map(char2num,s))<br>    也就是说，假设Python没有提供int()函数，你完全可以自己写一个把字符串转化为整数的函数，而且只需要几行代码</p>
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>filter()用于过滤序列<br>删掉偶数，只保留奇数</p>
+<pre><code>&gt;&gt;&gt; def is_odd(n):
+        return n%2 == 1
+    list(filter(is_odd,[1,2,4,5,6,9,10]))
+    [1,5,9,15]
+</code></pre><p>把一个序列中的空字符串删掉</p>
+<pre><code>&gt;&gt;&gt; def not_empty(s):
+        return s and s.strip()
+    list(filter(not_empty,[&apos;a&apos;,&apos;&apos;,&apos;b&apos;,None]))                
+    [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]
+</code></pre><h3 id="sorted"><a href="#sorted" class="headerlink" title="sorted"></a>sorted</h3><p>排序</p>
+<pre><code>&gt;&gt;&gt; sorted([36,5,-12,9,-21])
+[-21,-12,5,9,36]    
+</code></pre><p>此外，sorted()函数也是一个高阶函数，它还可以接受一个key函数来实现自定义的排序，例如按绝对值大小排序</p>
+<pre><code>&gt;&gt;&gt; sorted([36,5,-12,9,-21],key=abs)
+[5,9,-12,-21,36]
+</code></pre><p>我们再看一个字符串排序的例子：</p>
+<pre><code>&gt;&gt;&gt; sorted([&apos;bob&apos;, &apos;about&apos;, &apos;Zoo&apos;, &apos;Credit&apos;])
+[&apos;Credit&apos;, &apos;Zoo&apos;, &apos;about&apos;, &apos;bob&apos;]
+</code></pre><p>默认情况下，对字符串排序，是按照ASCII的大小比较的，由于’Z’ &lt; ‘a’，结果，大写字母Z会排在小写字母a的前面。<br>现在，我们提出排序应该忽略大小写，按照字母序排序。要实现这个算法，不必对现有代码大加改动，只要我们能用一个key函数把字符串映射为忽略大小写排序即可。忽略大小写来比较两个字符串，实际上就是先把字符串都变成大写（或者都变成小写），再比较。</p>
+<pre><code>&gt;&gt;&gt; sorted([&apos;bob&apos;,&apos;about&apos;,&apos;Zoo&apos;,&apos;Credit&apos;],key = str.lower)
+[&apos;about&apos;,&apos;bob&apos;,&apos;Credit&apos;,&apos;Zoo&apos;]
+</code></pre><p>要进行反向排序，不必改动key函数，可以传入第三个参数reverse = True</p>
+<pre><code>&gt;&gt;&gt; sorted([&apos;bob&apos;, &apos;about&apos;, &apos;Zoo&apos;, &apos;Credit&apos;], key=str.lower, reverse=True)
+[&apos;Zoo&apos;, &apos;Credit&apos;, &apos;bob&apos;, &apos;about&apos;]    
+</code></pre><h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><pre><code>&gt;&gt;&gt; list(map(lambda x: x * x,[1,2,3,4,5]))
+[1,4,9,16,25]
+</code></pre><p>通过对比可以看出，匿名函数lambda x: x<em>x实际上就是:<br>    def f(x):<br>        return x</em>x<br>关键字lambda表示匿名函数，冒号前的x表示函数参数。<br>匿名函数有个现实，就是只能有一个表达式，不用写return，返回值就是该表达式的结果。<br>用匿名函数有个好处，因为函数没有名字，不必担心函数名冲突。此外，匿名函数也是一个函数对象，也可以把匿名函数赋值给一个变量，再利用变量来调用该函数：</p>
+<pre><code>&gt;&gt;&gt; f = lambda x: x*x
+&gt;&gt;&gt; f
+&lt;function &lt;lambda&gt; at 0x101c6ef28&gt;
+&gt;&gt;&gt; f(5)
+25
+</code></pre><h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><p>由于函数也是一个对象，而且函数对象可以被赋值给变量，所以通过变量也能调用该函数。</p>
+<pre><code>&gt;&gt;&gt; def now():
+        print(&apos;2016-1-1&apos;)
+&gt;&gt;&gt; f = now
+&gt;&gt;&gt; f()
+2016-1-1
+</code></pre><p>函数对象有一个_name_属性,可以拿到函数的名字：</p>
+<pre><code>&gt;&gt;&gt; now._name_
+&apos;now&apos;
+&gt;&gt;&gt; f._name_
+&apos;now&apos;
+</code></pre><p>现在，假设我们要增强now()函数的功能，比如，在函数调用前后自动打印日志，但又不希望修改now()函数的定义，这种在代码运行期间动态增加功能的方式，称之为“装饰器”（Decorator）。    </p>
+<pre><code>&gt;&gt;&gt; def log(func):
+        def wrapper(*args,**kw):
+            print(&apos;call %s()&apos; % func._name_)
+            return func(*args,**kw)
+        return wrapper
+</code></pre><p>观察上面的log，因为它是一个decorator，所以接受一个函数作为参数，并返回一个函数。我们要借助Python的@语法，把decorator置于函数的定义处：<br>    @log<br>    def now():<br>        print(‘2016-1-1’)<br>调用now()含糊，不仅会运行now()函数本身，还会在运行now()函数前打印一行日志：</p>
+<pre><code>&gt;&gt;&gt; now()
+call now()
+2016-1-1
+</code></pre><p>把@log放到now()函数的定义处，相当于执行了语句:<br>    now = log(now)<br>由于log()是一个decorator，返回一个函数，所以，原来的now()函数仍然存在，只是现在同名的now变量指向了新的函数，于是调用now()将执行新函数，即在log()函数中返回的wrapper()函数。</p>
+<p>wrapper()函数的参数定义是(<em>args, *</em>kw)，因此，wrapper()函数可以接受任意参数的调用。在wrapper()函数内，首先打印日志，再紧接着调用原始函数。<br>如果decorator本身需要传入参数，那就需要编写一个返回decorator的高阶函数，写出来会更复杂。比如，要自定义log的文本：</p>
+<pre><code>&gt;&gt;&gt; def log(text):
+        def decorator(func):
+            def wrapper(*args,**kw):
+                print(&apos;%s %s():&apos; % (text,func._name_))
+                return func(*args,**kw)
+            return wrapper
+        return decorator
+</code></pre><p>这个3层嵌套的decorator用法如下：<br>    @log(‘execute’)<br>    def now():<br>        print(‘2016-1-1’)<br>执行结果如下：</p>
+<pre><code>&gt;&gt;&gt; now()
+execute now():
+    2016-1-1
+</code></pre><p>和两层嵌套的decorator相比，3层嵌套的效果是这样的：</p>
+<pre><code>&gt;&gt;&gt; now = log(&apos;execute&apos;)(now)
+</code></pre><p>我们来剖析上面的语句，首先执行log(‘execute’)，返回的是decorator函数，再调用返回的函数，参数是now函数，返回值最终是wrapper函数。</p>
+<p>以上两种decorator的定义都没有问题，但还差最后一步。因为我们讲了函数也是对象，它有<strong>name</strong>等属性，但你去看经过decorator装饰之后的函数，它们的<strong>name</strong>已经从原来的’now’变成了’wrapper’：</p>
+<pre><code>&gt;&gt;&gt; now._name_
+</code></pre><p>因为返回的那个wrapper()函数名字就是’wrapper’，所以，需要把原始函数的<strong>name</strong>等属性复制到wrapper()函数中，否则，有些依赖函数签名的代码执行就会出错。</p>
+<p>不需要编写wrapper.<strong>name</strong> = func.<strong>name</strong>这样的代码，Python内置的functools.wraps就是干这个事的，所以，一个完整的decorator的写法如下：<br>    import functools</p>
+<pre><code>def log(func):
+    @functools.wraps(func)
+    def wrapper(*args,**kw):
+        print(&apos;call %s()&apos; % func._name_)
+        return func(*args,**kw)
+    return wrapper
+</code></pre><p>或者针对带参数的decorator：</p>
+<pre><code>import functools
+
+def log(text):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kw):
+            print(&apos;%s %s():&apos; % (text, func.__name__))
+            return func(*args, **kw)
+        return wrapper
+    return decorator                                        
+</code></pre><h3 id="偏函数"><a href="#偏函数" class="headerlink" title="偏函数"></a>偏函数</h3><p>int()函数可以把字符串转换为整数，当仅传入字符串时，int()函数默认按十进制转换：</p>
+<pre><code>&gt;&gt;&gt; int(&apos;12345&apos;)
+12345
+</code></pre><p>但int()函数还提供额外的base参数，默认值为10。如果传入base参数，就可以做N进制的转换：</p>
+<pre><code>&gt;&gt;&gt; int(&apos;12345&apos;,base = 8)
+5349
+&gt;&gt;&gt; int(&apos;12345&apos;,16)
+74565
+</code></pre><p>假设要转换大量的二进制字符串，每次都传入int(x,base=2)非常麻烦，于是我们想到可以定义一个int2()函数，默认把base=2传进去：<br>    def int2(x,base=2)<br>        return int(x,base)</p>
+<pre><code>&gt;&gt;&gt; int2(&apos;1000000&apos;)
+64
+&gt;&gt;&gt; int2(&apos;1010101&apos;)
+85
+</code></pre><p>functools.partial就是帮助我们创建一个偏函数的，不需要我们自己定义int2(),可以直接使用下面的代码</p>
+<pre><code>&gt;&gt;&gt; import functools
+&gt;&gt;&gt; int2 = functools.partial(int,base=2)
+&gt;&gt;&gt; int2(&apos;1000000&apos;)
+64
+&gt;&gt;&gt; int2(&apos;1010101&apos;)
+85
+</code></pre><p>所以简单总结functools.partial的作用就是，把一个函数的某些参数给固定住(也就是设置默认值)，返回一个新的函数，调用这个新函数会更简单。<br>注意到上面的新的int2函数，仅仅是把base参数重新设定默认值为2，但也可以在函数调用时传入其他值:</p>
+<pre><code>&gt;&gt;&gt; int2(&apos;1000000&apos;,base = 10)
+1000000
+</code></pre><p>最后，创建偏函数时，实际上可以接收函数对象、<em>args和<strong>kw这3个参数，当传入:<br>    int2 = functools.partial(int,base = 2)<br>实际上固定了int()函数关键字参数base也就是<br>    int2(‘10010’)<br>相当于：<br>    kw = {‘base’:2}<br>    int(‘10010’,</strong>kw)<br>当传入<br>    max 2 = functools.partial(max,10)<br>实际上会把10作为</em>args的一部分自动加到左边，也就是：<br>    max2(5,6,7) = max2(10,5,6,7)<br>相当于<br>    args = (10,5,6,7)<br>    max(*args)<br>    10    </p>
+<h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><p>引入了包以后，只要顶层的包名不与别人冲突，那所有模块都不会与别人冲突。现在，abc.py模块的名字就变成了mycompany.abc，类似的，xyz.py的模块名变成了mycompany.xyz。</p>
+<p>请注意，每一个包目录下面都会有一个<strong>init</strong>.py的文件，这个文件是必须存在的，否则，Python就把这个目录当成普通目录，而不是一个包。<strong>init</strong>.py可以是空文件，也可以有Python代码，因为<strong>init</strong>.py本身就是一个模块，而它的模块名就是mycompany。</p>
+<h3 id="使用模块"><a href="#使用模块" class="headerlink" title="使用模块"></a>使用模块</h3><p>我们以内建的sys模块为例，编写一个hello模块</p>
+<pre><code>#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+&apos;a test module&apos;
+__author__ = &apos;zhangyuang&apos;
+import sys
+def test():
+    args = sys.argv
+    if len(args) == 1:
+        print(&apos;hello world&apos;)
+    elif len(args) == 2:
+        print(&apos;hello,%s!&apos; % args[1])
+    else:
+        print(&apos;too many arguments&apos;)
+if __name__ == &apos;__main__&apos;:
+    test()
+</code></pre><p>第1行和第2行是标准注释，第1行注释可以让这个hello.py文件直接在Unix/Linux/Mac上运行，第2行注释表示.py文件本身使用标准UTF-8编码；</p>
+<p>第4行是一个字符串，表示模块的文档注释，任何模块代码的第一个字符串都被视为模块的文档注释；</p>
+<p>第6行使用<strong>author</strong>变量把作者写进去，这样当你公开源代码后别人就可以瞻仰你的大名；</p>
+<p>以上就是Python模块的标准文件模板，当然也可以全部删掉不写，但是，按标准办事肯定没错。</p>
+<p>后面开始就是真正的代码部分。<br>sys模块有一个argv变量，用list存储了命令行的所有参数。argv至少有一个元素，因为第一个参数永远是该.py文件的名称，例如：</p>
+<p>运行python3 hello.py获得的sys.argv就是[‘hello.py’]；</p>
+<p>运行python3 hello.py Michael获得的sys.argv就是[‘hello.py’, ‘Michael]。<br>当我们在命令行运行hello模块文件时，Python解释器把一个特殊变量<strong>name</strong>置为<strong>main</strong>，而如果在其他地方导入该hello模块时，if判断将失败，因此，这种if测试可以让一个模块通过命令行运行时执行一些额外的代码，最常见的就是运行测试。</p>
+<p>我们可以用命令行运行hello.py看看效果：<br>    $ python3 hellp.py<br>    hello world<br>    $ python3 hello.py zhangyuang<br>    hello,zhangyuang<br>如果启动Python交互环境，再导入hello模块：</p>
+<pre><code>$ python3
+Python 3.4.3 (v3.4.3:9b73f1c3e601, Feb 23 2015, 02:52:03) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import hello
+&gt;&gt;&gt;
+</code></pre><p>导入时，没有打印Hello, word!，因为没有执行test()函数。</p>
+<p>调用hello.test()时，才能打印出Hello, word!：</p>
+<pre><code>&gt;&gt;&gt; hello.test()
+Hello, world!
+</code></pre><h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>在一个模块中，我们可能会定义很多函数和变量，但有的函数和变量我们希望给别人使用，有的函数和变量我们希望仅仅在模块内部使用。在Python中，是通过_前缀来实现的。<br>正常的函数和变量名是公开的(public),可以直接被引用，比如abc,x123,PI等<br>类似<strong>xxx</strong>这样的变量是特殊变量，可以直接被引用，但是有特殊用途，比如上面的<strong>author</strong>,<strong>name</strong>就是特殊变量，hello模块定义的文档注释也可以用特殊变量<strong>doc</strong>访问，我们自己的变量一般不要用这种变量名。<br>类似_xxx和<strong>xxx这样的函数或者变量就是非公开的(private)不应该直接被引用，比如_abc,</strong>abc等；<br>之所以我们说private函数和变量不应该直接被引用而不是不能被直接引用，是因为python并没有一种方法可以完全限制访问private函数或者变量，但是从编程习惯上不应该引用private函数或者变量。<br>例子<br>    def _private1(name):<br>        return ‘hello,%s’ %name<br>    def _private2(name):<br>        return ‘hi,%s’ %name<br>    def greeting(name):<br>        if len(name)&gt;3:<br>            return _private1(name)<br>        else:<br>            return _private2(name)<br>我们在模块里公开greeting()函数，而把内部逻辑用private函数隐藏起来了，这样调用greeting()函数不用关心内部的private函数细节，这也是一种非常有用的代码封装和抽象的方法。<br>外部不需要引用的函数定义成private，外部需要引用的函数定义为public</p>
+<h3 id="安装第三方模块"><a href="#安装第三方模块" class="headerlink" title="安装第三方模块"></a>安装第三方模块</h3><p>在Python中，安装第三方模块，是通过包管理工具pip完成的。</p>
+<p>如果你正在使用Mac或Linux，安装pip本身这个步骤就可以跳过了。</p>
+<p>如果你正在使用Windows，请参考安装Python一节的内容，确保安装时勾选了pip和Add python.exe to Path。</p>
+<p>在命令提示符窗口下尝试运行pip，如果Windows提示未找到命令，可以重新运行安装程序添加pip。</p>
+<p>注意：Mac或Linux上有可能并存Python 3.x和Python 2.x，因此对应的pip命令是pip3。<br>pip3 install Pillow<br>有了Pillow，处理图片易如反掌。随便找个图片生成缩略图：</p>
+<pre><code>&gt;&gt;&gt; from PIL import Image
+&gt;&gt;&gt; im = Image.open(&apos;test.png&apos;)
+&gt;&gt;&gt; print(im.format,im.size.im.mode)
+PNG (400,300) rgb
+&gt;&gt;&gt; im.thumbnail((200,100))
+&gt;&gt;&gt; im.save(&apos;thumb.jpg&apos;,&apos;JPEG&apos;)
+</code></pre><p>其他常用的第三方库还有MySQL的驱动：mysql-connector-python，用于科学计算的NumPy库：numpy，用于生成文本的模板工具Jinja2，等等。<br>模块搜索路径</p>
+<p>当我们试图加载一个模块时，Python会在指定的路径下搜索对应的.py文件，如果找不到，就会报错：</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>import mymodule<br>Traceback (most recent call last):<br>  File “<stdin>“, line 1, in <module><br>ImportError: No module named mymodule<br>默认情况下，Python解释器会搜索当前目录、所有已安装的内置模块和第三方模块，搜索路径存放在sys模块的path变量中：</module></stdin></p>
+<p>import sys<br>sys.path<br>    [‘’, ‘/Library/Frameworks/Python.framework/Versions/3.4/lib/python34.zip’, ‘/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4’, ‘/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/plat-darwin’, ‘/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/lib-dynload’, ‘/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages’]<br>如果我们要添加自己的搜索目录，有两种方法：</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>一是直接修改sys.path，添加要搜索的目录：</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>import sys<br>sys.path.append(‘/Users/michael/my_py_scripts’)<br>这种方法是在运行时修改，运行结束后失效。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>第二种方法是设置环境变量PYTHONPATH，该环境变量的内容会被自动添加到模块搜索路径中。设置方式与设置Path环境变量类似。注意只需要添加你自己的搜索路径，Python自己本身的搜索路径不受影响。    </p>
+<h3 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h3><p>推荐使用sublime或Notepad++<br>不要使用word和记事本    </p>
+<h3 id="退出-exit"><a href="#退出-exit" class="headerlink" title="退出 exit()"></a>退出 exit()</h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/24/lnmp环境的使用/" rel="next" title="lnmp环境的使用">
+                <i class="fa fa-chevron-left"></i> lnmp环境的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/05/python语法/"
+           data-title="python语法" data-url="http://yoursite.com/2017/02/05/python语法/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/momo.jpg"
+               alt="张宇昂" />
+          <p class="site-author-name" itemprop="name">张宇昂</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装python"><span class="nav-number">1.</span> <span class="nav-text">安装python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输出打印print"><span class="nav-number">2.1.</span> <span class="nav-text">输出打印print()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入input"><span class="nav-number">2.2.</span> <span class="nav-text">输入input()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缩进"><span class="nav-number">2.3.</span> <span class="nav-text">缩进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据类型"><span class="nav-number">2.4.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#转义字符"><span class="nav-number">2.5.</span> <span class="nav-text">转义字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#除法"><span class="nav-number">2.6.</span> <span class="nav-text">除法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#占位符"><span class="nav-number">2.7.</span> <span class="nav-text">占位符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表list"><span class="nav-number">2.8.</span> <span class="nav-text">列表list</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组-tuple"><span class="nav-number">3.</span> <span class="nav-text">元组 tuple</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#条件判断"><span class="nav-number">3.1.</span> <span class="nav-text">条件判断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#循环"><span class="nav-number">3.2.</span> <span class="nav-text">循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dict"><span class="nav-number">3.3.</span> <span class="nav-text">dict</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set"><span class="nav-number">3.4.</span> <span class="nav-text">set</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">4.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可变参数"><span class="nav-number">4.1.</span> <span class="nav-text">可变参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键字参数"><span class="nav-number">4.2.</span> <span class="nav-text">关键字参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命名关键字参数"><span class="nav-number">4.3.</span> <span class="nav-text">命名关键字参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归函数"><span class="nav-number">5.</span> <span class="nav-text">递归函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切片"><span class="nav-number">6.</span> <span class="nav-text">切片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代"><span class="nav-number">7.</span> <span class="nav-text">迭代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表生成式"><span class="nav-number">8.</span> <span class="nav-text">列表生成式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成器-generator"><span class="nav-number">9.</span> <span class="nav-text">生成器 generator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器"><span class="nav-number">10.</span> <span class="nav-text">迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map／reduce"><span class="nav-number">11.</span> <span class="nav-text">map／reduce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter"><span class="nav-number">12.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sorted"><span class="nav-number">13.</span> <span class="nav-text">sorted</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名函数"><span class="nav-number">14.</span> <span class="nav-text">匿名函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装饰器"><span class="nav-number">15.</span> <span class="nav-text">装饰器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#偏函数"><span class="nav-number">16.</span> <span class="nav-text">偏函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块"><span class="nav-number">17.</span> <span class="nav-text">模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用模块"><span class="nav-number">18.</span> <span class="nav-text">使用模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域"><span class="nav-number">19.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装第三方模块"><span class="nav-number">20.</span> <span class="nav-text">安装第三方模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑器"><span class="nav-number">21.</span> <span class="nav-text">编辑器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#退出-exit"><span class="nav-number">22.</span> <span class="nav-text">退出 exit()</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张宇昂</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhangyuang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
