@@ -1,0 +1,975 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="面向对象oopclass Student(object):
+    def __init__(self,name,score)
+        self.name = name
+        self.score = score
+    def print_score(self)
+        print(&amp;apos;%s: %s&amp;apos; % (self.name,self.score))">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python进阶">
+<meta property="og:url" content="http://yoursite.com/2017/02/10/python进阶/index.html">
+<meta property="og:site_name" content="zhangyuang">
+<meta property="og:description" content="面向对象oopclass Student(object):
+    def __init__(self,name,score)
+        self.name = name
+        self.score = score
+    def print_score(self)
+        print(&amp;apos;%s: %s&amp;apos; % (self.name,self.score))">
+<meta property="og:updated_time" content="2017-02-14T06:18:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python进阶">
+<meta name="twitter:description" content="面向对象oopclass Student(object):
+    def __init__(self,name,score)
+        self.name = name
+        self.score = score
+    def print_score(self)
+        print(&amp;apos;%s: %s&amp;apos; % (self.name,self.score))">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/10/python进阶/"/>
+
+
+
+
+
+  <title> python进阶 | zhangyuang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zhangyuang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/10/python进阶/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="张宇昂">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/momo.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="zhangyuang">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="zhangyuang" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                python进阶
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-10T22:04:11+08:00">
+                2017-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/02/10/python进阶/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/10/python进阶/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="面向对象oop"><a href="#面向对象oop" class="headerlink" title="面向对象oop"></a>面向对象oop</h3><pre><code>class Student(object):
+    def __init__(self,name,score)
+        self.name = name
+        self.score = score
+    def print_score(self)
+        print(&apos;%s: %s&apos; % (self.name,self.score))
+</code></pre><a id="more"></a>            
+<p>给对象发消息实际上就是调用对象对应的关联函数，我们称之为对象的方法（Method）。面向对象的程序写出来就像这样：<br>    bart = Student(‘zhangyuang’,90)<br>    lisa = Student(‘janvier’,90)<br>    bart.print_score()<br>    lisa.print_score()            </p>
+<h3 id="类和实例"><a href="#类和实例" class="headerlink" title="类和实例"></a>类和实例</h3><pre><code>class Student(object):
+    pass
+</code></pre><p>class后面紧接着是类名，即Student，类名通常是大写开头的单词，紧接着是(object),表示该类是从哪个类继承下来的，继承的概念一行再讲。通常，如果没有合适的继承类，就使用object类，这是所有类最终都会继承的类。<br>定义好了Student类，就可以根据Student类创建出Student的实例，创建实例是通过类名+()实现</p>
+<pre><code>&gt;&gt;&gt; bart = Student()
+&gt;&gt;&gt; bart
+&lt;__main__.Student object at ox10a67a590&gt;
+&gt;&gt;&gt; Studeng
+&lt;class &apos;__main__.Student&apos;&gt;
+</code></pre><p>可以看到，变量bart指向的就是一个Student的实例，后面的0x10a67a590<br>是内存地址，每个object的地址都不一样，而Student本身则是一个类。<br>可以自由的给一个实例变量绑定属性</p>
+<pre><code>&gt;&gt;&gt; bart.name = &apos;zhangyuang&apos;
+&gt;&gt;&gt; bart.name
+&apos;zhangyuang&apos;
+</code></pre><p>由于类可以起到模版的作用，因此在创建实例的时候，把一些我们认为必须绑定的属性强制天蝎进去。通过定义一个特殊的<strong>init</strong>方法，在创建实例的时候，就把name,score等属性绑上去：</p>
+<pre><code>&gt;&gt;&gt; class Student(object):
+        def __init__(self,name,score):
+            self.name = name
+            self.score = score
+</code></pre><p>注意到<strong>init</strong>方法的第一个参数永远是self.表示创建的实例本身，因此，在<strong>init</strong>方法内部，就可以把各种属性绑定到self，因为self就指向创建的实例本身。<br>有了<strong>init</strong>方法，在创建实例的时候，就不能传入空的参数了，必须传入与<strong>init</strong>方法匹配的参数，但self不需要传，Python解释器自己会把实例变量传进去：</p>
+<pre><code>&gt;&gt;&gt; bart = Student(&apos;zhangyuang&apos;,&apos;90&apos;)
+&gt;&gt;&gt; bart.name
+&apos;zhangyuang&apos;
+&gt;&gt;&gt; bart.score
+90
+</code></pre><h3 id="数据封装"><a href="#数据封装" class="headerlink" title="数据封装"></a>数据封装</h3><p>面向对象编程的一个重要特点就是数据封装。在上面的Student类中，每个实例就拥有各自的name和score这些数据。我们可以通过函数来访问这些数据，比如打印一个学生的成绩：</p>
+<pre><code>&gt;&gt;&gt; def print_score(std):
+        print(&apos;%s: %s&apos; % (std.name,std.score))
+&gt;&gt;&gt; print_score(bart)
+zhangyuang:90
+</code></pre><p>但是既然Student实例本身就拥有这些数据，要访问这些数据就没有必要从外面的函数去访问，可以直接在Student类的内部定义访问数据的函数，这样，就把“数据”给封装起来了。这些封装数据的函数是和Student类本身是关联起来的，我们称之为类的方法：<br>    class Student(object):<br>        def <strong>init</strong>(self,name,score):<br>            self.name = name<br>            self.score = score<br>        def print_score(self):<br>            print(‘%s: %s’ % (self.name,self.score))<br>要定义一个方法，除了第一个参数是self外，其他和普通函数一样。要调用一个方法，只需要在实例变量上直接调用，除了self不用传递，其他参数正常传入。</p>
+<pre><code>&gt;&gt;&gt; bart.print_score()
+zhangyuang: 90
+</code></pre><p>封装的另一个好处是可以给Student类增加新的方法，比如get_grade:<br>    class Student(object):<br>        def get_grade(self):<br>            if self.score &gt;= 90:<br>                return ‘a’<br>            elif self .score &gt;= 60:<br>                return ‘b’<br>            else:<br>                return ‘c’</p>
+<pre><code>&gt;&gt;&gt;bart.get_grade()
+&apos;c&apos;
+</code></pre><h3 id="访问限制"><a href="#访问限制" class="headerlink" title="访问限制"></a>访问限制</h3><p>如果要让内部属性不被外部访问，可以把属性的名称前加两个下划线<strong>，在python中，实例的变量名如果以</strong>开头就变成了一个私有变量(private),只有内部可以访问，外部不能访问。<br>    class Student(object):<br>        def <strong>init</strong>(self,name,score):<br>            self.<strong>name = name<br>            self.</strong>score = score<br>        def print_score(self):<br>            print(‘%s: %s’ % (self.<strong>name,self.</strong>score))<br>改完后，对于外部代码来说，没什么变动但是已经无法从外部访问实例变量.<strong>name和实例变量.</strong>score了</p>
+<pre><code>&gt;&gt;&gt; bart = Student(&apos;zhangyuang&apos;,90)
+&gt;&gt;&gt; bart.__name
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: &apos;Student&apos; object has no attribute &apos;__name&apos;    
+</code></pre><p>这样就确保了外部代码不能随意修改对象内部的状态，这样通过访问限制的保护，代码更加健壮。如果外部代码要获取name和score怎么办？可以给Student类增加get_name和get_score这样的方法<br>    class Student(object):<br>        def get_name(self):<br>            return self.<strong>name<br>        def get_score(self)<br>            return self.</strong>score<br>如果又要允许外部代码修改score怎么办？可以再给Student类增加set_score方法：<br>    class Student(object):<br>        def set_score（self,score):<br>            self.<strong>score = score<br>你也许会问，原先那种直接通过bart.score = 59也可以修改啊，为什么要定义一个方法大费周折？因为在方法中，可以对参数做检查，避免传入无效的参数：<br>    class Student(object):<br>        def set_score(self,score):<br>            if 0&lt;=score&lt;=100:<br>                self.</strong>score = score<br>            else:<br>                raise ValueError(‘bad score’)<br>需要注意的是，在Python中，变量名类似<strong>xxx</strong>的，也就是以双下划线开头，并且以双下划线结尾的，是特殊变量，特殊变量是可以直接访问的，不是private变量，所以，不能用<strong>name</strong>、<strong>score</strong>这样的变量名。</p>
+<p>有些时候，你会看到以一个下划线开头的实例变量名，比如_name，这样的实例变量外部是可以访问的，但是，按照约定俗成的规定，当你看到这样的变量时，意思就是，“虽然我可以被访问，但是，请把我视为私有变量，不要随意访问”。</p>
+<h3 id="继承和多态"><a href="#继承和多态" class="headerlink" title="继承和多态"></a>继承和多态</h3><p>在OOP程序设计中，当我们定义一个class的时候，可以从某个现有的class继承，新的class称为子类（Subclass），而被继承的class称为基类、父类或超类（Base class、Super class）。</p>
+<p>比如，我们已经编写了一个名为Animal的class，有一个run()方法可以直接打印：<br>    class Animal(object):<br>        def run(self):<br>            print(‘Animal is running’)<br>当我们需要编写Dog和Cat类时，就可以直接从Animal继承：<br>    class Dog(Animal):<br>        pass<br>    class Cat(Animal):<br>        pass<br>对于Dog来说，Animal就是它的父类，对于Animal来说，Dog就是它的子类。cat和Dog类似。<br>继承有什么好处？最大的好处是子嘞获得了父类的全部功能。由于Animal实现了run()方法，因此Dog Cat作为它的子类，什么事也没干就拥有了run()方法。<br>    dog = Dog()<br>    dog.run()<br>    cat = Cat()<br>    cat.run()<br>    Animal is running<br>当然也可以对子类增加一些方法，<br>    class Dog(Animal):<br>        def run(self):<br>            print(‘dog is running’)<br>        def eat(slef)<br>            print(‘eating meat’)<br>继承的第二个好处需要我们对代码做一点改进。你看到了，无论是dog还是cat它们run()的时候，显示的都是Animal is running 符合逻辑的做法是分别显示dog is running 和 cat is running因此对Dog类和Cat类做如下改进<br>    class Dog(Animal):</p>
+<pre><code>    def run(self):
+        print(&apos;Dog is running...&apos;)
+
+class Cat(Animal):
+
+    def run(self):
+        print(&apos;Cat is running...&apos;)                                                        
+</code></pre><p>当子类和父类都存在相同的run()方法时，我们说，子类的run()覆盖了父类的run()，在代码运行的时候，总是会调用子类的run()。这样，我们就获得了继承的另一个好处：多态。</p>
+<p>要理解什么是多态，我们首先要对数据类型再作一点说明。当我们定义一个class的时候，我们实际上就定义了一种数据类型。我们定义的数据类型和Python自带的数据类型，比如str、list、dict没什么两样：<br>    a = list() # a是list类型<br>    b = Animal() # b是Animal类型<br>    c = Dog() # 是Dog类型<br>判断一个变量是否是某个类型可以用istance()判断</p>
+<pre><code>&gt;&gt;&gt; isintance(a,list)
+True
+&gt;&gt;&gt; isinstance(b,Animal)
+True
+&gt;&gt;&gt; isinstance(c,Dog)
+True
+&gt;&gt;&gt; isinstance(c,Animal)
+True
+</code></pre><p>看来b不仅是Dog类型还是Animal类型</p>
+<pre><code>&gt;&gt;&gt; b =Animal()
+&gt;&gt;&gt; isinstance(b,Dog)
+False
+</code></pre><p>Dog可以看成Animal，但Animal不可以看成Dog<br>要理解多态的好处，我们还需要再编写一个函数，这个函数接受一个Animal类型的变量<br>    def run_twice(animal):<br>        animal.run()<br>        animal.run()<br>当我们传入Animal的实例时，run_twice()就打印出：</p>
+<pre><code>&gt;&gt;&gt; run_twice(Animal())
+Animal is running...
+Animal is running...
+</code></pre><p>当我们传入Dog的实例时，run_twice()就打印出：</p>
+<pre><code>&gt;&gt;&gt; run_twice(Dog())
+Dog is running...
+Dog is running...
+</code></pre><p>当我们传入Cat的实例时，run_twice()就打印出：</p>
+<pre><code>&gt;&gt;&gt; run_twice(Cat())
+Cat is running...
+Cat is running...
+</code></pre><p>看上去没啥意思，但是仔细想想，现在，如果我们再定义一个Tortoise类型，也从Animal派生：                                                    class Tortoise(Animal):<br>        def run(self):<br>            print(‘tortoise is running’)<br>当我们调用run_twice()时，传入Tortoise的实例：</p>
+<pre><code>&gt;&gt;&gt; run_twice(Tortoise())
+Tortoise is running slowly...
+Tortoise is running slowly...            
+</code></pre><p>你会发现，新增一个Animal的子类，不必对run_twice()做任何修改，实际上，任何依赖Animal作为参数的函数或者方法都可以不加修改地正常运行，原因就在于多态。</p>
+<p>多态的好处就是，当我们需要传入Dog、Cat、Tortoise……时，我们只需要接收Animal类型就可以了，因为Dog、Cat、Tortoise……都是Animal类型，然后，按照Animal类型进行操作即可。由于Animal类型有run()方法，因此，传入的任意类型，只要是Animal类或者子类，就会自动调用实际类型的run()方法，这就是多态的意思：<br>对于一个变量，我们只需要知道它是Animal类型，无需确切地知道它的子类型，就可以放心地调用run()方法，而具体调用的run()方法是作用在Animal、Dog、Cat还是Tortoise对象上，由运行时该对象的确切类型决定，这就是多态真正的威力：调用方只管调用，不管细节，而当我们新增一种Animal的子类时，只要确保run()方法编写正确，不用管原来的代码是如何调用的。这就是著名的“开闭”原则：<br>静态语言 vs 动态语言</p>
+<p>对于静态语言（例如Java）来说，如果需要传入Animal类型，则传入的对象必须是Animal类型或者它的子类，否则，将无法调用run()方法。</p>
+<p>对于Python这样的动态语言来说，则不一定需要传入Animal类型。我们只需要保证传入的对象有一个run()方法就可以了：</p>
+<pre><code>class Timer(object):
+    def run(self):
+        print(&apos;Start...&apos;)
+</code></pre><p>这就是动态语言的“鸭子类型”，它并不要求严格的继承体系，一个对象只要“看起来像鸭子，走起路来像鸭子”，那它就可以被看做是鸭子。</p>
+<p>Python的“file-like object“就是一种鸭子类型。对真正的文件对象，它有一个read()方法，返回其内容。但是，许多对象，只要有read()方法，都被视为“file-like object“。许多函数接收的参数就是“file-like object“，你不一定要传入真正的文件对象，完全可以传入任何实现了read()方法的对象。</p>
+<h3 id="获取对象的信息"><a href="#获取对象的信息" class="headerlink" title="获取对象的信息"></a>获取对象的信息</h3><p>使用type()<br>判断对象类型，使用type()函数<br>基本类型都可以用type()</p>
+<pre><code>&gt;&gt;&gt; type(123)
+&lt;class &apos;int&apos;&gt;
+&gt;&gt;&gt; type(&apos;str&apos;)
+&lt;class &apos;str&apos;&gt;
+&gt;&gt;&gt; type(None)
+&lt;type(None) &apos;NoneType&apos;&gt;    
+</code></pre><p>如果一个变量指向函数或者类，也可以用type()判断</p>
+<pre><code>&gt;&gt;&gt; type(abs)    
+&lt;class &apos;builtin_function_or_method&apos;&gt;
+&gt;&gt;&gt; type(a)
+&lt;class &apos;__main__.Animal&apos;&gt;
+</code></pre><p>但是type()函数返回的是什么类型呢？它返回对应的Class类型。如果我们要在if语句中判断，就需要比较两个变量的type类型是否相同</p>
+<pre><code>&gt;&gt;&gt; type(123) == type(456)
+True
+&gt;&gt;&gt; type(123) == int
+True
+&gt;&gt;&gt; type(&apos;abc&apos;) = type(&apos;123&apos;)
+True
+&gt;&gt;&gt; type(&apos;abc&apos;) == str
+True
+&gt;&gt;&gt; type(&apos;abc&apos;) == type(123)
+False
+</code></pre><p>判断基本数据类型可以直接写int,str等，但如果要判断一个对象是否是函数怎么办？可以使用types模块中定义的常量</p>
+<pre><code>&gt;&gt;&gt; import types
+&gt;&gt;&gt; def fn():
+        pass
+&gt;&gt;&gt; type(fn) == types.FunctionType
+True
+&gt;&gt;&gt; type(abs) == type.BuiltinFunctionType
+True
+&gt;&gt;&gt; type(lambda x:x) == type.LambdaType
+True
+&gt;&gt;&gt; type((x for x in range(10))) == types.GeneratorType
+True
+</code></pre><p>使用isinstance()<br>对于class的继承关系来说，使用type()就很不方便。我们要判断class的类型可以使用isinstance()函数<br>我们回顾上次的例子，如果继承关系是：<br>    object-&gt;Animal-&gt;Dog-&gt;Husky<br>那么，isinstance()就可以告诉我们一个对象是否是某种类型。先创建3种类型的对象。</p>
+<pre><code>&gt;&gt;&gt; a = Animal()
+&gt;&gt;&gt; d= Dog()
+&gt;&gt;&gt; h = Husky()
+</code></pre><p>然后，判断：</p>
+<pre><code>&gt;&gt;&gt; isinstance(h,Husky)
+True
+&gt;&gt;&gt; isinstance(h,Dog)
+True
+</code></pre><p>h虽然自身是Husky类型，但由于Husky是从Dog继承袭来的，所以h也还是Dog类型。换句话说，isinstance()判断的是一个对象是否是该类型本身，或者位于该类型的父继承链上。<br>并且还可以判断一个变量是否是某些类型中的一种，比如下面的代码就可以判断是否是list或者tuple：</p>
+<pre><code>&gt;&gt;&gt; isinstance([1,2,3],(list,tuple))
+True
+&gt;&gt;&gt; isinstance((1,2,3),(list,tuple))
+True
+</code></pre><p>使用dir()<br>如果要获得一个对象的所有属性和方法，可以使用dir()函数，它返回一个包含字符串的list，比如，获得一个str对象的所有属性和方法：</p>
+<pre><code>&gt;&gt;&gt; dir(&apos;ABC&apos;)
+[&apos;__add__&apos;, &apos;__class__&apos;, &apos;__contains__&apos;, &apos;__delattr__&apos;, &apos;__dir__&apos;, &apos;__doc__&apos;, &apos;__eq__&apos;, &apos;__format__&apos;, &apos;__ge__&apos;, &apos;__getattribute__&apos;, &apos;__getitem__&apos;, &apos;__getnewargs__&apos;, &apos;__gt__&apos;, &apos;__hash__&apos;, &apos;__init__&apos;, &apos;__iter__&apos;, &apos;__le__&apos;, &apos;__len__&apos;, &apos;__lt__&apos;, &apos;__mod__&apos;, &apos;__mul__&apos;, &apos;__ne__&apos;, &apos;__new__&apos;, &apos;__reduce__&apos;, &apos;__reduce_ex__&apos;, &apos;__repr__&apos;, &apos;__rmod__&apos;, &apos;__rmul__&apos;, &apos;__setattr__&apos;, &apos;__sizeof__&apos;, &apos;__str__&apos;, &apos;__subclasshook__&apos;, &apos;capitalize&apos;, &apos;casefold&apos;, &apos;center&apos;, &apos;count&apos;, &apos;encode&apos;, &apos;endswith&apos;, &apos;expandtabs&apos;, &apos;find&apos;, &apos;format&apos;, &apos;format_map&apos;, &apos;index&apos;, &apos;isalnum&apos;, &apos;isalpha&apos;, &apos;isdecimal&apos;, &apos;isdigit&apos;, &apos;isidentifier&apos;, &apos;islower&apos;, &apos;isnumeric&apos;, &apos;isprintable&apos;, &apos;isspace&apos;, &apos;istitle&apos;, &apos;isupper&apos;, &apos;join&apos;, &apos;ljust&apos;, &apos;lower&apos;, &apos;lstrip&apos;, &apos;maketrans&apos;, &apos;partition&apos;, &apos;replace&apos;, &apos;rfind&apos;, &apos;rindex&apos;, &apos;rjust&apos;, &apos;rpartition&apos;, &apos;rsplit&apos;, &apos;rstrip&apos;, &apos;split&apos;, &apos;splitlines&apos;, &apos;startswith&apos;, &apos;strip&apos;, &apos;swapcase&apos;, &apos;title&apos;, &apos;translate&apos;, &apos;upper&apos;, &apos;zfill&apos;]                
+</code></pre><p>类似<strong>xxx</strong>的属性和方法在Python中都是有特殊用途的，比如<strong>len</strong>方法返回长度。在Python中，如果你调用len()函数试图获取一个对象的长度，实际上，在len()函数内部，它自动去调用该对象的<strong>len</strong>()方法，所以，下面的代码是等价的：</p>
+<pre><code>&gt;&gt;&gt; len(&apos;abc&apos;)
+3
+&gt;&gt;&gt; &apos;abc&apos;.__len__()
+3
+</code></pre><p>我们自己写的类如果也想用len(obj)的话，就自己写一个<strong>len</strong>()方法</p>
+<pre><code>&gt;&gt;&gt; class MyDog(object):
+        def __len__(self):
+            return 100
+    dog = myDog()
+    len(dog)
+    100
+</code></pre><p>剩下的都是普通属性或方法，比如lower()返回小写的字符串</p>
+<pre><code>&gt;&gt;&gt; &apos;ABC&apos;.low()
+&apos;abc&apos;
+</code></pre><p>仅仅把属性和方法列出来是不够的，配合getattr(),setattr()以及hasattr()我们可以直接操作一个对象的状态</p>
+<pre><code>&gt;&gt;&gt; class MyObject(object):
+        def __init__(self)
+            self.x = 9
+        def power(self):
+            return self.x * self .x
+&gt;&gt;&gt; obj = MyObject()
+</code></pre><p>紧接着可以测试该对象的属性</p>
+<pre><code>&gt;&gt;&gt; hasattr(&apos;obj&apos;,&apos;x&apos;) # 有属性&apos;x&apos;吗
+True
+&gt;&gt;&gt; obj.x
+9
+&gt;&gt;&gt; hasattr(obj,&apos;y&apos;) # 有属性&apos;y&apos;吗
+False
+&gt;&gt;&gt; setattr(obj,&apos;y&apos;,19) # 设置属性&apos;y&apos;
+&gt;&gt;&gt; hasattr(obj,&apos;y&apos;) # 有属性&apos;y&apos;吗
+True
+&gt;&gt;&gt; getattr(obj,&apos;y&apos;) # 获取属性&apos;y&apos;
+19
+&gt;&gt;&gt; obj.y
+19
+</code></pre><p>可以传入一个default参数，如果属性不存在，就返回默认值:</p>
+<pre><code>&gt;&gt;&gt; getattr(obj,&apos;z&apos;,404) # 获取属性&apos;z&apos;，如果不存在返回默认值404
+404
+</code></pre><p>也可以获得对象的方法</p>
+<pre><code>&gt;&gt;&gt; hasattr(obj,&apos;power&apos;) # 有属性&apos;power&apos;吗
+True
+&gt;&gt;&gt; getattr(obj,&apos;power&apos;) # 获取属性&apos;power&apos;
+&lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x10077a6a0&gt;&gt;
+&gt;&gt;&gt; fn = getattr(obj,&apos;power&apos;) # 获取属性&apos;power&apos;并复制到变量fn
+&gt;&gt;&gt; fn()
+81             
+</code></pre><p>小结</p>
+<p>通过内置的一系列函数，我们可以对任意一个Python对象进行剖析，拿到其内部的数据。要注意的是，只有在不知道对象信息的时候，我们才会去获取对象信息。如果可以直接写：</p>
+<pre><code>sum = obj.x + obj.y
+</code></pre><p>就不要写：</p>
+<pre><code>sum = getattr(obj, &apos;x&apos;) + getattr(obj, &apos;y&apos;)
+</code></pre><p>一个正确的用法的例子如下:<br>    def readImage(fp):<br>        if hasattr(fp,’read’)<br>            return readData(fp)<br>        return None<br>假设我们希望从文件流fp中读取图像，我们首先要判断fp对象是否存在read方法，如果存在，则该对象是一个流，如果不存在，则无法读取。hasattr()就派上了用场。<br>请注意，在python这类动态语言中，根据鸭子类型有read()方法不代表该fp对象就是一个文件流，它也可能是网络流，也可能是内存中的一个字节流，但只要read()方法返回的是有效的图像数据，就不影响读取图像功能。</p>
+<h3 id="实例属性和类属性"><a href="#实例属性和类属性" class="headerlink" title="实例属性和类属性"></a>实例属性和类属性</h3><p>由于python是动态语言，根据类创建的实例可以任意绑定属性。<br>由给实例绑定属性的方法是通过实例变量，或者通过self变量<br>    class Student(object):<br>        def <strong>init</strong>(self,name):<br>            self.name = name<br>    s = Student(‘zhangyuang’)<br>    s.score = 90<br>但是，如果Student类本身需要绑定一个属性呢？可以直接在class中定义属性，这种属性是类属性。归Student类所有：<br>    class Student(object):<br>        name = ‘Student’<br>当我们定义了一个类属性后，这个属性虽然归类所有，但类的所有实例都可以访问到。</p>
+<pre><code>&gt;&gt;&gt; class Student(object):
+        name = &apos;Student&apos;
+&gt;&gt;&gt; s = Student()
+&gt;&gt;&gt; print(s.name) # 因为实例并没有name属性，所以会继续查找class的name属性
+Student
+&gt;&gt;&gt; print(Student.name)
+Student
+&gt;&gt;&gt; s.name = &apos;zhangyuang&apos;
+&gt;&gt;&gt; print(s.name)
+zhangyuang
+&gt;&gt;&gt; print(Student.name)
+Student
+&gt;&gt;&gt; del s.name
+&gt;&gt;&gt; print(s.name)
+Student
+</code></pre><p>从上面的例子可以看出，在编写程序的时候，千万不要把实例属性和类属性使用相同的名字，因为相同名称的实例属性将屏蔽掉类属性，但是当你删除实例属性后，再使用相同的名称，访问到的将是类属性。</p>
+<h3 id="使用slots"><a href="#使用slots" class="headerlink" title="使用slots"></a>使用<strong>slots</strong></h3><p>正常情况下，当我们定义了一个class创建了一个class的实例后，我们可以给该实例绑定任何属性和方法。<br>    class Student(object):<br>        pass<br>然后尝试给实例绑定一个属性：</p>
+<pre><code>&gt;&gt;&gt; s = Student()
+&gt;&gt;&gt; s.name = &apos;zhangyuang&apos;
+&gt;&gt;&gt; print(s.name)
+zhangyuang
+</code></pre><p>还可以尝试给实例绑定一个方法：</p>
+<pre><code>&gt;&gt;&gt; def set_age(self,age):
+        self.age = age
+&gt;&gt;&gt; from types import MethodType
+&gt;&gt;&gt; s.set_age = MethodType(set_age,s)
+&gt;&gt;&gt; s.set_age(19)
+&gt;&gt;&gt; s.age
+25
+</code></pre><p>但是，给一个实例绑定的方法，对另一个实例是不起作用的：</p>
+<pre><code>&gt;&gt;&gt; s2 = Student()
+&gt;&gt;&gt; s2.set_age(19)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: &apos;Student&apos; object has no attribute &apos;set_age&apos;    
+</code></pre><p>为了给所有实例都绑定方法，可以给class绑定方法</p>
+<pre><code>&gt;&gt;&gt; def set_score(self,score):
+    self.score = score
+&gt;&gt;&gt; Student.set_score = set_score
+</code></pre><p>通常情况下，上面的set_score方法可以直接定义在class中，但动态绑定允许我们在程序运行的过程中动态给class加上功能，这在静态语言中很难实现。<br>使用<strong>slots</strong><br>但是，如果我们想要限制实例的属性怎么办？比如，只允许对Student实例添加name和age属性<br>为了达到限制目的，python允许在定义class的时候定义一个特殊的<strong>slots</strong>变量，来限制该class实例能添加的属性                                         class Student(object):<br>        <strong>slots</strong> = (‘name’,’age’)<br>然后我们试试</p>
+<pre><code>&gt;&gt;&gt; s = Student()
+&gt;&gt;&gt; s.name = &apos;zhangyuang&apos;
+&gt;&gt;&gt; s.age = 19
+&gt;&gt;&gt; s.score = 90
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: &apos;Student&apos; object has no attribute &apos;score&apos;
+</code></pre><p>由于’score’没有被放到<strong>slots</strong>中，所以不能绑定score属性，试图绑定score将得到AttributeError的错误。</p>
+<p>使用<strong>slots</strong>要注意，<strong>slots</strong>定义的属性仅对当前类实例起作用，对继承的子类是不起作用的</p>
+<pre><code>&gt;&gt;&gt; class collegestudent(Student):
+    pass
+&gt;&gt;&gt; g = collegestudent()
+&gt;&gt;&gt; g.score = 99
+</code></pre><p>除非在子类中也定义<strong>slots</strong>，这样，子类实例允许定义的属性就是自身的<strong>slots</strong>加上父类的<strong>slots</strong>。</p>
+<h3 id="使用-property"><a href="#使用-property" class="headerlink" title="使用@property"></a>使用@property</h3><p>在绑定属性时，如果我们直接把属性暴露出去，虽然写起来很简单，但是没办法检查参数，导致可以把成绩随便改：<br>     s = Student()<br>     s.score = 9999<br>这显然不和逻辑。为了限制score的范围，可以通过一个set_score()方法来设置成绩，再通过一个get_score()来获取成绩，这样在set_score()方法里就可以检查参数：<br>    class Student(object):<br>        def get_score(self):<br>            return self.score<br>        def set_score(self,value):<br>            if not isinstance(value,int):<br>                raise ValueError(‘score must be an integer’)<br>            if value &lt; 0 or value &gt; 100:<br>                raise ValueError(‘score must between 0~100!’)<br>现在，对任意的Student实例进行操作，就不能随心所欲地设置score了：</p>
+<pre><code>&gt;&gt;&gt; s = Student()
+&gt;&gt;&gt; s.set_score(60)
+&gt;&gt;&gt; s.get_score()
+60
+&gt;&gt;&gt; s.set_score(9999)
+Traceback (most recent call last):
+  ...
+ValueError: score must between 0 ~ 100!        
+</code></pre><p>但是，上面的调用方法又略显复杂，没有直接用属性这么直接简单。<br>有没有既能检查参数，又可以用类似属性这样简单的方式来访问类的变量呢？<br>还记得装饰器(decorator)可以给函数动态加上功能吗？对于类的方法，装饰器一样起作用，python内置的@property装饰器就是负责把一个方法变成属性调用：<br>    class Student(object):<br>        @property<br>        def score(self):<br>            return self._score<br>        @score.setter<br>        def score(self,value):<br>            if not isinstance(value, int):<br>            raise ValueError(‘score must be an integer!’)<br>            if value &lt; 0 or value &gt; 100:<br>            raise ValueError(‘score must between 0 ~ 100!’)<br>               self._score = value<br>@property的实现比较复杂，我们先考虑如何使用。把一个getter方法变成属性，只需要加上@property就可以了。此外@property本身又创建了另一个装饰器@score.setter，负责把一个setter方法变成属性赋值，于是我们就拥有一个可控的属性操作</p>
+<pre><code>&gt;&gt;&gt; s = Student()
+&gt;&gt;&gt; s.score = 60
+&gt;&gt;&gt; s.score
+60
+&gt;&gt;&gt; s.score = 9999
+Traceback (most recent call last):
+  ...
+ValueError: score must between 0 ~ 100!           
+</code></pre><p>注意到这个神奇的@property,我们在对实例属性操作的时候就知道该属性很可能不是直接暴露的，而是通过getter和setter方法来实现<br>还可以定义只读属性，只定义getter不定义setter方法就是一个只读属性<br>    class Student(object):<br>        @property<br>        def birth(self):<br>            return self._birth<br>        @birth.setter<br>        def birth(self,value):<br>            self._birth = value<br>        @property<br>        def age(self):<br>            return 2017-self._birth<br>上面的birth是可读写属性，而age就是一个只读属性，因为age可以根据birth和当前时间计算出来。</p>
+<h3 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h3><p>继承是面向对象编程的一个重要方式，因为通过继承，子类就可以扩展父类的功能。<br>多重继承<br>    class Animal(object):<br>        pass</p>
+<pre><code># 大类：    
+class Mammal(Animal):
+    pass
+class Bird(Animal):
+    pass    
+# 各种动物
+class Dog(Mammal):
+    pass
+class Bat(Mammal):
+    pass
+class Parrot(bird):
+    pass
+class Ostrich(Bird):
+    pass
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/05/python语法/" rel="next" title="python语法">
+                <i class="fa fa-chevron-left"></i> python语法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/14/box-sizing/" rel="prev" title="box-sizing">
+                box-sizing <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/10/python进阶/"
+           data-title="python进阶" data-url="http://yoursite.com/2017/02/10/python进阶/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/momo.jpg"
+               alt="张宇昂" />
+          <p class="site-author-name" itemprop="name">张宇昂</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象oop"><span class="nav-number">1.</span> <span class="nav-text">面向对象oop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类和实例"><span class="nav-number">2.</span> <span class="nav-text">类和实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据封装"><span class="nav-number">3.</span> <span class="nav-text">数据封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问限制"><span class="nav-number">4.</span> <span class="nav-text">访问限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承和多态"><span class="nav-number">5.</span> <span class="nav-text">继承和多态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取对象的信息"><span class="nav-number">6.</span> <span class="nav-text">获取对象的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例属性和类属性"><span class="nav-number">7.</span> <span class="nav-text">实例属性和类属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用slots"><span class="nav-number">8.</span> <span class="nav-text">使用slots</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-property"><span class="nav-number">9.</span> <span class="nav-text">使用@property</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重继承"><span class="nav-number">10.</span> <span class="nav-text">多重继承</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张宇昂</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhangyuang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
