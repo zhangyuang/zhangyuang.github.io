@@ -100,7 +100,7 @@
         self.score = score
     def print_score(self)
         print(&amp;apos;%s: %s&amp;apos; % (self.name,self.score))">
-<meta property="og:updated_time" content="2017-02-14T06:18:56.000Z">
+<meta property="og:updated_time" content="2017-02-20T08:15:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python进阶">
 <meta name="twitter:description" content="面向对象oopclass Student(object):
@@ -635,7 +635,439 @@ class Parrot(bird):
     pass
 class Ostrich(Bird):
     pass
-</code></pre>
+</code></pre><p>现在，我们要给动物再加上Runnable和Flyable的功能，只需要预先定义好Runnable和Flyable的类<br>    class Runnable(object):<br>        def run(self):<br>            print(‘running’)<br>    class Flyable(object):<br>        def flu(self):<br>            print(‘flying’)<br>对于需要runnable的动物，就多继承一个runnable，例如Dog：<br>    class Dog(Mammal,Runnable):<br>        pass<br>对于需要Flyable功能的动物，就多继承一个flyable例如bat<br>    class Bat(Mammal,Flyable):<br>        pass<br>通过多重继承，一个子类就可以同时获得多个父类的所有功能。<br>MixIn<br>在设计类的继承关系时，通常主线都是单一继承下来的，例如Ostrich继承自Bird。但是如果需要混入额外的功能。通过多重继承就可以实现。比如让Ostrich除了继承自Bird外再同时继承Runnable。这种设计通常称为MixIn.<br>为了更好地看出继承关系。我们把Runnable和Flyable改为RunnableMIxIn和FlyableMixIn。类似的，你还可以定义出肉食动物CarnivorousMixIn和植食动物HerbivoresMixIn，让某个动物同时拥有好几个MixIn：<br>    class Dog(Mammal,RunnableMixIn,CarnivorousMixIn):<br>        pass<br>MixIn的目的就是给一个类增加多个功能，这样在设计类的时候，我们优先考虑通过多重继承来组合多个MixIn的功能，而不是设计多层次的复杂的继承关系。<br>Python自带的很多库也使用了MixIn。举个例子，Python自带了TCPServer和UDPServer这两类网络服务，而要同时服务多个用户就必须使用多进程或多线程模型，这两种模型由ForkingMixIn和ThreadingMixIn提供。通过组合，我们就可以创造出合适的服务来。<br>比如编写一个多进程模式的TCP服务定义如下：<br>    class MyTCPServer(TCPServer,ForkingMixIn):<br>        pass<br>编写一个多进程模式的UDP服务，定义如下：<br>    class MyUDPServer(UDPServer,ThreadingMixIn):<br>        pass</p>
+<h3 id="定制类"><a href="#定制类" class="headerlink" title="定制类"></a>定制类</h3><p>看到类似<strong>slots</strong>这种形如<strong>xxx</strong>的变量或者函数名就要注意，这些python是有特殊用途的。<br><strong>slots</strong>我们已经知道怎么用了，<strong>len</strong>()方法我们也知道是为了让class作用与len()函数。<br>除此之外，Python的class中还有许多这样特殊的函数帮助我们定制类。<br><strong>str</strong><br>我们先定义一个Student类，打印一个实例：</p>
+<pre><code>&gt;&gt;&gt; class Student(object):
+        def __init__(self,name):
+            self.name = name
+&gt;&gt;&gt; print(Student(&apos;zhangyuang&apos;))
+&lt;__main__.Student object at 0x109afb190&gt;
+</code></pre><p>打印出一堆<__main__.student object="" at="" 0x109afb190="">不好看。<br>怎么才能打印的好看呢？只需要定义好<strong>str</strong>()方法，返回一个好看的字符串就可以了：</__main__.student></p>
+<pre><code>&gt;&gt;&gt; class Student(object):
+        def __init__(self,name):
+            self.name = name
+        def __str__(self):
+            return &apos;Student object (name: %s)&apos; % self.name
+&gt;&gt;&gt; print(Student(&apos;zhangyuang&apos;))
+Student object (name: zhangyuang)    
+</code></pre><p>但是细心的朋友会发现直接敲变量不用print，打印出来的实例还是不好看：</p>
+<pre><code>&gt;&gt;&gt; s = Student(&apos;zhangyuang&apos;)
+&gt;&gt;&gt; s
+&lt;__main__.Student object at 0x109afb310&gt;
+</code></pre><p>这是因为直接显示变量调用的<strong>str</strong>(),而是<strong>repr</strong>(),两者的区别是<strong>str</strong>()返回用户看到的字符串，而<strong>repr</strong>()返回程序开发者看到的字符串，也就是说<strong>repr</strong>()是为调试服务的。解决办法是再定义一个<strong>repr</strong>()。但是通常<strong>str</strong>()和<strong>repr</strong>()代码都是一样的，所以，有个偷懒的写法：<br>    class Student(object):<br>        def <strong>init</strong>(self,name):<br>            self.name = name<br>        def <strong>str</strong>(self):<br>            return (‘Student object(name = %s’) % self.name<br>        <strong>repr</strong> = <strong>str</strong></p>
+<p><strong>iter</strong><br>如果一个类想被用于for….in循环类似list或tuple那样，就必须实现一个<strong>iter</strong>()方法，该方法返回一个迭代对象，然后python的for循环就会不断调用该迭代对象的<strong>next</strong>()方法拿到循环的下一个值，直接遇到StpIteration错误时退出。<br>我们以斐波那契数列为例<br>    class Fib(object):<br>        def <strong>init</strong>(self):<br>            self.a,self.b = 0,1<br>        def <strong>iter</strong>(self):<br>            return self #实例本身就是迭代对象，故返回自己<br>        def <strong>next</strong>(self):<br>            self.a,self.b = self.b,self.a + self.b #计算下一个值<br>            if self.a &gt; 100000:<br>                raise StopIteration()<br>            return self.a</p>
+<pre><code>&gt;&gt;&gt; for n in Fib():
+        print(n)
+    1
+    1
+    2
+    3
+    5
+    ....
+    46368
+</code></pre><p><strong>getitem</strong><br>Fib实例虽然能作用于for循环看起来和list有点像但是把它当list来用还是不行的</p>
+<pre><code>&gt;&gt;&gt; Fib()(5)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: &apos;Fib&apos; object does not support indexing
+</code></pre><p>要表现的像list那样按照下标取出元素需要实现<strong>getitem</strong>()方法<br>      class Fib(object):<br>          def <strong>getitem</strong>(self,n):<br>              a,b = 1,1<br>              for x in range(n):<br>                  a,b = b,a+b<br>              return a</p>
+<pre><code>&gt;&gt;&gt; f = Fib()
+&gt;&gt;&gt; f[0]
+1
+&gt;&gt;&gt; f[2]
+2
+</code></pre><p>但是list有个神奇的切片方法：</p>
+<pre><code>&gt;&gt;&gt; list(range(100))[5:10]
+[5,6,7,8,9]
+</code></pre><p>对于Fib却报错。原因是<strong>getitem</strong>()传入的参数可能是一个int也可能是一个切片对象silce，所以要做判断<br>    class Fib(object):<br>        def <strong>getitem</strong>(self,n):<br>            if isinstance(n,int): # n是索引<br>                a,b = 1,1<br>                for x in range(n):<br>                    a,b = b,a+b<br>                return a<br>            if isinstance(n,slice): # n是切片<br>                start = n.start<br>                stop = n.stop<br>                if start is None:<br>                    start = 0<br>                a,b = 1,1<br>                L = []<br>                for x i range(stop):<br>                    if x&gt;=start:<br>                        L.append(a)<br>                    a,b = b,a+b<br>                return L</p>
+<pre><code>&gt;&gt;&gt; f = Fib()
+&gt;&gt;&gt; f[0:5]
+[1,1,2,3,5]
+&gt;&gt;&gt; f[:10]
+[1,1,2,3,.....,21,34,55]
+</code></pre><p>正常情况下当我们调用类的方法或属性如果不存在就会报错要避免这个错误，除了可以加上改属性外，python还有另一个机制，那就是写一个<strong>getattr</strong>()方法动态返回一个属性<br>    class Student(object):<br>        def <strong>init</strong>(self):<br>            self.name = ‘zhangyuang’<br>        def <strong>getattr</strong>(self,attr):<br>            if attr == ‘score’:<br>                return 99<br>            if attr == ‘age’<br>                return lambda:25</p>
+<pre><code>&gt;&gt;&gt; s.score
+99
+&gt;&gt;&gt; s.age()
+25
+</code></pre><p>注意只有在没有找到属性的情况下，才调用<strong>getattr</strong>()已有的属性比如name不会在<strong>getattr</strong>()中查找。<br>此外注意到任意调用如s.abc都会返回None这是因为我们定义的<strong>getattr</strong>默认返回的就是None。要让class只响应特定几个属性就要按照约定抛出AttributeError错误<br>    class Student(object):<br>        def <strong>getattr</strong>(self,attr):<br>            if attr == ‘age’:<br>                return lambda:25<br>            raise AttributeError(‘\’Student\’object has no attribute \’%s\’’ % attr)<br>这实际上可以把一个类的所有属性和方法调用全部动态化处理了，不需要任何特殊手段。</p>
+<p>这种完全动态调用的特性有什么实际作用呢？作用就是，可以针对完全动态的情况作调用。</p>
+<p>举个例子：</p>
+<p>现在很多网站都搞REST API，比如新浪微博、豆瓣啥的，调用API的URL类似：</p>
+<p><a href="http://api.server/user/friends" target="_blank" rel="external">http://api.server/user/friends</a><br><a href="http://api.server/user/timeline/list" target="_blank" rel="external">http://api.server/user/timeline/list</a><br>如果要写SDK，给每个URL对应的API都写一个方法，那得累死，而且，API一旦改动，SDK也要改。</p>
+<p>利用完全动态的<strong>getattr</strong>，我们可以写出一个链式调用：</p>
+<pre><code>class Chain(object):
+    def __init__(self,path=&apos;&apos;):
+        self._path = path
+    def __getattr__(self,path):
+        return Chain(&apos;%s/%s&apos; % (self._path,path))
+    def __str__(self):
+        return self.path
+    __repr__ = __str__
+&gt;&gt;&gt; Chain().status.user.timeline.list
+&apos;/status/user/timeline/list&apos;
+</code></pre><p>这样，无论API怎么变，SDK都可以根据URL实现完全动态的调用，而且，不随API的增加而改变！</p>
+<p>还有些REST API会把参数放到URL中，比如GitHub的API：</p>
+<pre><code>GET /users/:user/repos
+</code></pre><p>调用时，需要把:user替换为实际用户名。如果我们能写出这样的链式调用：</p>
+<pre><code>Chain().users(&apos;michael&apos;).repos
+</code></pre><p>一个对象实例可以有自己的属性和方法，当我们调用实例方法时，我们用instance.method()来调用。能不能直接在实例本身上调用呢，在python中，答案是肯定的。<br>任何类只需要定义一个<strong>call</strong>()方法就可以直接对实例进行调用<br>    class Student(object):<br>        def <strong>init</strong>(self,name):<br>            self.name = name<br>        def <strong>call</strong>(self):<br>            print(‘My name si %s’ %self.name)</p>
+<pre><code>&gt;&gt;&gt; s = Student(&apos;zhangyuang&apos;)
+s()
+My name is zhangyuang
+</code></pre><p>通过callable()函数，我们就可以判断一个对象是否是“可调用”对象。</p>
+<pre><code>&gt;&gt;&gt; callable(Student())
+True
+&gt;&gt;&gt; callable(&apos;str&apos;)
+false
+</code></pre><h3 id="使用枚举类"><a href="#使用枚举类" class="headerlink" title="使用枚举类"></a>使用枚举类</h3><p>当我们需要定义常量时，一个办法是用大写变量通过整数来定义，例如月份<br>    JAN = 1<br>    FEB = 2<br>    MAr = 3<br>好处是简单，缺点是类型是int，并且仍然是变量。<br>更好的放啊是为了这样的枚举类型定义一个class类型，然后每个常量都是class的一个唯一实例。python提供Enum类来实现这个功能。<br>    from enum import Enum<br>    Month = Enum(‘Month’,(‘Jab’,’Feb’…..,’Nov’,’Dec’))<br>这样我们就获得了Month类型的枚举类，可以直接使用Month.Jan来引用一个常量或者枚举它的所有成员<br>    for name,member in Month.<strong>members</strong>.items():<br>        print(name,”=&gt;”,member,’,’,member.value)<br>value属性则是自动赋给成员的int常量，默认从1开始计数。<br>如果需要更精确地控制枚举类型，可以从Enum派生出自定义类<br>    from enum import Enum,unique<br>    @unique<br>    class weekday(Enum):<br>        Sun = 0<br>        Mon = 1<br>        Tue = 2<br>@unique装饰器可以帮助我们检查保证没有重复值。<br>访问这些枚举类型可以有若干种方法：</p>
+<pre><code>&gt;&gt;&gt; day1 = weekday.Mon
+&gt;&gt;&gt; print(day1)
+weekday.Mon
+&gt;&gt;&gt; print(weekday.Mon.value)
+1
+&gt;&gt;&gt; print(weekday(1))
+weekday.Mon
+</code></pre><h3 id="使用元类"><a href="#使用元类" class="headerlink" title="使用元类"></a>使用元类</h3><p>type()<br>动态语言和静态语言最大的不同，就是函数和类的定义，不是编译时定义的，而是运行时动态创建的。<br>比方说我们要定义一个Hello的class就写一个hello.py模块：<br>    class Hello(object):<br>        def hello(self,name = ‘world’):<br>            print(‘Hello,%s’ % name)<br>当python解释器载入hello模块时，就会依次执行该模块的所有语句，执行结果就是动态创建出一个Hello的class对象</p>
+<pre><code>&gt;&gt;&gt; from hello import Hello
+&gt;&gt;&gt; h = Hello()
+&gt;&gt;&gt; h.hello()
+Hello,world    
+&gt;&gt;&gt; print(type(Hello))
+&lt;class &apos;type&apos;&gt;
+&gt;&gt;&gt; print(type(h))
+&lt;class &apos;hello.Hello&apos;&gt;
+</code></pre><p>type()函数可以查看一个类或者变量的类型，Hello是一个class它的类型就是type(),而h是一个实例，它的类型就是class Hello<br>我们说class的定义是运行时动态创建的，而创建class的方法就是使用type()函数。type()函数既可以返回一个对象的类型，又可以创建出新的类型，比如我们可以通过type()函数创建出Hello类而无需通过class Hello(object)…的定义</p>
+<pre><code>&gt;&gt;&gt; def fn(self,name=&apos;world&apos;): #先定义函数
+        print(&apos;hello %s&apos; % name)
+&gt;&gt;&gt; Hello = type(&apos;Hello&apos;,(object,),dict(hello = fn))#创建Hello class
+&gt;&gt;&gt; h = Hello()
+&gt;&gt;&gt; h.hello()
+Hello,world
+&gt;&gt;&gt; print(type(Hello))
+&lt;class &apos;type&apos;&gt;
+&gt;&gt;&gt; print(type(h))
+&lt;class &apos;__main__.Hello&apos;&gt;
+</code></pre><p>要创建一个class对象，type()函数依次传入3个参数：<br>    1、class名称<br>    2、继承的父类集合，注意python支持多重继承，如果只有一个父类，别忘了tuple的单元素写法<br>    3、class的方法名称与函数绑定，这里我们把fn绑定到方法名hello上。</p>
+<h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>程序运行的过程中，如果发生了错误，可以事先约定返回一个错误代码，这样，就可以知道是否有错，以及出错的原因。在操作系统提供的调用中，返回错误码非常常见。比如打开文件的函数open()，成功时返回文件描述符（就是一个整数），出错时返回-1。</p>
+<p>用错误码来表示是否出错十分不便，因为函数本身应该返回的正常结果和错误码混在一起，造成调用者必须用大量的代码来判断是否出错：<br>    def foo():<br>        r = some_function()<br>        if r == (-1):<br>            return (-1)</p>
+<pre><code>    # do something
+    return r
+def bar():
+    r = foo()
+    if r == (-1):
+        print(&apos;Error&apos;)
+    else:
+        pass
+</code></pre><p>一旦出错还要一级一级上报，直到某个函数可以处理该错误（比如，给用户输出一个错误信息）<br>所以高级语言通常都内置了一套try…except…finally…的错误处理机制，python也不例外<br>try<br>让我们用一个例子来看看try的机制<br>    try:<br>        print(‘try’)<br>        r = 10 / 0<br>        print(‘result:’,r)<br>    except ZeroDivisionError as e:<br>        print(‘except:’,e)<br>    finally:<br>        print(‘finally…’)<br>    print(‘end’)<br>当我们认为某些代码可能会出错时，就可以用try来运行这段代码，如果执行出错则后续代码不会执行，而是直接跳转至错误处理代码即except语句块，执行完except后，如果有finally语句块，则执行finally语句块，至此执行完毕。<br>上面的代码在计算10/0时会产生一个除法运算错误：<br>    try…<br>    except: division by zero<br>    finally<br>    END<br>从输出可以看到，当错误发生时，后续语句print(‘result’,r)except由于补货到ZeroDivisionError,因此被执行。最后，finally语句被执行。然后程序继续按照流程往下走。<br>如果把除数0改成2，则执行结果如下：<br>    try…<br>    result:5<br>    finally<br>    END<br>由于没有错误发生时，所以except语句块不会被执行，但是finally如果有，则一定会被执行（可以没finally语句）。<br>你还可以猜测，错误应该有很多种类，如果发生不同类型的错误，应该由不同的except语句块出炉。没错，可以有多个except来补货不同类型的错误<br>    try:<br>        print(‘try…’)<br>        r = 10/int(‘a’)<br>        print(‘result’,r)<br>    except ValueError as e:<br>        print(‘ValueError:’e)<br>    except ZeroDivisionError as e:<br>        print(‘ZeroDivisionError:’,e)<br>    finally:<br>        print(‘finally’)<br>    print(‘END’)<br>int()函数可能会抛出ValueError,所以我们用一个expcept捕获ValueError，用另一个except捕获ZeroDivisionError<br>此外，如果没有错误发生，可以在except语句块后面加一个else当作没有错误发生时，会自动执行else语句<br>    try:<br>        print(‘try…’)<br>        r = 10/int(‘2’)<br>        print(‘result:’r)<br>    except ValueError as e:<br>        print(‘ValueError:’,e)<br>    except ZeroDivisionError as e:<br>        print(‘ZeroDivisionError:’,e)<br>    else:<br>        print(‘no error’)<br>    finally:<br>        print(‘finally’)<br>    print(‘END’)<br>python的错误其实也是class，所有的错误类型都继承自BaseException,所以在使用except时需要注意的是它不但捕获该类型的错误，还把其子类也一网打尽<br>    try:<br>        foo()<br>    except ValueError as e:<br>        print(‘ValueError’)<br>    except UnicodeError as e:<br>        print(‘UnicodeError’)<br>第二个except永远也捕获不到UnicodeError,因为UnicodeError是ValueError的子类，如果有也被第一个except给捕获了。<br>python所有的错误都是从BaseException类派生的，常见的错误类型和继承关系看这里：<a href="https://docs.python.org/3/library/exceptions.html#exception-hierarchy" target="_blank" rel="external">https://docs.python.org/3/library/exceptions.html#exception-hierarchy</a><br>使用try…except捕获错误还有一个好处就是可以跨越多层调用，比如函数main()调用foo(),bar()调用foo(),foo()出错了就可以在main()捕获到就可以处理</p>
+<pre><code># err.py
+def foo(s):
+    return 10/int(s)
+def bar(s)
+    return foo(s) * 2
+def main():
+    try:
+        bar(&apos;0&apos;)
+    except Exception as e:
+        print(&apos;Error:&apos;,e)
+    finally:
+        print(&apos;finally&apos;)                                
+</code></pre><h4 id="调用堆栈"><a href="#调用堆栈" class="headerlink" title="调用堆栈"></a>调用堆栈</h4><p>如何错误没有被捕获它就会一直往上抛，最后被python解释器捕获，打印一个错误信息然后程序退出<br>    $ python3 err.py<br>    Traceback (most recent call last):<br>      File “err.py”, line 11, in <module><br>        main()<br>      File “err.py”, line 9, in main<br>        bar(‘0’)<br>      File “err.py”, line 6, in bar<br>        return foo(s) * 2<br>      File “err.py”, line 3, in foo<br>        return 10 / int(s)<br>    ZeroDivisionError: division by zero</module></p>
+<h4 id="logging模块可以记录错误信息"><a href="#logging模块可以记录错误信息" class="headerlink" title="logging模块可以记录错误信息"></a>logging模块可以记录错误信息</h4><pre><code>import logging
+def foo(s):
+    return 10/int(s)
+def bar(s):
+    return foo(s) * 2
+def main():
+    try:    
+        bar(&apos;0&apos;)
+    exception Exception as e:
+        logging.exception(e)
+main()
+print(&apos;END&apos;)
+</code></pre><p>同样是出错但程序打印完错误信息后会继续执行并正常退出<br>    $ python3 err_logging.py<br>    ERROR:root:division by zero<br>    Traceback (most recent call last):<br>      File “err_logging.py”, line 13, in main<br>        bar(‘0’)<br>      File “err_logging.py”, line 9, in bar<br>        return foo(s) * 2<br>      File “err_logging.py”, line 6, in foo<br>        return 10 / int(s)<br>    ZeroDivisionError: division by zero<br>    END                            </p>
+<h4 id="抛出错误"><a href="#抛出错误" class="headerlink" title="抛出错误"></a>抛出错误</h4><p>如果要抛出错误，首先根据需要可以定义一个错误的class选择好继承关系，然后用raise语句抛出一个错误</p>
+<pre><code># err_raise.py
+class FooError(ValueError):
+    pass
+def foo(s):
+    n = int(s)
+    if n == 0:
+        raise FooError(&apos;invalid valye: %s&apos; % s)
+    return 10/n
+foo(&apos;0&apos;)
+
+$ python3 err_raise.py
+Traceback (most recent call last):
+  File &quot;err_throw.py&quot;, line 11, in &lt;module&gt;
+    foo(&apos;0&apos;)
+  File &quot;err_throw.py&quot;, line 8, in foo
+    raise FooError(&apos;invalid value: %s&apos; % s)
+__main__.FooError: invalid value: 0            
+</code></pre><p>只有在必要的时候才定义我们自己的错误类型，如果可以选择python已有的内置错误类型(ValueError,TypeError)尽量使用内置类型<br>最后我们来看另一种错误处理方式。</p>
+<pre><code># err_reraise.py
+def foo(s):
+    n = int(s)
+    if n == 0:
+        raise ValueError(&apos;invalid value:%s&apos; %s)
+    return 10/n
+def bar():
+    try:
+        foo(&apos;0&apos;)
+    except ValueError as e:
+        print(&apos;ValueError&apos;)
+        raise
+</code></pre><p>在bar()函数中，我们明明已经捕获了错误，但是，打印一个ValueError!后，又把错误通过raise语句抛出去了，这不有病么？<br>其实这种错误处理方式不但没病，而且相当常见。捕获错误目的只是记录一下，便于后续追踪。但是，由于当前函数不知道应该怎么处理该错误，所以，最恰当的方式是继续往上抛，让顶层调用者去处理。好比一个员工处理不了一个问题时，就把问题抛给他的老板，如果他的老板也处理不了，就一直往上抛，最终会抛给CEO去处理。                        </p>
+<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>第一种方法简单粗暴，就使用print()把可能有问题的变量打印出来<br>    def    foo(s):<br>        n = int(s)<br>        print(‘&gt;&gt;&gt; n = %d’ % n)<br>        return 10/n<br>    def main():<br>        foo(‘0’)<br>    main()<br>执行后在输出中查找打印的变量值<br>    $ python3 err.py</p>
+<pre><code>&gt;&gt;&gt; n = 0
+Traceback (most recent call last):
+  ...
+ZeroDivisionError: integer division or modulo by zero    
+</code></pre><p>用print()最大的坏处是将来还得删掉它，想想程序里到处都是print()，运行结果也会包含很多垃圾信息。</p>
+<h4 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h4><p>凡是用print()来辅助查看的地方都可以用断言(assert)来替代。<br>    def foo(s):<br>        n = int(s)<br>        assert n!=0,’n is zero’<br>        return 10/n<br>    def main():<br>        foo(‘0’)<br>assert的意思是，表达式n!=0应该是True否则根据程序运行的逻辑，后面的代码肯定会出错。如果断言失败，assert语句本身就会抛出AssertionError:<br>    $ python3 err.py<br>    Traceback (most recent call last):<br>    …<br>    AssertionError: n is zero!<br>程序中如果导出充斥着assert和print()相比也好不到哪去。不过启动python解释器时可以用-O参数来关闭assert<br>    $ python3 -O err.py<br>    Traceback (most recent call last):<br>      …<br>    ZeroDivisionError: division by zero<br>关闭后，你可以把所有的assert语句当成pass来看</p>
+<h4 id="logging"><a href="#logging" class="headerlink" title="logging"></a>logging</h4><p>把print()替换成logging是第3种方式，和assert相比logging不仅会抛出错误，而且可以输出到文件<br>    impoet logging<br>    s = ‘0’<br>    n = int(s)<br>    logging.info(‘n = %d’ % n)<br>    print(10/n)<br>logging.info()就可以输出一段文本。运行，发现除了ZeroDivisionError没有任何信息。怎么回事？别急，在import logging之后添加一行配置再试试<br>    import logging<br>    logging.basicConfig(level=logging.INFO)<br>看到输出了：<br>    $ python3 err.py<br>    INFO:root: n = 0<br>    Traceback (most recent call last):<br>     File “err.py”, line 8, in <module><br>    print(10 / n)<br>    ZeroDivisionError: division by zero<br>这就是logging的好处，它允许你指定记录信息的级别，有debug，info，warning，error等几个级别，当我们指定level=INFO时，logging.debug就不起作用了。同理，指定level=WARNING后，debug和info就不起作用了。这样一来，你可以放心地输出不同级别的信息，也不用删除，最后统一控制输出哪个级别的信息。<br>logging的另一个好处是通过简单的配置，一条语句可以同时输出到不同的地方，比如console和文件。    </module></p>
+<h4 id="pdb"><a href="#pdb" class="headerlink" title="pdb"></a>pdb</h4><p>第4种方式是启动python的调试器pdb，让程序以单步方式运行，可以随时查看运行状态。</p>
+<pre><code># err.py
+s = &apos;0&apos;
+n = int(s)
+print(10/n)
+</code></pre><p>然后启动<br>    python3 -m pdb err.py</p>
+<pre><code>&gt; /Users/zhangyuang/Desktop/python - python3/samples/debug/err.py(2)&lt;module&gt;()
+-&gt; s = &apos;0&apos;
+</code></pre><p>以参数-m pdb启动后，pdb定位到下一步要执行的代码-&gt; s = ‘0’输入命令1来查看代码<br>    (pdb)1<br>    1 #err.py<br>    2 -&gt; s = ‘0’<br>    3 n = int(s)<br>    4 print(10/n)<br>输入命令n可以单步执行代码<br>    (pdb)n</p>
+<pre><code>&gt; /Users/zhangyuang/Desktop/python - python3/samples/debug/err.py(3)&lt;module&gt;()
+-&gt; n = int(s)
+&gt;/Users/zhangyuang/Desktop/python - python3/samples/debug/err.py(4)&lt;module&gt;()        
+-&gt; print(10/n)
+</code></pre><p>任何时候都可以输入命令p变量名来查看变量<br>    (pdb) p s<br>    ‘0’<br>    (pdb) p n<br>    0<br>输入命令q结束调试，退出程序<br>    (pdb) q<br>这种通过pdb在命令行调试的方法理论上是万能的，但实在太麻烦了，如果有一千行代码要运行到第999行得敲多少命令啊。还好我们有另一种方法</p>
+<h4 id="pdb-set-trace"><a href="#pdb-set-trace" class="headerlink" title="pdb.set_trace"></a>pdb.set_trace</h4><p>这个方法也是用pdb，但是不需要单步执行，我们只需要import pdb,然后在可能出错的地方放一个pdb.set_trace(),就可以设置一个断点</p>
+<pre><code>#err.py
+import pdb
+s = &apos;0&apos;
+n = int(s)
+pdb.set_trace() #运行到这里会自动暂停
+print(10/n)
+</code></pre><p>运行代码程序会自动在pdb.set_trace()暂停并进入pdb调试环境可以使用命令p查看变量或者用命令c继续运行<br>    $ python3 err.py</p>
+<pre><code>&gt;/Users/zhangyuang/Desktop/python - python3/samples/debug/err.py(7)&lt;module&gt;()
+-&gt; print(10/n)
+(pdb) p n
+0
+(pdb) c
+Traceback (most recent call last):
+  File &quot;err.py&quot;, line 7, in &lt;module&gt;
+print(10 / n)
+ZeroDivisionError: division by zero    
+</code></pre><p>这个方式比直接启动pdb单步调试效率要高很多，但也高不到哪</p>
+<h4 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h4><p>如果要比较爽地设置断点、单步执行，就需要一个支持调试功能的IDE。目前比较好的Python IDE有PyCharm：</p>
+<p><a href="http://www.jetbrains.com/pycharm/" target="_blank" rel="external">http://www.jetbrains.com/pycharm/</a></p>
+<p>另外，Eclipse加上pydev插件也可以调试Python程序。</p>
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><p>如果你听说过“测试驱动开发”(TDD:Test-Driven Development),单元测试就不陌生<br>单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作。<br>比如对abs(),我们可以编写出以下几个测试用例：<br>    1、输入正数，比如1、1.2、0.99，期待返回值与输入相同<br>    2、输入负数，比如-1、-1.2、-0.99期待返回值与输入相反；<br>    3、输入0期待返回0<br>    4、输入非数值类型，比如None、[]、{}期待抛出TypeError<br>把上面的测试用例放到一个测试模块里，就是一个完整的单元测试。<br>如果单元测试通过说明我们测试的这个函数能够正常工作。如果测试不通过，要么函数有Bug要么测试条件输入不正确，总之需要修复使单元测试能够通过。<br>单元测试通过后有什么意义呢？如果我们对abs()函数代码做了修改，只需要再跑一遍单元测试，如果通过，说明我们的修改不会对abs()函数原有的行为造成影响，如果测试不通过，说明我们的修改与原有行为不一致，要么修改代码，要么修改测试。<br>这种以测试为驱动的开发模式最大的好处就是确保一个程序模块的行为符合我们设计的测试用例。在将来修改的时候，可以极大程度地保证该模块行为仍然是正确的。<br>我们来编写一个Dict类，这个类的行为和dict一致，但是可以通过属性来访问。</p>
+<pre><code>&gt;&gt;&gt; d = Dict(a=1,b=2)
+&gt;&gt;&gt; d[&apos;a&apos;]
+1
+&gt;&gt;&gt; d.a
+1
+</code></pre><p>mydict.py代码如下<br>    class Dict(dict):<br>        def <strong>init</strong>(self,<strong>kw):<br>            super().<strong>init</strong>(</strong>kw)<br>        def <strong>getattr</strong>(self,key):<br>            try:<br>                return self[key]<br>            except KeyError:<br>                raise AttributeError(r”‘Dict’object has no attribute ‘%s’” % key)<br>        def <strong>setattr</strong>(self,key,value):<br>            self[key] = value<br>为了编写单元测试，我们需要引入Python自带的unittest模块，编写mydict_test.py如下<br>    import unittest<br>    from mydict import Dict<br>    class TestDict(unittest.TestCase):<br>        def test_init(self):<br>            d = Dict(a=1,b=’test’)<br>            self.assertEqual(d.a,1)<br>            self.assertEqul(d.b,’test’)<br>            self.assertTrue(isinstance(d,dict))<br>        def test_key(self):<br>            d = Dict()<br>            d[‘key’] = ‘value’<br>            self.assertEqual(d.key,’value’)<br>        def test_attr(self):<br>            d = Dict()<br>            d.key = ‘value’<br>            self.assertTrue(‘key’ in d)<br>            self.assertEqual(d[‘key’],’value’)<br>        def test_keyerror(self):<br>            d = Dict()<br>            with self.assertRaises(KeyError):<br>                value = d[‘empty’]<br>        def test_attrerror(self):<br>            d = Dict()<br>            with self.assertRaises(AttributeError):<br>            value = d.empty<br>编写单元测试时，我们需要编写一个测试类，从unittest.TestCase继承<br>以test开头的方法就是测试方法，不以test开头的方法不认为是测试方法，测试的时候不会执行。对每一类测试都需要编写一个test_xxx()方法。由于unittest.TestCase提供了很多内置的条件判断，我们只需要调用这些方法就可以断言输出是否是我们所期望的。最常用的断言就是assertEqual():<br>    self.assertEqual(abs(-1),1) #断言函数返回的结果与1相等<br>另一种重要的断言就是期待抛出指定类型的Error，比如通过d[‘empty’]访问不存在的key时断言会抛出KeyError：<br>    with self.assertRaises(KeyError):<br>        value = d[‘empty’]<br>而通过d.empty访问不存在的key时，我们期待抛出AttributeError：<br>    with self.assertRaises(AttributeError):<br>        value = d.empty</p>
+<h4 id="运行单元测试"><a href="#运行单元测试" class="headerlink" title="运行单元测试"></a>运行单元测试</h4><p>一旦编写好单元测试，我们就可以运行单元测试。最简单的运行方法是在mydict_test.py的最好加上两行代码<br>    if <strong>name</strong> == ‘<strong>main</strong>‘<br>        unittest.main()<br>这样就可以把mydict_test,py当作正常的python脚本运行<br>    $ python3 mydict_test.py<br>另一种方法是在命令行通过参数-m unittest直接运行单元测试<br>    $ python3 -m unittest mydict_test</p>
+<pre><code>........
+----------------------------
+Ran 5 tests in 0.000s
+ok
+</code></pre><p>这是推荐的做法，因为这样可以一次批量运行很多单元测试，并且有很多工具可以自动来运行这些单元测试。</p>
+<h4 id="setUP与testDown"><a href="#setUP与testDown" class="headerlink" title="setUP与testDown"></a>setUP与testDown</h4><p>可以在单元测试中编写两个特殊的setUp()和tearDown()方法。这两个方法会分别在每调用一个测试方法的前后分别被执行。<br>setUp()和testDown()方法有什么用呢？设想你的测试需要启动一个<br>数据库，这时就可以在setUp()方法中连接数据库，在testDown()方法中关闭数据库，这样不必在每个测试方法中重复相同的代码<br>    class TestDict(unittest.TestCase):<br>        def setUp(self):<br>            print(‘setUp…’)<br>        def tearDown(self):<br>            print(‘tearDown…’)</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>单元测试可以有效的测试某个程序模块的行为，是未来重构代码的信心保证<br>单元测试的测试用例要覆盖常用的输入组合、边界条件和异常。<br>单元测试代码要非常简单，如果测试代码太复杂那么测试代码本身就可能有BUG<br>单元测试通过了并不意味着程序就没有bug了但是不通过程序肯定有bug</p>
+<h3 id="IO编程"><a href="#IO编程" class="headerlink" title="IO编程"></a>IO编程</h3><h4 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h4><h4 id="读文件"><a href="#读文件" class="headerlink" title="读文件"></a>读文件</h4><p>要以读文件的模式打开一个文件使用python内置的open()函数，传入文件名和标识符：</p>
+<pre><code>&gt;&gt;&gt; f = open(&apos;./test.txt&apos;,&apos;r&apos;)
+</code></pre><p>标识符’r’表示读，如果文件不存在open()函数就会抛出一个IOError的错误并且给出错误码和详细信息。<br>如果文件打开成功接下来调用read()方法可以一次读取文件的全部内容，python把内容读到内存用一个str对象表示</p>
+<pre><code>&gt;&gt;&gt; f.read()
+&apos;IO test&apos;
+</code></pre><p>最后一步是调用close()方法关闭文件，文件使用完毕后必须关闭因为文件对象会占用操作系统的资源并且操作系统同一时间能打开的文件数量也是有限的。</p>
+<pre><code>&gt;&gt;&gt; f.close()
+</code></pre><p>由于文件读写时都有可能产生IOError，一旦出错后面的f.close()就不会调用。所以为了保证无论是否出现<br>    try:<br>        f = open(‘./test.txt’,’r’)<br>        print(f.read())<br>    finally:<br>        if f:<br>            f.close()<br>但是每次都这么写实在是太繁琐了，所以python引入了with语句来自动帮我们调用close()方法<br>    with open(‘./test.txt’,’r’) as f:<br>        print(r.read())<br>这和前面的try…finally是一样的但是代码更加简洁并且不必调用f.close()方法。调用read()会一次性读取文件的全部内容如果文件有10G内存就爆了，所以要保险起见可以反复调用read(size)方法每次最多读取size个字节的内容。另外，调用readline()    可以每次读取一行内容，调用readlines()一次读取所有内容并按行返回list。因此，要根据需求决定怎么调用。如果文件很小，read()一次性读取最方便；如果不能确定文件大小，反复调用read(size)比较保险；如果是配置文件，调用readlines()最方便                        for line in f.readlines():<br>        print(line.strip()) #把末尾的’\n’删掉</p>
+<h4 id="file-like-Object"><a href="#file-like-Object" class="headerlink" title="file-like Object"></a>file-like Object</h4><p>像open()函数返回的这种有个read()方法的对象在python中统称为file-like Object除了file外还可以是内存的字节流，网络流，自定义流等等。file-like Object不要求从特定类继承，只要写个read()方法就行。<br>StringIO就是在内存中创建的file-like Object,常用作临时缓冲</p>
+<h4 id="二进制文件"><a href="#二进制文件" class="headerlink" title="二进制文件"></a>二进制文件</h4><p>前面讲的默认都是读取文本文件，并且是UTF-8编码的文本文件。要读取二进制文件，比如图片视频用’rb’模式打开文件即可</p>
+<pre><code>&gt;&gt;&gt; f = open(&apos;./test.jpg&apos;,&apos;rb&apos;)
+&gt;&gt;&gt; f.read()
+b &apos;\xff\xd8\xff\xe1\x00\x18Exif\x00\x00...&apos; #十六进制表示的字节            
+</code></pre><h4 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h4><p>要读取非UTF-8编码的文本文件，需要给open()函数传入encoding参数，例如读取GBK编码的文件</p>
+<pre><code>&gt;&gt;&gt; f = open(&apos;./gbk.test&apos;,&apos;r&apos;,encoding=&apos;gbk&apos;)
+&gt;&gt;&gt; f.read()
+&apos;测试&apos;
+</code></pre><p>遇到有些编码不规范的文件你可能会遇到UnicodeDecodeError,因为在文本文件中可能夹杂了一些非法编码的字符。遇到这种情况，open()函数还接受一个errors参数，表示如果遇到编码错误后如何处理。最简单的方式是直接忽略</p>
+<pre><code>&gt;&gt;&gt; f = open(&apos;./gbk.txt&apos;,&apos;r&apos;,encoding=&apos;gbk&apos;,errors=&apos;ignore&apos;)    
+</code></pre><h4 id="写文件"><a href="#写文件" class="headerlink" title="写文件"></a>写文件</h4><p>写文件和读文件是一样的，唯一区别是调用open()函数时，传入标识符’w’或者’wb’表示写文本文件或写二进制文件</p>
+<pre><code>&gt;&gt;&gt; f = open(&apos;./test.txt&apos;,&apos;w&apos;)
+&gt;&gt;&gt; f.write(&apos;hello,world&apos;)
+&gt;&gt;&gt; f.close()    
+</code></pre><p>你可以反复调用write()来写入文件，但是无比要调用f.close()来关闭文件。当我们写文件时，操作系统往往不会立刻把数据写入磁盘而是放到内存缓存起来，空闲的时候再慢慢写入。只有调用close()方法，操作系统才保证把没有写入的数据全部写入磁盘。忘记调用close()的后果是数据可能只写了一部分到磁盘剩下的丢失了。所以，还是用with语句来的保险<br>    with open(‘./test.txt’,’w’) as f:<br>        f.write(‘hello world’)<br>要写入特定编码的文本文件，请给open()函数传入encoding参数，将字符串转换为指定编码</p>
+<h3 id="StringIO和BytesIO"><a href="#StringIO和BytesIO" class="headerlink" title="StringIO和BytesIO"></a>StringIO和BytesIO</h3><h4 id="StringIO"><a href="#StringIO" class="headerlink" title="StringIO"></a>StringIO</h4><p>很多时候数据读写不一定是文件，也可以在内存中读写。<br>StringIO顾名思义就是在内存中读写str<br>要把str写入StringIO，我们需要先创建一个StringIO然后像写文件一样写入即可</p>
+<pre><code>&gt;&gt;&gt; from io import StringIO
+&gt;&gt;&gt; f = StringIO()
+&gt;&gt;&gt; f.write(&apos;hello&apos;)
+5
+&gt;&gt;&gt; f.write(&apos;&apos;)
+1
+&gt;&gt;&gt; f.write(&apos;world!&apos;)
+6
+&gt;&gt;&gt; print(f.getvalue())
+hello world
+</code></pre><p>getvalue()方法用于获得写入后的str<br>要读取StringIO，可以用一个str初始化StringIO，然后像读文件一样读取</p>
+<pre><code>&gt;&gt;&gt; from io import StringIO
+&gt;&gt;&gt; f = StringIO(&apos;hello\nHI\nGoodbye&apos;)
+&gt;&gt;&gt; while True:
+    s = f.readline()
+    if s == &apos;&apos;:
+        break
+    print(s.strip())            
+    Hello
+    HI
+    Goodbye
+</code></pre><h4 id="BytesIO"><a href="#BytesIO" class="headerlink" title="BytesIO"></a>BytesIO</h4><p>StringIO操作的只能str如果要操作二进制数据，就需要使用BytesIO<br>BytesIO实现在内存中读写bytes，我们创建一个BytesIO，然后写入一些bytes</p>
+<pre><code>&gt;&gt;&gt; from io import BytesIO
+&gt;&gt;&gt; f = BytesIO()
+&gt;&gt;&gt; f.write(&apos;中文&apos;.encode(&apos;utf-8&apos;))
+6
+&gt;&gt;&gt; print(f.getvalue())
+b&apos;\xe4\xb8\xad\xe6\x96\x87&apos;    
+</code></pre><p>请注意，写入的不是str而是经过UTF-8编码的bytes<br>和StringIO类似可以用一个bytes初始化BytesIO然后像读文件一样读取</p>
+<pre><code>&gt;&gt;&gt; from io import BytesIO
+&gt;&gt;&gt; f = BytesIO(b&apos;\xe4\xb8\xad\xe6\x96\x87&apos;)    
+&gt;&gt;&gt; f.read()
+b&apos;\xe4\xb8\xad\xe6\x96\x87&apos;
+</code></pre><h4 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h4><p>StringIO和BytesIO是在内存中操作str和bytes的方法，是的和读写文件具有一致的借口。        </p>
+<h3 id="操作文件和目录"><a href="#操作文件和目录" class="headerlink" title="操作文件和目录"></a>操作文件和目录</h3><p>如果我们要操作文件、目录可以在命令行下面输入操作系统提供的各种命令来完成。比如dir、cp等命令。<br>如果要在python程序中执行这些目录和文件的操作怎么办？其实操作系统提供的命令只是简单的调用了操作系统提供的借口函数，python内置的os模块也可以直接调用操作系统提供的接口函数。<br>打开python交互式命令行</p>
+<pre><code>&gt;&gt;&gt; import os
+&gt;&gt;&gt; os.name #操作系统类型
+&apos;posix&apos;
+</code></pre><p>如果是posix，说明系统是Linux、unix或MacOSX,如果是nt，就是windows系统。<br>要获取详细的系统信息，可以调用uname()函数：</p>
+<pre><code>&gt;&gt;&gt; os.uname()
+posix.uname_result(sysname=&apos;Darwin&apos;, nodename=&apos;zhangyuangdeMBP&apos;, release=&apos;16.0.0&apos;, version=&apos;Darwin Kernel Version 16.0.0: Mon Aug 29 17:56:20 PDT 2016; root:xnu-3789.1.32~3/RELEASE_X86_64&apos;, machine=&apos;x86_64&apos;)
+</code></pre><p>注意uname()函数在windows上不提供，也就是说os模块的某些函数是跟操作系统相关的</p>
+<h4 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h4><p>在操作系统中定义的环境变量全部保存在os.environ这个变量中</p>
+<pre><code>&gt;&gt;&gt; os.environ
+environ({&apos;TERM_PROGRAM&apos;: &apos;Apple_Terminal&apos;, &apos;TERM&apos;: &apos;xterm-256color&apos;, &apos;SHELL&apos;: &apos;/bin/bash&apos;, &apos;TMPDIR&apos;: &apos;/var/folders/g7/n76jd7897_s0xtyqlssfk9y00000gn/T/&apos;, &apos;Apple_PubSub_Socket_Render&apos;: &apos;/private/tmp/com.apple.launchd.YKTDBWScTk/Render&apos;, &apos;TERM_PROGRAM_VERSION&apos;: &apos;377&apos;, &apos;TERM_SESSION_ID&apos;: &apos;50F4527E-810B-4A61-807C-3D9C8E2B345C&apos;, &apos;USER&apos;: &apos;zhangyuang&apos;, &apos;SSH_AUTH_SOCK&apos;: &apos;/private/tmp/com.apple.launchd.zdqC9KFAal/Listeners&apos;, &apos;__CF_USER_TEXT_ENCODING&apos;: &apos;0x1F5:0x19:0x34&apos;, &apos;PATH&apos;: &apos;/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin&apos;, &apos;PWD&apos;: &apos;/Users/zhangyuang/Desktop/github/Learn_python&apos;, &apos;LANG&apos;: &apos;zh_CN.UTF-8&apos;, &apos;XPC_FLAGS&apos;: &apos;0x0&apos;, &apos;XPC_SERVICE_NAME&apos;: &apos;0&apos;, &apos;HOME&apos;: &apos;/Users/zhangyuang&apos;, &apos;SHLVL&apos;: &apos;1&apos;, &apos;LOGNAME&apos;: &apos;zhangyuang&apos;, &apos;_&apos;: &apos;/usr/local/bin/python3&apos;, &apos;OLDPWD&apos;: &apos;/Users/zhangyuang/Desktop/github&apos;, &apos;__PYVENV_LAUNCHER__&apos;: &apos;/usr/local/bin/python3&apos;})
+</code></pre><p>要获取某个环境变量的值，可以调用os.environ.get(‘key’)</p>
+<pre><code>&gt;&gt;&gt; os.environ.get(&apos;PATH&apos;)
+&apos;/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin&apos;
+&gt;&gt;&gt; os.environ.get(&apos;x&apos;,&apos;default&apos;)
+&apos;default&apos;
+</code></pre><h4 id="操作文件和目录-1"><a href="#操作文件和目录-1" class="headerlink" title="操作文件和目录"></a>操作文件和目录</h4><p>操作文件和目录的函数一部分方法放在os模块中，一部分放在os.path模块中，这一点要注意一下。查看、创建和删除目录可以这么调用</p>
+<pre><code>#查看当前目录绝对路径
+&gt;&gt;&gt; os.path.abspath(&apos;.&apos;)
+&apos;/Users/zhangyuang/Desktop/github/Learn_python&apos;
+#在某个目录下创建一个新目录，首先把新目录的完整路径表示出来
+&gt;&gt;&gt; os.path.join(&apos;/Users/zhangyuang&apos;,&apos;testdir&apos;)
+&apos;/Users/zhangyuang/testdir&apos;
+#然后创建一个目录
+&gt;&gt;&gt; os.mkdir(&apos;/Users/zhangyuang/testdir&apos;)
+#删掉一个目录
+&gt;&gt;&gt; os.rmdir(&apos;/User/zhangyuang/testdir&apos;)
+</code></pre><p>把两个路径合成一个时，不要直接拼字符串，而是要通过os.path.join()函数，这样可以正确处理不同操作系统的路径分隔符。在Linux/Unix/Mac下，os.path.join()返回这样的字符串<br>    part-1/part-2<br>而windows下会返回这样的字符串：<br>    part-1\part-2<br>同样的道理，要拆分路径时也不要直接去拆字符串，而要通过os.path.split()函数，这样可以把一个路径拆分为两部分，后一部分总是最后级别的目录或文件名</p>
+<pre><code>&gt;&gt;&gt; os.path.split(&apos;/Users/zhangyuang/testdir/file.txt&apos;)
+(&apos;/Users/zhangyuang/testdir&apos;,&apos;file.txt&apos;)
+</code></pre><p>os.path.splitext()可以让你得到文件扩展名很多时候非常方便</p>
+<pre><code>&gt;&gt;&gt; os.path.splitext(&apos;/path/to/file.txt&apos;)
+(&apos;/path/to/file&apos;,&apos;.txt&apos;)
+</code></pre><p>这些合并、拆分路径的函数并不要求目录和文件要真实存在，它们只对字符串进行操作。文件操作使用下面的函数。假定当前目录下有一个test.txt文件</p>
+<pre><code>#对文件重命名
+&gt;&gt;&gt; os.rename(&apos;test.txt&apos;,&apos;test.py&apos;)    
+#删除文件
+&gt;&gt;&gt; os.remove(&apos;test.py&apos;)
+</code></pre><p>但是复制文件的函数居然在os模块中不存在！原因是复制文件并非由操作系统提供的系统调用。理论上我们通过上一节的读写文件可以完成文件复制，只不过要多写很多代码。幸运的是shutil模块提供了copyfile()函数，你还可以在shutil模块中找到很多实用函数，它们可以看作是os模块的补充。<br>利用python来过滤文件。比如我们要列出当前目录下的所有目录</p>
+<pre><code>&gt;&gt;&gt; [x for x in os.listfir(&apos;.&apos;) if os.path.isdir(x)]
+[&apos;.lein&apos;, &apos;.local&apos;, &apos;.m2&apos;, &apos;.npm&apos;, &apos;.ssh&apos;, &apos;.Trash&apos;, &apos;.vim&apos;, &apos;Applications&apos;, &apos;Desktop&apos;, ...]    
+</code></pre><p>要列出所有.py文件</p>
+<pre><code>&gt;&gt;&gt; [x for x in os.listdir(&apos;x&apos;) if os.path.isfile(x) and os.path.splitext(x)[1]==&apos;.py&apos;]
+[&apos;apis.py&apos;, &apos;config.py&apos;, &apos;models.py&apos;, &apos;pymonitor.py&apos;, &apos;test_db.py&apos;, &apos;urls.py&apos;, &apos;wsgiapp.py&apos;
+</code></pre><h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p>在程序运行的过程中最难过，所有的变量都是在内存中，比如定义一个dict<br>    d = dict(name=’zhangyuang’,age=19,score=99)<br>可以随时修改变量，比如把name改成janvier，但是一旦程序结束，变量所占用的内存就被操作系统回收。如果没有把修改后的janvier存储到磁盘上，下次重新运行程序，变量又被初始化为zhangyuang<br>我们把变量从内存中变成可存储或可传输的过程称之为序列化，在python中叫pickling，在其他语言中也被称为serialization,marshalling,flattening等等，都是一个意思。<br>序列化之后，就可以把序列化后的内容写入磁盘，或者通过网络传输到别的机器中。<br>反过来，把变量内容从序列化的对象重新读到内存里称之为反叙黎话，即unpicking。python提供了pickle模块来实现序列化。<br>首先，我们尝试把一个对象序列化并写入文件</p>
+<pre><code>&gt;&gt;&gt; import pickle
+&gt;&gt;&gt; d = dict(name=&apos;zhangyuang,age=19,score=99&apos;)
+&gt;&gt;&gt; pickle.dumps(d)
+b&apos;\x80\x03}q\x00(X\x03\x00\x00\x00ageq\x01K\x14X\x05\x00\x00\x00scoreq\x02KXX\x04\x00\x00\x00nameq\x03X\x03\x00\x00\x00Bobq\x04u.&apos;
+</code></pre><p>pickle.dumps()方法把任意对象序列化成一个bytes，然后就可以把这个bytes写入文件。或者用另一个方法pickle.dump直接把序列化后写入一个file-like Object:</p>
+<pre><code>&gt;&gt;&gt; f = open(&apos;dump.txt&apos;,&apos;wb&apos;)
+&gt;&gt;&gt; pickle.dump(d,f)
+&gt;&gt;&gt; f.close()
+</code></pre><p>看看写入dump.txt的内容，乱七八糟，这些都是python保存的对象内部信息。<br>当我们要把对象从磁盘读到内存时，可以先把内容读到一个bytes，然后用pickle.loads()方法反序列化出对象，也可以直接用pickle.load()方法从一个file-like Object中直接反序列化对象。我们打开另一个python命令行来反序列化刚才保存的对象</p>
+<pre><code>&gt;&gt;&gt; f = open(&apos;dump.txt&apos;,&apos;rb&apos;)
+&gt;&gt;&gt; d = pickle.load(f)
+&gt;&gt;&gt; f.close()
+&gt;&gt;&gt; d
+{&apos;name&apos;:&apos;zhangyuang&apos;,&apos;score&apos;:&apos;99&apos;,&apos;age&apos;:&apos;19&apos;}
+</code></pre><p>变量的内容又回来了，当然，这个变量和原来的变量是完全不相干的对象，它们只是内容相同而已。                                            </p>
+<h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><p>如果我们要在不同的编程语言之间传递对象，就必须把对象序列化为标准格式，比如XML，但更好的方法是序列化为JSON，因为JSON表示出来就是一个字符串，可以被所有语言读取，也可以方便地存储到磁盘或者通过网络传输。JSON不仅是标准格式，并且比XML更快，而且可以直接在Web页面中读取，非常方便。JSON表示的对象就是标准的JavaScript语言的对象，JSON和Python内置的数据类型对应如下：<br>    JSON类型        Python类型<br>    {}            dict<br>    []            list<br>    “string”      str<br>    123.56        int或float<br>    true/false      True/False<br>    null           None<br>python内置的json模块提供了非常完善的Python对象到JSON格式的转换。<br>我们先看看如何把python对象变成一个JSON</p>
+<pre><code>&gt;&gt;&gt; import json
+&gt;&gt;&gt; d = dict(name=&apos;zhangyuang&apos;,age=20,score=99)
+&gt;&gt;&gt; json.dumps(d)
+&apos;{&quot;age&quot;:20,&quot;score&quot;:99,&quot;name&quot;:&quot;zhangyuang&quot;}&apos;
+</code></pre><p>dumps()方法返回一个str，内容就是标准的JSON。类似的dump()方法可以直接把JSON写入一个file-like Object。要把JSON反序列化为python对象，用loads()或者对应的load()方法，前者把JSON的字符串反序列化，后者从file-like Object中读取字符串并反序列化：</p>
+<pre><code>&gt;&gt;&gt; json_str = &apos;{&quot;age&quot;:20,&quot;name&quot;:&quot;zhangyuang&quot;,&quot;score&quot;:99}&apos;
+&gt;&gt;&gt; json.loads(json_str)
+{&apos;age&apos;:20,&apos;score&apos;:99,&quot;name&quot;:&apos;zhangyuang&apos;}
+</code></pre><p>由于JSON标准规定JSON编码是UTF-8所以我们总是能正确的在Python的str与JSON的字符串之间转换。</p>
+<h4 id="JSON进阶"><a href="#JSON进阶" class="headerlink" title="JSON进阶"></a>JSON进阶</h4><p>Python的dict对象可以直接序列化为JSON的{},不过很多时候我们更喜欢用class表示对象，比如定义Student类，然后序列化<br>    import json<br>    class Student(object):<br>        def <strong>init</strong>(self,name,age,score):<br>            self.name = name<br>            self.age = age<br>            self.score = score<br>    s = Student(‘zhangyuang’,19,99)<br>    print(json.dumps(s))<br>运行代码，毫不留情地得到一个TypeError：<br>    Traceback (most recent call last):<br>      …<br>    TypeError: <__main__.student object="" at="" 0x10603cc50=""> is not JSON serializable<br>错误的原因是Student对象不是一个可序列化为JSON的对象，如果连class的实例对象都无法序列化为JSON这肯定不合理。别急，我们仔细看看dumps()方法的参数列表，发现除了第一个必须的obj参数外，dumps()还提供了一大堆可选参数<a href="https://docs.python.org/3/library/json.html#json.dumps" target="_blank" rel="external">https://docs.python.org/3/library/json.html#json.dumps</a><br>这些可选参数就是让我们来定制JSON序列化。前面的代码之所以无法把Student类实例序列化为JSON，是因为 默认情况下，dumps()方法不知道如何将Student实例变为一个JSON的{}对象。<br>可选参数default就是把任意一个对象编程一个可序列化为JSON的对象，我们只需要为Student专门写一个转换函数，再把函数传进去即可：<br>    def student2dict(std):<br>        return {<br>        ‘name’: std.name<br>        ‘age’: std.age<br>        ‘score’: std.score<br>    }<br>这样Student实例首先被student2dict函数转换成dict，然后再顺利序列化为JSON：</__main__.student></p>
+<pre><code>&gt;&gt;&gt; print(json.dumps(s,default = student2dict))
+{&quot;age&quot;:19,&quot;name&quot;:&quot;zhangyuang&quot;,&quot;score&quot;:99}
+</code></pre><p>不过下次如果遇到一个Teacher类的实例，照样无法序列化为JSON,我们可以偷个懒，把任意class的实例变为dict：<br>    print(json.dumps(s,default = lambda obj:obj.<strong>dict</strong>))<br>因为通常class的实例都有一个<strong>dict</strong>属性，它就是一个dict，用来存储实例变量。也有少数例外，比如定义了<strong>slots</strong>的class。同样的道理，如果我们要把JSON反序列化为一个Student对象实例，loads()方法首先转换出一个dict对象，然后我们传入的object_hook函数负责把dict转换为Student实例：<br>    def dict2student(d):<br>        return Student(d[‘name’],d[‘age’],d[‘score’])<br>运行结果如下</p>
+<pre><code>&gt;&gt;&gt; json_str = &apos;{&quot;age&quot;:20,&quot;score&quot;:99,&quot;name&quot;:&quot;zhangyuang&quot;}&apos;        
+</code></pre><p>打印出的是反序列化对象的Student实例对象</p>
+<h4 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h4><p>python语言特定的序列化模块是pickle，但如果要把序列化搞得通用、更符合web标准，就可以使用json模块。json模块的dumps()和loads()函数是定义的非常好的接口的典范。当我们使用时，只需要传入一个必须的参数。但是当默认的序列化机制不满足我们的要求时，我们又可以传入更多的参数来定制序列化的规则，即做到了接口简单易用，又做到了充分的扩展性和灵活性。</p>
+<h3 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h3><h4 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h4><p>要让python程序实现多进程，我们先了解操作系统的相关知识。Unix／Linux操作系统提供了一个fork()系统调用。它非常特殊。普通的函数调用，调用一次返回一次，但是fork()调用一次返回两次,因为操作系统自动把当前进程(称为父进程)复制了一份(称为子进程)然后分别在父进程和子进程内返回。子进程永远返回0，而父进程返回子进程的ID。这样做的理由是，一个父进程可以fork出很多子进程，所以父进程要记下每个子进程的ID，而子进程只需要调用getppid()就可以拿到父进程的ID。<br>python的os模块封装了常见的系统调用，其中就包括fork(),可以在python中轻松创建子进程<br>    import os<br>    print(‘Process(%s) start…’ % os.getpid())</p>
+<pre><code># only works on Unix/Linux/Mac
+pid = os.fork()
+if pid == 0:
+    print(&apos;i am child process (%s) and my parent is %s&apos; % (os.getpid(),os.getppid()))
+else:
+    print(&apos;i (%s) just created a child process(%s)&apos; %(os.getpid(),pid))
+</code></pre><p>运行结果如下：<br>    process(876)start<br>    i(876)just created a child process(877)<br>    i am child process(877) and my parent is 876<br>有了fork调用，一个进程在接到新任务时就可以复制出一个子进程来处理新任务，常见的Apache服务器就是由父进程监听端口，每当有新的http请求，就fork()出子进程来处理新的http请求</p>
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p>\d匹配一个数字<br>\w匹配一个字母或数字<br>    ‘00\d’可以匹配’007’但无法匹配’00A’<br>    ‘\d\d\d’可以匹配’010’<br>    ‘\w\w\d’可以匹配’py3’<br>.可以匹配任意字符<br>    ‘py.’可以匹配’pyc’,’pyo’,’py!’<br>*表示匹配任意个字符（包括0个）<br>+表示至少一个字符<br>？表示0个或1个字符<br>{n}表示n个字符，{n,m}表示n-m个字符<br>来看一个复杂的例子：\d{3}\s+\d{3,8}<br>我们从左到右解读一下<br>1、\d{3}表示匹配3个数字，例如’010’<br>2、\s可以匹配一个空格(也包括Tab等空白符)，所以\s+表示至少有一个空格，例如匹配’ ‘,’  ‘<br>3、\d{3,8}表示3-8个数字例如’1234567’<br>综合起来，上面的正则表达式可以匹配以任意个空格隔开的带区号的电话号码。<br>如果要匹配’010-12345’这样的号码？由于’-‘是特殊字符，在正则表达式要用’\’转义，所以上面的正则是\d{3}-\d{3,8}<br>但是仍然无法匹配’010 - 12345’因为带有空格。</p>
+<h4 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h4><p>要做更精确的匹配，可以用[]表示范围比如<br>1、[0-9a-zA-Z_]可以匹配一个数字、字母或者下划线<br>2、[0-9a-zA-Z_]可以匹配至少由一个数字、字母或者下划线组成的字符串，比如’a100’,’0<em>Z’,’Py3000’<br>3、[a-zA-Z\</em>][0-9a-zA-Z_]*可以匹配由字母或下划线开头，后接任意个由一个数字、字母或者下划线组成的字符串，也就是Python合法的变量<br>4、[a-zA-Z_][0-9a-zA-Z_]{0,19}更精确的限制变量的长度时1-20个字符(前面1个字符，后面最多19个字符)<br>A|B可以匹配A或B，所以(P|p)ython可以匹配’Python’或者’python’<br>^表示行开头，^\d表示以数字开头<br>$表示行结尾，\d$表示以数字结尾<br>你可能注意到了，py也可以匹配’python’,但是加上^py$酒变成了整行匹配只能匹配’py’了</p>
+<h4 id="re模块"><a href="#re模块" class="headerlink" title="re模块"></a>re模块</h4><p>Python提供re模块，包含所有正则表达式的功能。由于Python的字符串本身也用\转义所以要特别注意<br>    s = ‘ABC\-001’ #python字符串</p>
+<pre><code>#对应的正则表达式字符串变成
+# &apos;ABC\-001&apos;
+</code></pre><p>因此我们强烈建议使用Python的r前缀就不用考虑转义的问题了<br>    s = r’ABC-001’</p>
+<pre><code>#对应的正则表达式字符串不变
+#&apos;ABC\-001&apos;
+</code></pre><p>先看看如何判断正则表达式如何匹配</p>
+<pre><code>&gt;&gt;&gt; import re
+&gt;&gt;&gt; re.match(r&apos;^\d{3}\-\d{3-8}$&apos;,&apos;010-12345&apos;)
+&lt;_sre.SRE_Match object; span=(0, 9), match=&apos;010-12345&apos;&gt;
+&gt;&gt;&gt; re.match(r&apos;^\d{3}\-\d{3-8}$&apos;,&apos;010 12345&apos;)
+&gt;&gt;&gt;
+</code></pre><p>match()方法判断是否匹配，如果匹配成功返回一个Match对象，否则返回None。<br>常见的判断方法就是：<br>    test = ‘用户输入的字符串’<br>    if re.match(r’正则表达式’,test):<br>        print(‘ok’)<br>    else:<br>        print(‘failed’)</p>
+<h4 id="切分字符串"><a href="#切分字符串" class="headerlink" title="切分字符串"></a>切分字符串</h4><p>用正则表达式切分字符串比固定的字符更灵活，请看正常的切分代码</p>
+<pre><code>&gt;&gt;&gt; &apos;a b  c&apos;.split(&apos;&apos;)
+[&apos;a&apos;,&apos;b&apos;,&apos;&apos;,&apos;&apos;,&apos;c&apos;]
+</code></pre><p>嗯，无法识别连续的空格，用正则表达式试试</p>
+<pre><code>&gt;&gt;&gt; re,split(r&apos;\s+&apos;,&apos;a b  c&apos;)
+[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]
+</code></pre><p>无论多少个空格都可以正常分割。加入,试试</p>
+<pre><code>&gt;&gt;&gt; re.split(r&apos;[\s\,]+&apos;,&apos;a,b,c  d&apos;)
+[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;]
+</code></pre><p>再加入；试试</p>
+<pre><code>&gt;&gt;&gt; re.split(r&apos;[\s\,\;]+&apos;,&apos;a,b;;c   d&apos;)
+[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;]
+</code></pre><h4 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h4><p>除了简单的判断是否匹配之外，正则表达式还有提取字串的强大功能。用()表示要提取的分组。比如：<br>^(\d{3})-(\d{3,8})$分别定义了两个组，可以直接从匹配的字符串中提取出区号和本地号码</p>
+<pre><code>&gt;&gt;&gt; m = re.match(r&apos;^(\d{3})-(\d{3-8})$&apos;,&apos;010-12345&apos;)
+&gt;&gt;&gt; m
+&lt;_sre.SRE_Match object; span=(0, 9), match=&apos;010-12345&apos;&gt;
+&gt;&gt;&gt; m.group(0)
+&apos;010-12345&apos;
+&gt;&gt;&gt; m.group(1)
+&apos;010&apos;
+&gt;&gt;&gt; m.group(2)
+&apos;12345&apos;
+</code></pre><p>如果正则表达式定义了组，就可以在Match对象上用group()方法提取出字串来。注意到group(0)永远是原始字符串、group(1),group(2)表示第1，2个字串<br>提取字串非常有用来看一下更凶残的例子：</p>
+<pre><code>&gt;&gt;&gt; t = &apos;19:05:30&apos;
+&gt;&gt;&gt; m = re.macth(r&apos;^(0[0-9]|1[0-9]|2[0-3]|[0-9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])$&apos;, t)
+&gt;&gt;&gt; m.groups()
+(&apos;19&apos;,&apos;05&apos;,&apos;30&apos;)
+</code></pre><p>这个正则表达式可以直接识别合法的时间。到那时有时候用正则表达式也无法做到完全验证，比如识别日期对于2-3-,4-31这样的非法日期还是识别不了，这时候需要程序配合识别。</p>
+<h4 id="贪婪匹配"><a href="#贪婪匹配" class="headerlink" title="贪婪匹配"></a>贪婪匹配</h4><p>最后需要指出的是，正则匹配默认是贪婪匹配也就是匹配尽可能多的字符。</p>
+<pre><code>&gt;&gt;&gt; re.macth(r&apos;^(\d+)(0*)$&apos;,&apos;102300&apos;).groups()
+(&apos;102300&apos;,&apos;&apos;)
+</code></pre><p>由于\d+采用贪婪匹配，直接把后买呢0全部匹配了，结果0*只能匹配空字符串了。必须让\d+采用非贪婪匹配(也就是尽可能少匹配)此啊能把后面的0匹配出来，加个？                                                            </p>
+
       
     </div>
 
@@ -803,7 +1235,7 @@ class Ostrich(Bird):
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象oop"><span class="nav-number">1.</span> <span class="nav-text">面向对象oop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类和实例"><span class="nav-number">2.</span> <span class="nav-text">类和实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据封装"><span class="nav-number">3.</span> <span class="nav-text">数据封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问限制"><span class="nav-number">4.</span> <span class="nav-text">访问限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承和多态"><span class="nav-number">5.</span> <span class="nav-text">继承和多态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取对象的信息"><span class="nav-number">6.</span> <span class="nav-text">获取对象的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例属性和类属性"><span class="nav-number">7.</span> <span class="nav-text">实例属性和类属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用slots"><span class="nav-number">8.</span> <span class="nav-text">使用slots</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-property"><span class="nav-number">9.</span> <span class="nav-text">使用@property</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重继承"><span class="nav-number">10.</span> <span class="nav-text">多重继承</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象oop"><span class="nav-number">1.</span> <span class="nav-text">面向对象oop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类和实例"><span class="nav-number">2.</span> <span class="nav-text">类和实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据封装"><span class="nav-number">3.</span> <span class="nav-text">数据封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问限制"><span class="nav-number">4.</span> <span class="nav-text">访问限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承和多态"><span class="nav-number">5.</span> <span class="nav-text">继承和多态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取对象的信息"><span class="nav-number">6.</span> <span class="nav-text">获取对象的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例属性和类属性"><span class="nav-number">7.</span> <span class="nav-text">实例属性和类属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用slots"><span class="nav-number">8.</span> <span class="nav-text">使用slots</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-property"><span class="nav-number">9.</span> <span class="nav-text">使用@property</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重继承"><span class="nav-number">10.</span> <span class="nav-text">多重继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定制类"><span class="nav-number">11.</span> <span class="nav-text">定制类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用枚举类"><span class="nav-number">12.</span> <span class="nav-text">使用枚举类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用元类"><span class="nav-number">13.</span> <span class="nav-text">使用元类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误处理"><span class="nav-number">14.</span> <span class="nav-text">错误处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调用堆栈"><span class="nav-number">14.1.</span> <span class="nav-text">调用堆栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#logging模块可以记录错误信息"><span class="nav-number">14.2.</span> <span class="nav-text">logging模块可以记录错误信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抛出错误"><span class="nav-number">14.3.</span> <span class="nav-text">抛出错误</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试"><span class="nav-number">15.</span> <span class="nav-text">调试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#断言"><span class="nav-number">15.1.</span> <span class="nav-text">断言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#logging"><span class="nav-number">15.2.</span> <span class="nav-text">logging</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pdb"><span class="nav-number">15.3.</span> <span class="nav-text">pdb</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pdb-set-trace"><span class="nav-number">15.4.</span> <span class="nav-text">pdb.set_trace</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IDE"><span class="nav-number">15.5.</span> <span class="nav-text">IDE</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单元测试"><span class="nav-number">16.</span> <span class="nav-text">单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#运行单元测试"><span class="nav-number">16.1.</span> <span class="nav-text">运行单元测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setUP与testDown"><span class="nav-number">16.2.</span> <span class="nav-text">setUP与testDown</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">16.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IO编程"><span class="nav-number">17.</span> <span class="nav-text">IO编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件读写"><span class="nav-number">17.1.</span> <span class="nav-text">文件读写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读文件"><span class="nav-number">17.2.</span> <span class="nav-text">读文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#file-like-Object"><span class="nav-number">17.3.</span> <span class="nav-text">file-like Object</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二进制文件"><span class="nav-number">17.4.</span> <span class="nav-text">二进制文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符编码"><span class="nav-number">17.5.</span> <span class="nav-text">字符编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写文件"><span class="nav-number">17.6.</span> <span class="nav-text">写文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StringIO和BytesIO"><span class="nav-number">18.</span> <span class="nav-text">StringIO和BytesIO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#StringIO"><span class="nav-number">18.1.</span> <span class="nav-text">StringIO</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BytesIO"><span class="nav-number">18.2.</span> <span class="nav-text">BytesIO</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结-1"><span class="nav-number">18.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作文件和目录"><span class="nav-number">19.</span> <span class="nav-text">操作文件和目录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#环境变量"><span class="nav-number">19.1.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作文件和目录-1"><span class="nav-number">19.2.</span> <span class="nav-text">操作文件和目录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化"><span class="nav-number">20.</span> <span class="nav-text">序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSON"><span class="nav-number">20.1.</span> <span class="nav-text">JSON</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSON进阶"><span class="nav-number">20.2.</span> <span class="nav-text">JSON进阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结-2"><span class="nav-number">20.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程和线程"><span class="nav-number">21.</span> <span class="nav-text">进程和线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多进程"><span class="nav-number">21.1.</span> <span class="nav-text">多进程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则表达式"><span class="nav-number">22.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进阶"><span class="nav-number">22.1.</span> <span class="nav-text">进阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#re模块"><span class="nav-number">22.2.</span> <span class="nav-text">re模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切分字符串"><span class="nav-number">22.3.</span> <span class="nav-text">切分字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分组"><span class="nav-number">22.4.</span> <span class="nav-text">分组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#贪婪匹配"><span class="nav-number">22.5.</span> <span class="nav-text">贪婪匹配</span></a></li></ol></li></ol></div>
             
 
           </div>
