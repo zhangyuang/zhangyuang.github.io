@@ -86,21 +86,21 @@
 
 <meta name="description" content="纯属个人笔记，不是教程所以没有写每个模块的具体用法。
 #!/usr/bin/env
--- coding: utf-8 --import requests #导入requests模块import os #导入os模块import mathimport randomfrom bs4 import BeautifulSoup #导入BeautifulSoup模块    class GetPicture(">
+-- coding: utf-8 --import requests #导入requests模块">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python爬虫">
 <meta property="og:url" content="http://yoursite.com/2017/02/26/python爬虫/index.html">
 <meta property="og:site_name" content="zhangyuang">
 <meta property="og:description" content="纯属个人笔记，不是教程所以没有写每个模块的具体用法。
 #!/usr/bin/env
--- coding: utf-8 --import requests #导入requests模块import os #导入os模块import mathimport randomfrom bs4 import BeautifulSoup #导入BeautifulSoup模块    class GetPicture(">
+-- coding: utf-8 --import requests #导入requests模块">
 <meta property="og:image" content="http://yoursite.com/images/python1.png">
-<meta property="og:updated_time" content="2017-02-26T15:34:35.000Z">
+<meta property="og:updated_time" content="2017-02-26T15:58:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python爬虫">
 <meta name="twitter:description" content="纯属个人笔记，不是教程所以没有写每个模块的具体用法。
 #!/usr/bin/env
--- coding: utf-8 --import requests #导入requests模块import os #导入os模块import mathimport randomfrom bs4 import BeautifulSoup #导入BeautifulSoup模块    class GetPicture(">
+-- coding: utf-8 --import requests #导入requests模块">
 <meta name="twitter:image" content="http://yoursite.com/images/python1.png">
 
 
@@ -338,7 +338,7 @@
       
         <p>纯属个人笔记，不是教程所以没有写每个模块的具体用法。</p>
 <p>#!/usr/bin/env</p>
-<h1 id="coding-utf-8"><a href="#coding-utf-8" class="headerlink" title="-- coding: utf-8 --"></a>-<em>- coding: utf-8 -</em>-</h1><p>import requests #导入requests模块<br>import os #导入os模块<br>import math<br>import random<br>from bs4 import BeautifulSoup #导入BeautifulSoup模块<br>    class GetPicture():<br>        def <strong>init</strong>(self):<br>            self.headers = {‘User-Agent’:’Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36’}<br>            self.url = ‘<a href="https://unsplash.com/" target="_blank" rel="external">https://unsplash.com/</a>‘<br>            self.pic_path = ‘/Users/zhangyuang/Desktop/github/Learn_python/images’<br>        def request(self,url):<br>                r = requests.get(url)<br>                return r<br>        def mkdir(self,path):<br>            path = path.strip() #去除路径两边的字符默认为空格<br>            isexist = os.path.exists(path) #判断文件夹是否存在<br>            if not isexist:<br>                    print(‘创建’,path,’文件夹’)<br>                    os.mkdir(path)<br>                    print(‘创建成功’)<br>            else:<br>                print(path,’文件夹已经存在’)<br>        def save_img(self,url,name):<br>            print(‘开始保存图片’)<br>            img = self.request(url)<br>            filename = name + ‘.jpg’<br>            print(‘开始保存文件’)<br>            f = open(filename,’ab’)<br>            f.write(img.content)<br>            print(‘文件保存成功’)<br>            f.close()<br>        def get_pic(self):<br>            print(‘开始请求’)<br>            r = self.request(self.url)<br>            all_a = BeautifulSoup(r.text,’lxml’).find<em>all(‘a’,class</em> = ‘cV68d’)<br>            self.mkdir(self.pic_path)<br>            print(‘开始切换文件夹’)<br>            os.chdir(self.pic_path) #切换文件夹到当前文件夹<br>            i = 0<br>            for a in all_a:<br>                    img_str = a[‘style’]<br>                    print(img_str)<br>                    start = img_str.index(‘“‘) + 1<br>                    end = img_str.index(‘“‘,start)<br>                    img_url = img_str[start : end]</p>
+<h1 id="coding-utf-8"><a href="#coding-utf-8" class="headerlink" title="-- coding: utf-8 --"></a>-<em>- coding: utf-8 -</em>-</h1><p>import requests #导入requests模块<br><a id="more"></a><br>import os #导入os模块<br>import math<br>import random<br>from bs4 import BeautifulSoup #导入BeautifulSoup模块<br>    class GetPicture():<br>        def <strong>init</strong>(self):<br>            self.headers = {‘User-Agent’:’Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36’}<br>            self.url = ‘<a href="https://unsplash.com/" target="_blank" rel="external">https://unsplash.com/</a>‘<br>            self.pic_path = ‘/Users/zhangyuang/Desktop/github/Learn_python/images’<br>        def request(self,url):<br>                r = requests.get(url)<br>                return r<br>        def mkdir(self,path):<br>            path = path.strip() #去除路径两边的字符默认为空格<br>            isexist = os.path.exists(path) #判断文件夹是否存在<br>            if not isexist:<br>                    print(‘创建’,path,’文件夹’)<br>                    os.mkdir(path)<br>                    print(‘创建成功’)<br>            else:<br>                print(path,’文件夹已经存在’)<br>        def save_img(self,url,name):<br>            print(‘开始保存图片’)<br>            img = self.request(url)<br>            filename = name + ‘.jpg’<br>            print(‘开始保存文件’)<br>            f = open(filename,’ab’)<br>            f.write(img.content)<br>            print(‘文件保存成功’)<br>            f.close()<br>        def get_pic(self):<br>            print(‘开始请求’)<br>            r = self.request(self.url)<br>            all_a = BeautifulSoup(r.text,’lxml’).find<em>all(‘a’,class</em> = ‘cV68d’)<br>            self.mkdir(self.pic_path)<br>            print(‘开始切换文件夹’)<br>            os.chdir(self.pic_path) #切换文件夹到当前文件夹<br>            i = 0<br>            for a in all_a:<br>                    img_str = a[‘style’]<br>                    print(img_str)<br>                    start = img_str.index(‘“‘) + 1<br>                    end = img_str.index(‘“‘,start)<br>                    img_url = img_str[start : end]</p>
 <pre><code>                # name = img_url.split(&quot;/&quot;)[4]
                 # print(name)
                 i = i + 1
