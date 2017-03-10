@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="前端常见的攻击分为XSS(Cross Site Script )跨站脚本攻击。CSRF(Cross Site Request Forgery)跨站点伪造请求。Cookie劫持">
+<meta name="description" content="异步方案有很多种，目前比较好的就是es6中的promise,典型的例子就是fecthAPI而es7中的async/await则更加的好。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常见的攻击">
-<meta property="og:url" content="http://yoursite.com/2017/02/25/常见的攻击/index.html">
+<meta property="og:title" content="async/await解决回调">
+<meta property="og:url" content="http://yoursite.com/2017/03/01/async-await解决回调/index.html">
 <meta property="og:site_name" content="zhangyuang">
-<meta property="og:description" content="前端常见的攻击分为XSS(Cross Site Script )跨站脚本攻击。CSRF(Cross Site Request Forgery)跨站点伪造请求。Cookie劫持">
-<meta property="og:updated_time" content="2017-02-25T04:47:42.000Z">
+<meta property="og:description" content="异步方案有很多种，目前比较好的就是es6中的promise,典型的例子就是fecthAPI而es7中的async/await则更加的好。">
+<meta property="og:updated_time" content="2017-03-01T07:14:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常见的攻击">
-<meta name="twitter:description" content="前端常见的攻击分为XSS(Cross Site Script )跨站脚本攻击。CSRF(Cross Site Request Forgery)跨站点伪造请求。Cookie劫持">
+<meta name="twitter:title" content="async/await解决回调">
+<meta name="twitter:description" content="异步方案有很多种，目前比较好的就是es6中的promise,典型的例子就是fecthAPI而es7中的async/await则更加的好。">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/25/常见的攻击/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/01/async-await解决回调/"/>
 
 
 
 
 
-  <title> 常见的攻击 | zhangyuang </title>
+  <title> async/await解决回调 | zhangyuang </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -248,7 +248,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/25/常见的攻击/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/01/async-await解决回调/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="张宇昂">
@@ -272,7 +272,7 @@
             
             
               
-                常见的攻击
+                async/await解决回调
               
             
           </h1>
@@ -285,8 +285,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-25T11:48:17+08:00">
-                2017-02-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-01T14:55:39+08:00">
+                2017-03-01
               </time>
             
 
@@ -301,8 +301,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2017/02/25/常见的攻击/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/25/常见的攻击/" itemprop="commentCount"></span>
+                <a href="/2017/03/01/async-await解决回调/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/01/async-await解决回调/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -328,19 +328,23 @@
       
 
       
-        <p>前端常见的攻击分为XSS(Cross Site Script )跨站脚本攻击。CSRF(Cross Site Request Forgery)跨站点伪造请求。Cookie劫持<br><a id="more"></a></p>
-<h3 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h3><p>它指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页时，嵌入的恶意html代码就会执行，从而达到恶意用户的特殊目的。XSS属于被动式的攻击，因为其被动而且不好利用。</p>
-<h4 id="XSS分类"><a href="#XSS分类" class="headerlink" title="XSS分类"></a>XSS分类</h4><p>1、反射型XSS。需要诱惑用户去激活的XSS攻击，如：点击恶意链接<br>2、存储型XSS。混杂有恶意代码的数据被存储在服务器端，当用户访问输出该数据的页面时，就会促发XSS攻击，具有很强稳定性。</p>
-<h4 id="XSS防御技巧"><a href="#XSS防御技巧" class="headerlink" title="XSS防御技巧"></a>XSS防御技巧</h4><p>HttpOnly<br>服务器端在设置安全级别高的Cookie时，带上HttpOnly的属性，就能防止JavaScript获取。PHP设置HttpOnly<br>    header(“Set-Cookie: a=1;”,false)<br>    header(“Set-Cookie: b=1;httponly”,false)<br>    setcookie(“c”,”1”,NULL,NULL,NULL,NULL,true)<br>输入检查<br>任何用户输入的数据，都是”不可信的”。<br>输入检查，一般是用于输入格式检查，例如：邮箱、电话号码、用户名这些<br>都要按照规定的格式输入：电话号码必须是纯数字和规定长度；用户名出了中英文数字外，仅允许输入几个安全符号。输入过滤不能完全交由前端负责，前端的输入过滤知识为了避免普通用户的错误输入，减轻服务器负担。因为攻击者完全可以绕过正常输入流程，直接利用相关接口向服务器发送设置。<br>所以前端和后端要做相同的过滤检查。<br>输出检查<br>相比于输入检查，前端更适合做输出检查。<br>可以看到，HttpOnly和前端没直接关系，输入检查的关键点也不在前端。<br>那XSS的防御就和前端没关系了？<br>当然不是，随着移动端web开发发展起来了，Ajax的使用越来越普遍，越来越多的操作都交给前端来处理。前端也需要做好XSS防御。JavaScript直接通过Ajax向服务器请求数据，接口把数据以JSON格式返回。前端整合数据后，输出页面，所以，前端的XSS防御点，在于输出检查。但也要结合XSS可能发生的场景</p>
-<h4 id="XSS注意场景"><a href="#XSS注意场景" class="headerlink" title="XSS注意场景"></a>XSS注意场景</h4><p>在HTML标签中输出<br>如：a href=”#”&gt;{$var}/a<br>风险：{$a}为”onclick=”/xss/<br>防御手段：变量HtmlEncode后输出<br>在script&gt;标签中输出<br>如：script&gt;var num = {$var}／script<br>风险:{$var}为1；alert(/xss/)<br>防御手段：确保输出变量在引号里面，再让变量JavaScriptEncode后输出</p>
-<h4 id="HtmlEncode"><a href="#HtmlEncode" class="headerlink" title="HtmlEncode"></a>HtmlEncode</h4><p>对下列字符实现编码<br>&amp; -&gt; &amp;amp；<br>&lt; -&gt; &amp;lt</p>
-<blockquote>
-<p>-&gt; &amp;gt<br>“ -&gt; &amp;quot<br>‘ -&gt; &amp;#39</p>
-</blockquote>
-<h4 id="JavaScriptEncode"><a href="#JavaScriptEncode" class="headerlink" title="JavaScriptEncode"></a>JavaScriptEncode</h4><p>对下列字符加上反斜杠<br>“ -&gt; \”<br>‘ -&gt; \’<br>\ -&gt; \\<br>\n -&gt; \\n<br>\r -&gt; \\r</p>
-<h3 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h3><p>CSRF即跨站点请求伪造<br>网站A：为恶意网站。<br>网站B：为用户已登陆的网站<br>当用户访问A站时，A站私自访问B站的操作链接，模拟用户操作。<br>假设B站哟偶一个删除评论的链接：<a href="http://b.com/comment/?type=delete&amp;id=81723" target="_blank" rel="external">http://b.com/comment/?type=delete&amp;id=81723</a> A站直接访问该链接，就能删除用户在B站的评论</p>
-<h4 id="CSRF的攻击策略"><a href="#CSRF的攻击策略" class="headerlink" title="CSRF的攻击策略"></a>CSRF的攻击策略</h4><p>因为浏览器访问B站相关链接时，会向服务器发送B站保存在本地的Cookie以判断用户是否登陆。所以通过A站访问的链接，也能顺利执行。</p>
-<h4 id="CSRF防御技巧"><a href="#CSRF防御技巧" class="headerlink" title="CSRF防御技巧"></a>CSRF防御技巧</h4><p>验证码<br>几乎所有人都知道验证码，但验证码不单单用来防治注册机的暴力破解，还可以有效方式CSRF攻击。但使用验证码的问题在于，不可能在所有用户的所有操作上都需要输入验证码。只有一些关键操作，才要求输入验证码<br>Referer Check<br>即来源检测，HTTP Referer是Request Headers的一部分，当浏览器向web服务器发送请求时，一般会带上Refer，告诉服务器用户从哪个站点链接过来的。服务器通过判断请求头中的referer，也能避免CSRF攻击<br>Token<br>VSRF能攻击成功，根本原因是：操作所带的参数均被攻击者猜测到。<br>既然知道根本原因，我们就对症下药，利用token。当向服务器传参数时，带上Token。这个Token是一个随机值，并由服务器和用户同时持有。Token可以存放在浏览器的Cookie中，当用户提交表单时带上Token值，服务器就能验证表单和Cookie中的Token是否一致。</p>
+        <p>异步方案有很多种，目前比较好的就是es6中的promise,典型的例子就是fecthAPI<br>而es7中的async/await则更加的好。<br><a id="more"></a></p>
+<h3 id="第一个例子"><a href="#第一个例子" class="headerlink" title="第一个例子"></a>第一个例子</h3><pre><code> var sleep = function(time) {
+    return new Promise(function(resolve,reject) {
+            setTimeout(function() {
+                    resolve()
+                },time)
+        })
+}
+var start = async function() {
+    //在这里使用就像同步代码那样直观
+    console.log(&apos;start&apos;)
+    awit.sleep(3000)
+    console.log(&apos;end&apos;)
+}
+</code></pre><h3 id="基本规则"><a href="#基本规则" class="headerlink" title="基本规则"></a>基本规则</h3><p>async表示这是一个async函数，await只能用在这个函数里面。<br>await表示在这里等待promise返回结果了，再继续执行<br>await后面跟着的应该是一个promise对象(当然，其他返回值也没关系，只是会立即执行，不过那样就没有意义了)</p>
+<h3 id="获得返回值"><a href="#获得返回值" class="headerlink" title="获得返回值"></a>获得返回值</h3><p>await等待的虽然是promise对象，但不必写.then(…),直接可以得到返回值<br>    var start = async function() {<br>        let result = await sleep(3000);<br>        console.log(result);//收到”ok”<br>    }        </p>
+<h3 id="捕捉错误"><a href="#捕捉错误" class="headerlink" title="捕捉错误"></a>捕捉错误</h3><p>既然.then(..)不用写了，那么.catch(…)也不用写，可以直接用标准的try catch 语法捕捉错误。<br>    var sleep = function() {<br>        return new Promise(function(resolve,reject) {<br>            setTimeout(function() {<br>                //模拟出错<br>                reject(‘error’)<br>            },error)<br>        })<br>    }<br>    var start = async function() {<br>        try {<br>            console.log(‘start’)<br>            await sleep(3000);//这里得到一个返回错误<br>            //以下代码不会被执行<br>            console.log(;end)<br>        }<br>        catch(err) {<br>            console.log(err)//这里捕捉到了错误<br>        }<br>    }</p>
 
       
     </div>
@@ -373,8 +377,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/24/跨域的几种解决方法/" rel="next" title="跨域的几种解决方法">
-                <i class="fa fa-chevron-left"></i> 跨域的几种解决方法
+              <a href="/2017/02/26/python爬虫/" rel="next" title="python爬虫">
+                <i class="fa fa-chevron-left"></i> python爬虫
               </a>
             
           </div>
@@ -383,8 +387,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/26/连接mysql的常见问题/" rel="prev" title="连接mysql的常见问题">
-                连接mysql的常见问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/01/promise解决回调地狱/" rel="prev" title="promise解决回调地狱">
+                promise解决回调地狱 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -411,8 +415,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/25/常见的攻击/"
-           data-title="常见的攻击" data-url="http://yoursite.com/2017/02/25/常见的攻击/">
+      <div class="ds-thread" data-thread-key="2017/03/01/async-await解决回调/"
+           data-title="async/await解决回调" data-url="http://yoursite.com/2017/03/01/async-await解决回调/">
       </div>
     
   </div>
@@ -509,7 +513,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS"><span class="nav-number">1.</span> <span class="nav-text">XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#XSS分类"><span class="nav-number">1.1.</span> <span class="nav-text">XSS分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XSS防御技巧"><span class="nav-number">1.2.</span> <span class="nav-text">XSS防御技巧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XSS注意场景"><span class="nav-number">1.3.</span> <span class="nav-text">XSS注意场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HtmlEncode"><span class="nav-number">1.4.</span> <span class="nav-text">HtmlEncode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScriptEncode"><span class="nav-number">1.5.</span> <span class="nav-text">JavaScriptEncode</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSRF"><span class="nav-number">2.</span> <span class="nav-text">CSRF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CSRF的攻击策略"><span class="nav-number">2.1.</span> <span class="nav-text">CSRF的攻击策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSRF防御技巧"><span class="nav-number">2.2.</span> <span class="nav-text">CSRF防御技巧</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一个例子"><span class="nav-number">1.</span> <span class="nav-text">第一个例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本规则"><span class="nav-number">2.</span> <span class="nav-text">基本规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获得返回值"><span class="nav-number">3.</span> <span class="nav-text">获得返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#捕捉错误"><span class="nav-number">4.</span> <span class="nav-text">捕捉错误</span></a></li></ol></div>
             
 
           </div>
