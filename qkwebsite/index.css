@@ -431,6 +431,7 @@ body {
 		position: absolute;
 		left: 50%;
 		transform: translateX(-45%);
+		pointer-events: none;
 	}
 	.third-title-container {
 		font-size: 2.25rem;

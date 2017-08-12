@@ -24,7 +24,6 @@ var distance = 0; var transition = false; var boxdistance = 0; var BallCount = 1
 	startLight()//下载按钮发光
 	// transformBall()//背景的球转动
 	download()//下载事件
-	autoPlayVideo()
 })()
 
 function download () {
@@ -245,34 +244,4 @@ function scrollBox (direction) {
 	$('.quark-box').css('transform', 'translateY(' + boxdistance + '%)')
 	$('.second-container').css('transition', 'transform ease-in-out 1s')
 	$('.second-container').css('transform', 'translateY(' + secondDistance + '%)')
-}
-function autoPlayVideo() {
-            /* 自动播放音乐效果，解决浏览器或者APP自动播放问题 */
-             function musicInBrowserHandler() {
-                 musicPlay(true);
-                 // document.body.removeEventListener('touchstart', musicInBrowserHandler);
-             }
-            // document.body.addEventListener('touchstart', musicInBrowserHandler);
-            musicInBrowserHandler()
-            /* 自动播放音乐效果，解决微信自动播放问题 */
-            function musicInWeixinHandler() {
-                musicPlay(true);
-                document.addEventListener("WeixinJSBridgeReady", function() {
-                    var media = document.getElementById('video');
-                    musicPlay(true);
-                }, false);
-                document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
-            }
-            document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
-        }
-
-        function musicPlay(isPlay) {
-            var media = document.getElementById('video');
-            media.play()
-            // if (isPlay && media.paused) {
-            //     media.play();
-            // }
-            // if (!isPlay && !media.paused) {
-            //     media.pause();
-            // }
 }
