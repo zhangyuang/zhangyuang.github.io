@@ -1,6 +1,6 @@
 var distance = 0; var transition = false; var boxdistance = 0; var BallCount = 1; var navDistance = 0;var navKeyDistance = -100;
 (function () {
-	// renderAnimation() //初始化动画
+	renderAnimation() //初始化动画
 	document.body.onmousewheel = function(event) {
 	   	renderMouseWheel(event, '')//ie鼠标滚轮事件
 	};
@@ -28,7 +28,6 @@ var distance = 0; var transition = false; var boxdistance = 0; var BallCount = 1
 
 function download () {
 	$(".develop-container").on("click", function () {
-		console.log('1')
 		location.href = 'http://www.uc.cn/company/'
 	})
 	$(".help").on("click", function () {
