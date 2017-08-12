@@ -268,10 +268,11 @@ function autoPlayVideo() {
 
         function musicPlay(isPlay) {
             var media = document.getElementById('video');
-            if (isPlay && media.paused) {
-                media.play();
-            }
-            if (!isPlay && !media.paused) {
-                media.pause();
-            }
+            media.play()
+            // if (isPlay && media.paused) {
+            //     media.play();
+            // }
+            // if (!isPlay && !media.paused) {
+            //     media.pause();
+            // }
 }
