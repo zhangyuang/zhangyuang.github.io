@@ -9,7 +9,7 @@ var distance = 0; var transition = false; var boxdistance = 0; var BallCount = 1
 	});
 	//移动端使用touch事件代替
 	$("body").on('touchstart', function (event) {
-		event.preventDefault()
+		// event.preventDefault()
 		//起始坐标
 		this.startY = event.changedTouches[0].clientY
 	})
@@ -126,7 +126,7 @@ function renderAnimation () {
 }
 
 function renderMouseWheel (event, distance) {
-	if (event.wheelDelta > 0 || distance > 0) {
+	if (event.wheelDelta > 0 || distance > 30) {
 		//向上滚
 		if (!transition) {
 			transitioning()
@@ -163,7 +163,7 @@ function renderMouseWheel (event, distance) {
 			}, 2000)
 		}
 	}
-	else {
+	else if (event.wheelDelta < 0 || distance < -30){
 		//向下滚
 		if (!transition) {
 			if (navDistance <= -74) navDistance == -74
