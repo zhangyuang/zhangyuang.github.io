@@ -9,10 +9,12 @@ var distance = 0; var transition = false; var boxdistance = 0; var BallCount = 1
 	});
 	//移动端使用touch事件代替
 	$("body").on('touchstart', function (event) {
+		event.preventDefault()
 		//起始坐标
 		this.startY = event.changedTouches[0].clientY
 	})
 	$("body").on('touchmove', function (event) {
+		event.preventDefault()
 		this.movingY = event.changedTouches[0].clientY
         this.distance = this.movingY - this.startY
         renderMouseWheel('', this.distance)
