@@ -121,7 +121,7 @@ function renderAnimation () {
 		}
 		$('.circle').attr('src', imgUrl)
 		imgKey++
-	}, 200)
+	}, 500)
 }
 
 function renderMouseWheel (event, distance) {
