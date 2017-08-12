@@ -20,7 +20,7 @@ var distance = 0; var transition = false; var boxdistance = 0; var BallCount = 1
         renderMouseWheel('', this.distance)
 	})
 	circleShadow()//鼠标移动到圆环发光
-	//startVideo()//播放视频
+	startVideo()//播放视频
 	startLight()//下载按钮发光
 	// transformBall()//背景的球转动
 	download()//下载事件
@@ -61,7 +61,7 @@ function startVideo () {
 		if (ended == true) {
 			$(".video")[0].play()
 		}
-	}, 1000)
+	}, 3000)
 }
 
 function transformBall () {
