@@ -9,12 +9,12 @@ var distance = 0; var transition = false; var boxdistance = 0; var BallCount = 1
 	});
 	//移动端使用touch事件代替
 	$("body").on('touchstart', function (event) {
-		event.preventDefault()
+		//event.preventDefault()
 		//起始坐标
 		this.startY = event.changedTouches[0].clientY
 	})
 	$("body").on('touchmove', function (event) {
-		// event.preventDefault()
+		event.preventDefault()
 		this.movingY = event.changedTouches[0].clientY
         this.distance = this.movingY - this.startY
         renderMouseWheel('', this.distance)
@@ -24,6 +24,7 @@ var distance = 0; var transition = false; var boxdistance = 0; var BallCount = 1
 	startLight()//下载按钮发光
 	// transformBall()//背景的球转动
 	download()//下载事件
+	autoPlayVideo()
 })()
 
 function download () {
@@ -244,4 +245,32 @@ function scrollBox (direction) {
 	$('.quark-box').css('transform', 'translateY(' + boxdistance + '%)')
 	$('.second-container').css('transition', 'transform ease-in-out 1s')
 	$('.second-container').css('transform', 'translateY(' + secondDistance + '%)')
+}
+function autoPlayVideo() {
+            /* 自动播放音乐效果，解决浏览器或者APP自动播放问题 */
+            function musicInBrowserHandler() {
+                musicPlay(true);
+                document.body.removeEventListener('touchstart', musicInBrowserHandler);
+            }
+            document.body.addEventListener('touchstart', musicInBrowserHandler);
+            /* 自动播放音乐效果，解决微信自动播放问题 */
+            function musicInWeixinHandler() {
+                musicPlay(true);
+                document.addEventListener("WeixinJSBridgeReady", function() {
+                    var media = document.getElementById('video');
+                    musicPlay(true);
+                }, false);
+                document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+            }
+            document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+        }
+
+        function musicPlay(isPlay) {
+            var media = document.getElementById('video');
+            if (isPlay && media.paused) {
+                media.play();
+            }
+            if (!isPlay && !media.paused) {
+                media.pause();
+            }
 }
