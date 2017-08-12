@@ -248,10 +248,10 @@ function scrollBox (direction) {
 }
 function autoPlayVideo() {
             /* 自动播放音乐效果，解决浏览器或者APP自动播放问题 */
-            // function musicInBrowserHandler() {
-            //     musicPlay(true);
-            //     document.body.removeEventListener('touchstart', musicInBrowserHandler);
-            // }
+             function musicInBrowserHandler() {
+                 musicPlay(true);
+                 // document.body.removeEventListener('touchstart', musicInBrowserHandler);
+             }
             // document.body.addEventListener('touchstart', musicInBrowserHandler);
             musicInBrowserHandler()
             /* 自动播放音乐效果，解决微信自动播放问题 */
