@@ -1,6 +1,6 @@
 var distance = 0; var transition = false; var boxdistance = 0; var BallCount = 1; var navDistance = 0;var navKeyDistance = -100;
 (function () {
-	renderAnimation() //初始化动画
+	//renderAnimation() //初始化动画
 	document.body.onmousewheel = function(event) {
 	   	renderMouseWheel(event, '')//ie鼠标滚轮事件
 	};
@@ -54,13 +54,16 @@ function transitionend () {
 }
 
 function startVideo () {
-	$(".video")[0].play()
-	setInterval(function () {
-		var ended = $(".video")[0].ended
-		if (ended == true) {
-			$(".video")[0].play()
-		}
-	}, 3000)
+	$(".play").on("click", function () {
+		$(".video")[0].play()
+		setInterval(function () {
+			var ended = $(".video")[0].ended
+			if (ended == true) {
+				$(".video")[0].play()
+			}
+		}, 3000)
+	})
+	$(".play").click()
 }
 
 function transformBall () {
