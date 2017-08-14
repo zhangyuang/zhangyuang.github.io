@@ -91,14 +91,14 @@ function startVideo () {
 		setInterval(function () {
 			var ended = $(".video")[0].ended
 			var indexEnded = $(".indexAnimation")[0].ended
-			
+			console.log(ended)
 			if (ended == true) {
 				$(".video")[0].play()
 			}
 			if (indexEnded == true) {
 				$(".indexAnimation")[0].play()
 			}
-		}, 50)
+		}, 500)
 	})
 	$(".play").click()
 }
