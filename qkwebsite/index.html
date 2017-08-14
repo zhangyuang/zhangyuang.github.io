@@ -50,8 +50,11 @@
 	</div>
 	<div class='quark-box index-container'>
 		<div class='circle-container'>
-			<img src="./images/animation/ball+ring_00024.png" class='circle'>
-			<div class='circle shadow'></div>
+			<!-- <img src="./images/animation/ball+ring_00024.png" class='circle'> -->
+			<!-- <div class='circle shadow'></div> -->
+			<video webkit-playsinline="true" playsinline muted autoplay preload class='indexAnimation'>
+				<source src="./images/indexAnimation.mp4" type="video/mp4"/>
+			</video>
 		</div>
 		</div>
 	</div>
@@ -60,8 +63,6 @@
 		<div class=video-container>	
 			<video class='video' webkit-playsinline="true" playsinline muted autoplay preload>
 				<source src="http://iovyo.cc/qkwebsite/images/animation.mp4" type="video/mp4"/>
-			    <!-- <source src="http://iovyo.cc/qkwebsite/images/animation.mp4" type=”video/ogg” /> -->
-			    <source src="http://iovyo.cc/qkwebsite/images/animation.webm" type="video/webm"/>
 			</video>
 			<button style='display: none;' class='play'>播放视频</button>
 		</div>
@@ -90,25 +91,52 @@
 				</div>
 				<span><span class="comma">&nbsp;&nbsp;,&nbsp;&nbsp;</span>来自未来的浏览器</span>
 			</div>
-			<img src="./images/bgballs/bg-balls-5.png" alt="" class='mustball ball5'>
+			<img src="./images/bgballs/bg-balls-5-08.png" alt="" class='mustball ball5'>
 			<div class="third-text third-text-container">
 				做这个世界的逆行者，先人一步看见未来
 			</div>
 			<div class="copyright-container">
-				<div class="copyright-c">C</div>
-				<div class="copyright-text"><span>2017</span><span>WWW.MYQUARK.CN</span><span>版权所有</span></div>
+				<div class="pc-text">
+					夸克浏览器以轻、快为核心，致力于用极简的体验满足用户对于手机浏览器最本质的需求
+				</div>
+				<div class="copyright-text"><div class="copyright-c">C</div><span style="margin-left: 5px;">2017</span><span style="margin-left: 5px;">WWW.MYQUARK.CN</span><span  style="margin-left: 5px;">版权所有</span><span style="margin-left: 20px;" class="layer">粤ICP备09210879号-24 </span></div>
 			</div>
 	</div>
 	<div class='bgball-container'>
-		<img src="./images/bgballs/bg-balls-1.png" class="ball ball1">
-		<img src="./images/bgballs/bg-balls-2.png" class="ball ball2">
-		<img src="./images/bgballs/bg-balls-3.png" class="ball ball3">
-		<img src="./images/bgballs/bg-balls-4.png" class="ball ball4">
+		<img src="./images/bgballs/bg-balls-1-08.png" class="ball ball1">
+		<img src="./images/bgballs/bg-balls-2-08.png" class="ball ball2">
+		<img src="./images/bgballs/bg-balls-3-08.png" class="ball ball3">
+		<img src="./images/bgballs/bg-balls-4-08.png" class="ball ball4">
 	</div>
 	<div class='download-container'>
 		<div class='left-light'></div>
 		<div class="right-light"></div>
 		现在下载
+	</div>
+	<div class='qr-container'>
+		<!-- 二维码页面 -->
+		<div class='mobile-container'>
+			<div class="mobile-right"></div>
+			<div class='android-container'>
+				<img src="./images/icons/android.png" alt="">
+				<div class='download-btn android-btn'>
+					下载
+				</div>
+			</div>
+			<div class="android-container">
+				<img src="./images/icons/ios.png" alt="">
+				<div class='download-btn ios-btn'>
+					下载
+				</div>
+			</div>
+		</div>
+		<div class="qr-content">
+			<img src="./images/icons/qr.png" alt="" class='qr-img'>
+		</div>
+		<img src="./images/icons/close.png" alt="" class="close-img">
+	</div>
+	<div class='mask-container'>
+		<!-- 遮罩层 -->
 	</div>
 <script type="text/javascript" src='./jquery-3.2.1.min.js'></script>
 <script src="http://api.html5media.info/1.2.2/html5media.min.js"></script>

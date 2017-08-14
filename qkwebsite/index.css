@@ -7,11 +7,12 @@ html {
 }
 body {
 	position: relative;
-	background-color: #1c1e21;
+	background-color: #1f2126;
 	height: 100%;
 	color: #fff;
 	overflow: hidden;
 	font-weight: lighter;
+	font-family: PingFangSC-Ultralight, sans-serif;
 }
 .help {
 	position: relative;
@@ -105,12 +106,12 @@ body {
 }
 .video-container {
 	position: absolute;
-	height: 600px;
-    width: 300px;
-    bottom: -30px;
-    left: 287px;
+    height: 520px;
+    width: 290px;
+    bottom: 10px;
+    left: 297px;
     z-index: 99;
-	perspective: 1600px;
+    perspective: 1600px
 }
 .video {
 	width: 100%;
@@ -194,6 +195,7 @@ body {
 	letter-spacing: 5px;
 }
 .copyright-container {
+	width: 100%;
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
@@ -202,6 +204,7 @@ body {
 	letter-spacing: 1px;
 	display: flex;
 	align-items: center;
+	flex-direction: column;
 	color: #767779;
 }
 .copyright-c {
@@ -210,6 +213,10 @@ body {
 	border-radius: 50%;
 	border: 1px solid #3a3c3f;
 }
+.copyright-text {
+	margin-top: 10px;
+	display: flex;
+}
 .copyright-text span {
 	float: left;
 }
@@ -217,18 +224,19 @@ body {
 	position: absolute;
 	width: 100%;
 	overflow: hidden;
-	padding-top: 60px;
+	padding-top: 40px;
 	z-index: 99;
 }
 .logo-container span {
-	vertical-align: middle;
+	
 }
 .logo-container img {
-	vertical-align: middle;
 	margin-left: 10px;
 	height: 20px;
 }
 .name-container {
+	display: flex;
+	align-items: center;
 	float: left;
 	margin-left: 50px;
 	letter-spacing: 5px;
@@ -278,7 +286,15 @@ body {
 	position: absolute;
 	top: 45%;
 	left: 50%;
-	width: 650px;
+	width: 480px;
+	height: 480px;
+	transform: translate(-50%, -50%);
+}
+.indexAnimation {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	width: 480px;
 	transform: translate(-50%, -50%);
 }
 .shadow {
@@ -327,6 +343,76 @@ body {
 	bottom: -50%;
 	left: 60%;
 }
+.qr-container {
+	display: flex;
+	opacity: 0;
+	z-index: 999;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 570px;
+	height: 200px;
+	background-color: #1c1e21;
+}
+.mobile-container {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+	height: 100%;
+}
+.android-container {
+	position: relative;
+	display: flex;
+	align-items: center;
+	margin: 50px 40px 0 40px;
+}
+.android-container img {
+	height: 20px;
+}
+.download-btn {
+	position: absolute;
+	right: 10px;
+	padding: 5px 15px;
+	border: 1px solid #303134;
+}
+.mobile-right {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0;
+	width: 1px;
+	height: 110px;
+	background-color: #303134;
+}
+.qr-content {
+	width: 40%;
+	position: relative;
+}
+.qr-img {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	height: 110px;
+	transform: translate(-50%, -50%);
+}
+.close-img {
+	position: absolute;
+	right: 0;
+	height: 15px;
+	top: -25px;
+}
+.mask-container {
+	display: none;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: #0e0f10;
+	opacity: 0.5;
+}
 
 /**媒体查询大于1500px的屏幕**/
 @media screen and (min-width: 1500px) {
@@ -354,7 +440,7 @@ body {
     html {
         font-size:12px!important
     }
-    .mobile, .video-container {
+    .mobile, .video-container, .indexAnimation {
 		transform:  translate(-50%, -50%) scale(.4);
 	}
 }
@@ -363,7 +449,7 @@ body {
     html {
         font-size:16px!important
     }
-    .mobile, .video-container {
+    .mobile, .video-container, .indexAnimation {
 		transform:  translate(-50%, -50%) scale(.5);
 	}
 }
@@ -373,18 +459,31 @@ body {
     html {
         font-size:20px!important
     }
-    .mobile, .video-container {
+    .mobile, .video-container, .indexAnimation {
 		transform:  translate(-50%, -50%) scale(.6);
 	}
 }
+@media screen and (min-width: 641px) and (max-width:1050px) {
+	/**iphone6 plus**/
+    html {
+        font-size:20px!important
+    }
+    .mobile, .video-container, .indexAnimation {
+		transform:  translate(-50%, -50%) scale(1);
+	}
+}
 /**移动端通用样式**/
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 1050px) {
 	.logo-container {
 		padding-top: 30px;
 		display: flex;
 		justify-content: space-between;
 	}
-	.quark-community, .help, .develop-container, .nav-container, .ball2, .ball5, .second-text-container, .third-text-container, .comma, .nav {
+	.name-container {
+		margin-left: 27px;
+	}
+	.quark-community, .help, .develop-container, .nav-container, .ball2, .ball5, .second-text-container, .third-text-container, .comma, .nav
+	, .pc-text, .layer {
 		display: none;
 	}
 	.download-container {
@@ -434,8 +533,11 @@ body {
 		pointer-events: none;
 	}
 	.third-title-container {
-		font-size: 2.25rem;
+		font-size: 1.65rem;
 		flex-direction: column;
+	}
+	.third-quark-container {
+		margin-bottom: 10px;
 	}
 	.copyright-container {
 		width: 100%;

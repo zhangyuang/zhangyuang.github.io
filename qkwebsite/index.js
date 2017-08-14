@@ -22,16 +22,47 @@ var distance = 0; var transition = false; var boxdistance = 0; var BallCount = 1
 	circleShadow()//鼠标移动到圆环发光
 	startVideo()//播放视频
 	startLight()//下载按钮发光
-	// transformBall()//背景的球转动
+	transformBall()//背景的球转动
 	download()//下载事件
 })()
 
 function download () {
+	var bid  = GetQueryString('bid') || 6500
 	$(".develop-container").on("click", function () {
 		location.href = 'http://www.uc.cn/company/'
 	})
 	$(".help").on("click", function () {
 		location.href = 'http://kf.uc.cn/self_service/web/index'
+	})
+	$(".download-container").on('click', function () {
+		var ua = navigator.userAgent
+		if (ua.match('Mobile')) {
+			if (ua.match('MicroMessenger')) {
+				location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.quark.browser'
+			}
+			else {
+				if (ua.match('iPhone') || ua.match('iPad')) {
+		          	location.href = 'https://itunes.apple.com/cn/app/kua-ke-liu-lan-qi-ji-jian/id1160172628?l=zh&ls=1&mt=8'
+		        }
+		        else if (ua.match('Android') || ua.match('Windows')) {
+		          	location.href = 'https://pdds.ucweb.com/download/newest/QuarkBrowser/zh-cn/3300/' + bid + '/of'
+		        }
+			}
+		}
+		else {
+			$(".qr-container").css('opacity', 1)
+			$(".mask-container").css('display', 'block')
+			$(".close-img").on('click', function () {
+				$(".mask-container").css('display', 'none')
+				$(".qr-container").css('opacity', 0)
+			})
+			$(".android-btn").on('click', function () {
+				location.href = 'https://pdds.ucweb.com/download/newest/QuarkBrowser/zh-cn/3300/' + bid + '/of'
+			})
+			$(".ios-btn").on("click", function () {
+				location.href = 'https://itunes.apple.com/cn/app/kua-ke-liu-lan-qi-ji-jian/id1160172628?l=zh&ls=1&mt=8'
+			})
+		}
 	})
 }
 
@@ -56,12 +87,18 @@ function transitionend () {
 function startVideo () {
 	$(".play").on("click", function () {
 		$(".video")[0].play()
+		$(".indexAnimation")[0].play()
 		setInterval(function () {
 			var ended = $(".video")[0].ended
+			var indexEnded = $(".indexAnimation")[0].ended
+			
 			if (ended == true) {
 				$(".video")[0].play()
 			}
-		}, 3000)
+			if (indexEnded == true) {
+				$(".indexAnimation")[0].play()
+			}
+		}, 50)
 	})
 	$(".play").click()
 }
@@ -69,8 +106,7 @@ function startVideo () {
 function transformBall () {
 	var time = setInterval(function () {
 		if (!transition) {
-			$(".ball").css('transform', 'translateY(' + distance + 'px) rotateZ(' + BallCount + 'deg)')
-			$(".mustball").css('transform', 'rotateZ(' + BallCount + 'deg)')
+			$(".ball").css('transform', 'translateX(' + BallCount + 'px) rotateZ(' + BallCount + 'px)')
 			BallCount++
 		}
 	}, 50)
@@ -168,6 +204,7 @@ function renderMouseWheel (event, distance) {
 	else if (event.wheelDelta < 0 || distance < -50){
 		//向下滚
 		if (!transition) {
+			transitioning()
 			if (navDistance <= -74) navDistance == -74
 			else navDistance -= 37
 			if (navKeyDistance == 0) {
@@ -179,7 +216,6 @@ function renderMouseWheel (event, distance) {
 			$(".nav-sign").css('transform', 'translateY(' + navKeyDistance + '%)')
 			if (navKeyDistance <= -200 ) navKeyDistance == -200
 			else navKeyDistance -= 100
-			transitioning()
 			this.scrollBall('down')
 			this.scrollBox('down')
 			if (boxdistance == -100) {
@@ -218,7 +254,7 @@ function scrollBall (direction) {
 		else distance -= 370
 	}
 	$('.ball').css('transition', 'transform ease-out 1s')
-	$(".ball").css('transform', 'translateY(' + distance + 'px) rotateZ(' + BallCount + 'deg)')
+	$(".ball").css('transform', 'translateY(' + distance + 'px)')
 }
 
 function scrollBox (direction) {
@@ -246,4 +282,11 @@ function scrollBox (direction) {
 	$('.quark-box').css('transform', 'translateY(' + boxdistance + '%)')
 	$('.second-container').css('transition', 'transform ease-in-out 1s')
 	$('.second-container').css('transform', 'translateY(' + secondDistance + '%)')
+}
+
+function GetQueryString(name)
+{
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
 }
