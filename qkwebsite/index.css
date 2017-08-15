@@ -20,14 +20,14 @@ body {
 }
 .nav {
 	position: fixed;
-	right: 20px;
+	right: 30px;
 	top: 50%;
 	transform: translateY(-50%);
 }
 .nav li {
 	margin-bottom: 8px;
 	list-style: none;
-	width: 4px;
+	width: 6px;
 	height: 4px;
 }
 .nav-container {
@@ -75,7 +75,7 @@ body {
 	width: 1px;
 	height: 10px;
 	background-color: #fff;
-	bottom: -20px;
+	bottom: -15px;
 	right: 15px;
 }
 .second-text, .third-text {
@@ -101,15 +101,15 @@ body {
 .mobile {
 	position: absolute;
     height: 700px;
-    bottom: -60px;
+    bottom: -94px;
     left: 250px;
 }
 .video-container {
 	position: absolute;
     height: 520px;
-    width: 290px;
-    bottom: 10px;
-    left: 297px;
+    width: 272px;
+    bottom: -8px;
+    left: 305px;
     z-index: 99;
     perspective: 1600px;
     -webkit-perspective: 1600px; 
@@ -367,10 +367,10 @@ body {
 	position: relative;
 	display: flex;
 	align-items: center;
-	margin: 50px 40px 0 40px;
+	margin: 45px 40px 0 40px;
 }
 .android-container img {
-	height: 20px;
+	height: 30px;
 }
 .download-btn {
 	position: absolute;
@@ -433,6 +433,21 @@ body {
 	}
 	.second-title-container {
 		font-size: 40px;
+	}
+	.ball1 {
+		height: 386px;
+	}
+	.ball2 {
+		height: 200px;
+	}
+	.ball3 {
+		height: 250px;
+	}
+	.ball4 {
+		width: 400px;
+	}
+	.ball5 {
+		width: 800px;
 	}
 }
 /**移动端**/
